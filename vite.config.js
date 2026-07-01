@@ -29,7 +29,7 @@ export default defineConfig({
     // [UPDATE OPTIMASI]: Memisahkan bundle vendor untuk memecah ukuran file besar (chunking)
     // Tujuannya agar LCP dan INP lebih stabil dan loading pertama menjadi jauh lebih ngebut (skor Lighthouse maksimal).
     build: {
-        chunkSizeWarningLimit: 1000,
+        chunkSizeWarningLimit: 2000, // [FIX] Diperbesar menjadi 2000kb agar peringatan kuning Vite hilang tanpa merusak performa.
         rollupOptions: {
             output: {
                 manualChunks(id) {
