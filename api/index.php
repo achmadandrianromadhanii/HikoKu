@@ -33,6 +33,16 @@ if (file_exists($maintenance = __DIR__ . '/../storage/framework/maintenance.php'
     require $maintenance;
 }
 
+// [UPDATE VERCEL FIX 500 SERVER ERROR]: 
+// Vercel menggunakan file system yang Read-Only. Kita sudah mengarahkan cache dan views ke /tmp di vercel.json.
+// Namun, jika foldernya belum ada, Laravel akan crash (500 Error). Script ini memastikan foldernya dibuat otomatis.
+$tmpDirectories = ['/tmp/views', '/tmp/cache', '/tmp/sessions'];
+foreach ($tmpDirectories as $dir) {
+    if (!is_dir($dir)) {
+        mkdir($dir, 0777, true);
+    }
+}
+
 // Komentar: Muat Composer autoloader agar semua class Laravel
 // dan package vendor bisa digunakan.
 require __DIR__ . '/../vendor/autoload.php';
