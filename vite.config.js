@@ -26,4 +26,20 @@ export default defineConfig({
             host: 'localhost',
         },
     },
+    // [UPDATE OPTIMASI]: Memisahkan bundle vendor untuk memecah ukuran file besar (chunking)
+    // Tujuannya agar LCP dan INP lebih stabil dan loading pertama menjadi jauh lebih ngebut (skor Lighthouse maksimal).
+    build: {
+        chunkSizeWarningLimit: 1000,
+        rollupOptions: {
+            output: {
+                manualChunks(id) {
+                    if (id.includes('node_modules')) {
+                        if (id.includes('apexcharts')) return 'vendor-charts';
+                        if (id.includes('vue')) return 'vendor-vue';
+                        return 'vendor'; // Memisahkan semua sisa library pihak ketiga
+                    }
+                }
+            }
+        }
+    }
 });
