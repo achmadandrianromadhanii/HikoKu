@@ -52,7 +52,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => isset($_SERVER['HTTP_HOST']) 
+        ? 'https://' . $_SERVER['HTTP_HOST'] 
+        : env('APP_URL', 'https://myhikokuun.vercel.app'),
 
     /*
     |--------------------------------------------------------------------------
