@@ -27,15 +27,6 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
-// [DEBUG FORCE]: Memaksa Laravel memunculkan error aslinya ke layar 
-// agar kita tidak menebak-nebak dalam gelap.
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
-$_ENV['APP_DEBUG'] = 'true';
-$_SERVER['APP_DEBUG'] = 'true';
-putenv('APP_DEBUG=true');
-
 // Komentar: Cek apakah aplikasi sedang dalam mode maintenance.
 // Jika ya, tampilkan halaman maintenance dan hentikan eksekusi.
 if (file_exists($maintenance = __DIR__ . '/../storage/framework/maintenance.php')) {
