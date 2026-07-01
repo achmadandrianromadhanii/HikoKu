@@ -41,6 +41,6 @@
         "vue-toastification": "^2.0.0-rc.5",
         "vue3-apexcharts": "^1.11.1",
         "yup": "^1.7.1",
-        "ziggy-js": "^2.6.2"
+        "ziggy-js": "^2.6.3"
     }
 }
