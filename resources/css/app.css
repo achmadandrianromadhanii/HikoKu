@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-surface-50 text-surface-900 antialiased;
+    }
+
+    ::selection {
+        background: rgba(15, 111, 157, 0.18);
+        color: #0c3653;
+    }
+}
+
+@layer components {
+    .floating-group {
+        position: relative;
+    }
+
+    .floating-input {
+        @apply h-12 w-full rounded-2xl border border-surface-200 bg-white px-4 pb-2 pt-5 text-sm text-surface-900 outline-none transition;
+    }
+
+    .floating-input:focus {
+        border-color: #85c9dc;
+        box-shadow: 0 0 0 4px rgba(23, 140, 168, 0.12);
+    }
+
+    .floating-label {
+        position: absolute;
+        left: 0.875rem;
+        top: 0.9rem;
+        color: #6b8797;
+        font-size: 0.875rem;
+        transition: all 0.2s ease;
+        pointer-events: none;
+        background: white;
+        padding: 0 0.25rem;
+    }
+
+    .floating-input:focus + .floating-label,
+    .floating-input:not(:placeholder-shown) + .floating-label {
+        top: -0.48rem;
+        font-size: 0.75rem;
+        color: #0f6f9d;
+    }
+
+    .user-shell {
+        @apply bg-surface-50 text-surface-900;
+    }
+
+    .user-section {
+        @apply rounded-3xl border border-surface-200 bg-white shadow-soft;
+    }
+
+    .user-panel {
+        @apply rounded-3xl border border-surface-200 bg-white shadow-card;
+    }
+
+    .user-subtle-panel {
+        @apply rounded-2xl border border-surface-200 bg-surface-50;
+    }
+
+    .user-heading-kicker {
+        @apply text-sm font-semibold text-primary-600;
+    }
+
+    .user-page-title {
+        @apply mt-1 text-2xl font-bold tracking-tight text-surface-900 sm:text-3xl;
+    }
+
+    .user-page-desc {
+        @apply mt-2 text-sm leading-7 text-surface-600;
+    }
+
+    .user-btn-primary {
+        @apply inline-flex h-10 items-center justify-center rounded-2xl bg-primary-600 px-4 text-sm font-semibold text-white transition hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-100;
+    }
+
+    .user-btn-secondary {
+        @apply inline-flex h-10 items-center justify-center rounded-2xl border border-surface-200 bg-white px-4 text-sm font-semibold text-surface-700 transition hover:border-primary-200 hover:text-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-100;
+    }
+
+    .user-btn-soft {
+        @apply inline-flex h-10 items-center justify-center rounded-2xl bg-primary-50 px-4 text-sm font-semibold text-primary-700 transition hover:bg-primary-100 focus:outline-none focus:ring-4 focus:ring-primary-100;
+    }
+
+    .user-badge-primary {
+        @apply inline-flex items-center rounded-full bg-primary-50 px-2.5 py-1 text-[11px] font-semibold text-primary-700;
+    }
+
+    .user-badge-success {
+        @apply inline-flex items-center rounded-full bg-emerald-100 px-2.5 py-1 text-[11px] font-semibold text-emerald-700;
+    }
+
+    .user-badge-danger {
+        @apply inline-flex items-center rounded-full bg-red-100 px-2.5 py-1 text-[11px] font-semibold text-red-600;
+    }
+
+    .user-input {
+        @apply h-11 w-full rounded-2xl border border-surface-200 bg-white px-4 text-sm text-surface-900 outline-none transition focus:border-primary-300 focus:ring-4 focus:ring-primary-100;
+    }
+
+    .user-textarea {
+        @apply w-full rounded-2xl border border-surface-200 bg-white px-4 py-3 text-sm text-surface-900 outline-none transition focus:border-primary-300 focus:ring-4 focus:ring-primary-100;
+    }
+
+    .user-select {
+        @apply h-11 w-full rounded-2xl border border-surface-200 bg-white px-4 text-sm text-surface-900 outline-none transition focus:border-primary-300 focus:ring-4 focus:ring-primary-100;
+    }
+
+    .user-empty-state {
+        @apply rounded-3xl border border-dashed border-surface-300 bg-white px-6 py-16 text-center shadow-soft;
+    }
+
+    .brand-wordmark {
+        font-family: Georgia, "Times New Roman", serif;
+        letter-spacing: -0.04em;
+        line-height: 1;
+    }
+
+    .brand-wordmark-dark {
+        @apply brand-wordmark text-surface-950;
+    }
+
+    .brand-wordmark-light {
+        @apply brand-wordmark text-white;
+    }
+}
+
+@layer utilities {
+    .bg-auth-theme {
+        background:
+            radial-gradient(
+                circle at top right,
+                rgba(34, 211, 238, 0.16),
+                transparent 26%
+            ),
+            linear-gradient(
+                90deg,
+                #031632 0%,
+                #06314a 28%,
+                #0a4a61 62%,
+                #0e7481 100%
+            );
+    }
+
+    .text-balance {
+        text-wrap: balance;
+    }
+}

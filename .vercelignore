@@ -1,0 +1,48 @@
+# ==========================================================================
+# [FILE]: .vercelignore
+# ==========================================================================
+# FUNGSI: Daftar file/folder yang TIDAK perlu di-upload ke Vercel.
+#         Ini mempercepat proses deploy dan mengurangi ukuran bundle.
+#
+# CARA KERJA: Vercel membaca file ini (mirip .gitignore) dan
+#             mengecualikan file/folder yang terdaftar saat upload.
+# ==========================================================================
+
+# Komentar: Dependency folders — di-install ulang oleh Vercel saat build
+node_modules
+vendor
+
+# Komentar: File development & testing — tidak diperlukan di production
+tests
+phpunit.xml
+.phpunit.cache
+.phpunit.result.cache
+
+# Komentar: Konfigurasi IDE & editor
+.idea
+.vscode
+*.swp
+*.swo
+
+# Komentar: Storage yang di-generate saat runtime
+storage/logs
+storage/framework/cache
+storage/framework/sessions
+storage/framework/views
+storage/debugbar
+
+# Komentar: File environment lokal — kredensial tidak boleh di-upload
+# (environment variables di-set via Vercel Dashboard)
+.env
+.env.backup
+.env.production
+
+# Komentar: File Git internal
+.git
+.gitattributes
+
+# Komentar: Dokumentasi dan file non-essential
+README.md
+CHANGELOG.md
+docker-compose.yml
+Dockerfile

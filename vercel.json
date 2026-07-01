@@ -1,0 +1,80 @@
+{
+    "$schema": "https://openapi.vercel.sh/vercel.json",
+
+    "_comment_1": "==========================================================================",
+    "_comment_2": "[FILE]: vercel.json — Konfigurasi deployment Vercel untuk Laravel + Inertia",
+    "_comment_3": "==========================================================================",
+    "_comment_4": "FUNGSI: Mendefinisikan bagaimana Vercel mem-build dan me-routing request.",
+    "_comment_5": "CARA KERJA:",
+    "_comment_6": "  1. 'builds' menentukan runtime dan file yang perlu di-proses.",
+    "_comment_7": "  2. 'routes' menentukan URL mana diarahkan ke file mana.",
+    "_comment_8": "  3. Static assets (CSS, JS, images) dilayani langsung tanpa PHP.",
+    "_comment_9": "  4. Semua request lain diarahkan ke api/index.php (Laravel handler).",
+
+    "version": 2,
+
+    "framework": null,
+
+    "outputDirectory": "public",
+
+    "builds": [
+        {
+            "_comment": "[BUILD 1]: Compile frontend assets (CSS, JS) menggunakan Vite",
+            "src": "package.json",
+            "use": "@vercel/static-build",
+            "config": {
+                "distDir": "public/build"
+            }
+        },
+        {
+            "_comment": "[BUILD 2]: Serverless PHP function — entry point Laravel",
+            "src": "api/index.php",
+            "use": "vercel-php@0.7.2"
+        }
+    ],
+
+    "routes": [
+        {
+            "_comment": "[ROUTE 1]: Static assets yang sudah di-build Vite (JS, CSS, fonts)",
+            "src": "/build/(.*)",
+            "dest": "/public/build/$1"
+        },
+        {
+            "_comment": "[ROUTE 2]: Static images (logo, favicon, dll)",
+            "src": "/images/(.*)",
+            "dest": "/public/images/$1"
+        },
+        {
+            "_comment": "[ROUTE 3]: Favicon dan file root public",
+            "src": "/favicon.ico",
+            "dest": "/public/favicon.ico"
+        },
+        {
+            "_comment": "[ROUTE 4]: File robots.txt untuk SEO",
+            "src": "/robots.txt",
+            "dest": "/public/robots.txt"
+        },
+        {
+            "_comment": "[ROUTE 5]: Storage symlink — file upload yang di-link ke public",
+            "src": "/storage/(.*)",
+            "dest": "/public/storage/$1"
+        },
+        {
+            "_comment": "[ROUTE 6]: Semua request lainnya diarahkan ke Laravel (PHP handler). Ini adalah catch-all route yang memastikan semua URL diproses oleh Laravel router.",
+            "src": "/(.*)",
+            "dest": "/api/index.php"
+        }
+    ],
+
+    "env": {
+        "APP_CONFIG_CACHE": "/tmp/config.php",
+        "APP_EVENTS_CACHE": "/tmp/events.php",
+        "APP_PACKAGES_CACHE": "/tmp/packages.php",
+        "APP_ROUTES_CACHE": "/tmp/routes.php",
+        "APP_SERVICES_CACHE": "/tmp/services.php",
+        "VIEW_COMPILED_PATH": "/tmp/views",
+        "CACHE_PATH": "/tmp/cache",
+        "LOG_CHANNEL": "stderr",
+        "SESSION_DRIVER": "database"
+    }
+}

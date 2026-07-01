@@ -1,0 +1,19 @@
+export interface User {
+    id: number;
+    name: string;
+    email: string;
+    phone?: string;
+    avatar?: string;
+    role?: string;
+    is_social_login?: boolean;
+    has_password?: boolean;
+    email_verified_at?: string;
+}
+
+export type PageProps<
+    T extends Record<string, unknown> = Record<string, unknown>,
+> = T & {
+    auth: {
+        user: User;
+    };
+};
