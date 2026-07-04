@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\CartItem;
 use App\Services\CartService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -43,6 +44,9 @@ class CartController extends Controller
             notes: $data['notes'] ?? null
         );
 
+        // [OPTIMASI VERCEL/LATENCY]: Hapus cache agar jumlah keranjang di Navbar langsung ter-update
+        Cache::forget('cart_count_user_' . $request->user()->id);
+
         return back()->with('success', 'Item berhasil ditambahkan ke keranjang.');
     }
 
@@ -56,6 +60,9 @@ class CartController extends Controller
 
         $this->cartService->updateQty($cartItem, $data['quantity']);
 
+        // [OPTIMASI VERCEL/LATENCY]: Hapus cache
+        Cache::forget('cart_count_user_' . $request->user()->id);
+
         return back()->with('success', 'Jumlah item diperbarui.');
     }
 
@@ -64,6 +71,9 @@ class CartController extends Controller
         abort_unless($cartItem->user_id === $request->user()->id, 403);
 
         $this->cartService->removeItem($cartItem);
+
+        // [OPTIMASI VERCEL/LATENCY]: Hapus cache
+        Cache::forget('cart_count_user_' . $request->user()->id);
 
         return back()->with('success', 'Item dihapus dari keranjang.');
     }

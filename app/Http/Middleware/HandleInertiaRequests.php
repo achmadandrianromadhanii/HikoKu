@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\CartItem;
+use Illuminate\Support\Facades\Cache;
 
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -42,25 +43,28 @@ class HandleInertiaRequests extends Middleware
                 'wishlist' => fn() => $request->session()->get('wishlist'),
             ],
 
-            // [KOMENTAR PENJELASAN]: Mengirimkan daftar ID produk yang di-wishlist oleh pengguna ke seluruh halaman (Persisten).
-            // Data ini digunakan oleh Pinia store agar saat refresh, status tombol love tetap merah tanpa perlu delay.
+            // [OPTIMASI VERCEL/LATENCY]: Membungkus query menggunakan Cache::remember.
+            // Di Vercel, mengeksekusi query database di setiap perpindahan halaman akan membuat web sangat lambat (Lagging/Lemot).
+            // Cache ini akan disimpan di memori selama 24 jam dan hanya di-query ulang jika Cache dihapus saat ada perubahan.
             'wishlist' => [
                 'product_ids' => fn() => $user
-                    ? \App\Models\Wishlist::query()
-                        ->where('user_id', $user->id)
-                        ->pluck('product_id')
-                        ->toArray()
+                    ? Cache::remember('wishlist_user_' . $user->id, now()->addHours(24), function () use ($user) {
+                        return \App\Models\Wishlist::query()
+                            ->where('user_id', $user->id)
+                            ->pluck('product_id')
+                            ->toArray();
+                    })
                     : [],
             ],
 
-
-
             'cart' => [
                 'count' => fn() => $user
-                    ? CartItem::query()
-                    ->where('user_id', $user->id)
-                    ->where('expires_at', '>', now())
-                    ->count()
+                    ? Cache::remember('cart_count_user_' . $user->id, now()->addHours(24), function () use ($user) {
+                        return CartItem::query()
+                            ->where('user_id', $user->id)
+                            ->where('expires_at', '>', now())
+                            ->count();
+                    })
                     : 0,
             ],
 

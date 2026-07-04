@@ -8,6 +8,7 @@ use App\Services\WishlistService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Inertia\Inertia;
 
 class WishlistController extends Controller
@@ -48,6 +49,9 @@ class WishlistController extends Controller
             (int) $data['product_id']
         );
 
+        // [OPTIMASI VERCEL/LATENCY]: Hapus cache
+        Cache::forget('wishlist_user_' . $request->user()->id);
+
         return back()->with([
             'success' => $result['wishlisted']
                 ? 'Produk berhasil ditambahkan ke wishlist.'
@@ -67,6 +71,9 @@ class WishlistController extends Controller
         Wishlist::where('user_id', Auth::id())
             ->where('product_id', $product->id)
             ->delete();
+
+        // [OPTIMASI VERCEL/LATENCY]: Hapus cache
+        Cache::forget('wishlist_user_' . Auth::id());
 
         return back()->with('success', 'Produk dihapus dari wishlist.');
     }

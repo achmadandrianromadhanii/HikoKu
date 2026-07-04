@@ -63,9 +63,9 @@ class OtpVerificationController extends Controller
         Cache::put($otpKey, $otpCode, now()->addMinutes(5));
 
         // Kirim email
-        // Menggunakan Mail::to agar lebih cepat atau antrian jika dikonfigurasi
+        // [OPTIMASI VERCEL/LATENCY]: Gunakan queue() agar tidak nge-freeze saat kirim email
         try {
-            Mail::to($user->email)->send(new OtpVerificationMail($otpCode));
+            Mail::to($user->email)->queue(new OtpVerificationMail($otpCode));
         } catch (\Exception $e) {
             return back()->withErrors(['otp' => 'Gagal mengirim email. Pastikan koneksi dan pengaturan SMTP Anda benar.']);
         }

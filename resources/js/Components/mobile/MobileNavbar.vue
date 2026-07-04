@@ -57,10 +57,10 @@ const profileUrl = computed(() => {
 <template>
     <!--
         [MOBILE NAVBAR]: Header atas fixed, tinggi 56px.
-        Background gelap transparan dengan efek kaca (backdrop-blur).
+        Background gelap transparan dengan efek kaca (backdrop-blur-md transform-gpu).
         Konsisten secara visual dengan tema Desktop (Dark Navy).
     -->
-    <header class="fixed inset-x-0 top-0 z-50 h-14 border-b border-white/10 bg-[#031632]/92 backdrop-blur-xl">
+    <header class="fixed inset-x-0 top-0 z-50 h-14 border-b border-white/10 bg-[#031632]/95 backdrop-blur-md transform-gpu will-change-transform">
         <div class="flex h-full items-center gap-3 px-3">
 
             <!-- Komentar: Logo kecil di pojok kiri -->

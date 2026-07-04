@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use App\Mail\RentalConfirmedMail;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Cache;
 use Carbon\Carbon;
 
 class RentalService
@@ -147,6 +148,9 @@ class RentalService
                 ->where('user_id', $userId)
                 ->delete();
 
+            // [OPTIMASI VERCEL/LATENCY]: Hapus cache cart
+            Cache::forget('cart_count_user_' . $userId);
+
             return $rental->load('items');
         });
     }
@@ -172,9 +176,9 @@ class RentalService
                 'status' => 'confirmed',
             ]);
 
-            // [UPDATE] Kirim Email Konfirmasi secara terpusat dari Service (aktif untuk Midtrans & Manual Admin)
+            // [OPTIMASI VERCEL/LATENCY]: Gunakan queue() alih-alih send() agar tidak memblokir respon ke user
             try {
-                Mail::to($rental->user->email)->send(new RentalConfirmedMail($rental));
+                Mail::to($rental->user->email)->queue(new RentalConfirmedMail($rental));
             } catch (\Exception $e) {
                 Log::error('Failed to send confirmation email in RentalService: ' . $e->getMessage());
             }

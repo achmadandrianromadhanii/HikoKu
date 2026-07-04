@@ -105,11 +105,11 @@ const tabs = computed(() => [
         ======================================================================
         - Desain dinaikkan (bottom-4) agar melayang indah dari layar bawah.
         - Memiliki batas melengkung penuh (rounded-[24px]).
-        - Glassmorphism level tinggi: bg-slate-900/80 dengan backdrop-blur-2xl.
+        - Glassmorphism level tinggi: bg-slate-900/95 dengan backdrop-blur-md transform-gpu.
         - Lebar 100% namun ada margin di pinggir (mx-4).
     -->
     <div class="fixed inset-x-0 bottom-4 z-50 px-4 pointer-events-none" style="padding-bottom: env(safe-area-inset-bottom, 0px);">
-        <nav class="mx-auto flex h-[60px] max-w-lg items-stretch justify-around rounded-[24px] border border-white/10 bg-slate-900/80 shadow-[0_8px_32px_rgba(0,0,0,0.25)] backdrop-blur-2xl pointer-events-auto">
+        <nav class="mx-auto flex h-[60px] max-w-lg items-stretch justify-around rounded-[24px] border border-white/10 bg-slate-900/95 shadow-[0_8px_32px_rgba(0,0,0,0.25)] backdrop-blur-md transform-gpu will-change-transform pointer-events-auto">
 
             <!-- Loop 5 Tab Navigasi -->
             <Link

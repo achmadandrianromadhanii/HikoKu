@@ -152,8 +152,11 @@ onUnmounted(() => {
                 <!-- opacity-100 digunakan agar gambar tampil tajam dan full, tidak pudar -->
                 <img v-for="(img, idx) in heroImages" :key="idx"
                      :src="img" 
+                     :fetchpriority="idx === 0 ? 'high' : 'auto'"
+                     :loading="idx === 0 ? 'eager' : 'lazy'"
+                     decoding="async"
                      alt="Mountain Background" 
-                     class="absolute inset-0 h-full w-full object-cover object-center bg-[#081828] transition-opacity duration-1000 ease-in-out"
+                     class="absolute inset-0 h-full w-full object-cover object-center bg-[#081828] transition-opacity duration-1000 ease-in-out transform-gpu will-change-transform"
                      :class="idx === currentHeroImage ? 'opacity-100 z-10' : 'opacity-0 z-0'" />
                 
                 <!-- Overlay diubah menjadi hitam tipis transparan murni (hanya 30%) demi menjaga teks terbaca 
