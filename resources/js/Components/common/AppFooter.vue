@@ -137,8 +137,9 @@ const socialLinks = computed(() => [
 
         <div class="pointer-events-none absolute inset-0 z-20">
             <!-- Efek Cahaya / Glow tambahan -->
-            <div class="absolute -left-12 top-8 h-48 w-48 rounded-full bg-cyan-500/20 blur-[80px]" />
-            <div class="absolute bottom-0 right-0 h-56 w-56 rounded-full bg-blue-500/20 blur-[80px]" />
+            <!-- [OPTIMASI GPU]: Gunakan radial gradient murni -->
+            <div class="absolute -left-12 top-8 h-48 w-48 rounded-full" style="background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, transparent 70%);" />
+            <div class="absolute bottom-0 right-0 h-56 w-56 rounded-full" style="background: radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%);" />
         </div>
 
         <div class="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">

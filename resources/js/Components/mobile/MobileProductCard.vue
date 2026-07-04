@@ -97,7 +97,7 @@ const addToCart = () => {
         - Typography: Nama produk 1 baris (line-clamp-1) text-[11px].
         - Interaksi: Active scale [0.96] memberi efek haptic 60fps.
     -->
-    <div class="group relative overflow-hidden rounded-[16px] border border-white/10 bg-slate-800/90 shadow-[0_4px_16px_rgba(0,0,0,0.4)] backdrop-blur-sm transform-gpu will-change-transform transition-all duration-300 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] active:scale-[0.96]">
+    <div class="group relative overflow-hidden rounded-[16px] border border-white/10 bg-slate-800/90 shadow-[0_4px_16px_rgba(0,0,0,0.4)] backdrop-blur-sm transition-all duration-300 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] active:scale-[0.96]">
         
         <!-- Bagian Atas: Gambar Produk (Rasio 1:1) -->
         <!-- [UPDATE]: Menggunakan aspect-square agar tidak terlalu tinggi -->

@@ -54,9 +54,13 @@ watch(() => page.props.flash, () => {
         <div class="absolute inset-0 opacity-[0.06]">
             <div class="auth-grid h-full w-full" />
         </div>
-        <div class="pointer-events-none absolute -left-24 top-8 h-72 w-72 rounded-full bg-cyan-400/12 blur-3xl" />
-        <div class="pointer-events-none absolute right-0 top-0 h-80 w-80 rounded-full bg-emerald-300/10 blur-3xl" />
-        <div class="pointer-events-none absolute bottom-0 left-1/3 h-64 w-64 rounded-full bg-sky-500/10 blur-3xl" />
+        <!-- [OPTIMASI GPU]: Hapus blur-3xl dan gunakan radial-gradient murni agar ngetik di HP tidak ngelag -->
+        <div class="pointer-events-none absolute -left-24 top-8 h-72 w-72 rounded-full" 
+             style="background: radial-gradient(circle, rgba(34, 211, 238, 0.12) 0%, transparent 70%);" />
+        <div class="pointer-events-none absolute right-0 top-0 h-80 w-80 rounded-full" 
+             style="background: radial-gradient(circle, rgba(110, 231, 183, 0.10) 0%, transparent 70%);" />
+        <div class="pointer-events-none absolute bottom-0 left-1/3 h-64 w-64 rounded-full" 
+             style="background: radial-gradient(circle, rgba(14, 165, 233, 0.10) 0%, transparent 70%);" />
 
         <div class="relative z-10 mx-auto flex min-h-screen max-w-[1280px] items-center justify-center px-6 py-6">
             <slot />

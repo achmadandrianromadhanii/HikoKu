@@ -97,10 +97,11 @@ onBeforeUnmount(() => {
         <!-- [PENJELASAN KODE UPDATE]: Memperkecil tinggi minimum menjadi 100dvh agar form sempurna terpusat tanpa scrollbar di mobile -->
         <div class="mx-auto flex min-h-[100dvh] w-full max-w-[420px] items-center justify-center px-4 py-4 sm:px-6 lg:px-8">
             <!-- [PENJELASAN KODE UPDATE]: Mengurangi padding vertikal (py-6 menjadi py-5) agar form lebih padat di layar kecil -->
-            <section class="w-full rounded-[32px] border border-white/10 bg-[#0B1120]/90 backdrop-blur-2xl px-5 py-5 shadow-[0_20px_60px_rgba(0,0,0,0.6)] sm:px-8 sm:py-8 relative overflow-hidden">
+            <section class="w-full rounded-[32px] border border-white/10 bg-[#0B1120]/90 backdrop-blur-md md:backdrop-blur-2xl px-5 py-5 shadow-[0_20px_60px_rgba(0,0,0,0.6)] sm:px-8 sm:py-8 relative overflow-hidden">
                 <!-- Ornamen Glow (Neon Forest) -->
-                <div class="absolute -top-16 -right-16 h-40 w-40 rounded-full bg-cyan-500/20 blur-3xl pointer-events-none"></div>
-                <div class="absolute -bottom-16 -left-16 h-40 w-40 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none"></div>
+                <!-- [OPTIMASI GPU]: Hapus blur-3xl, ganti dengan radial-gradient murni -->
+                <div class="absolute -top-16 -right-16 h-40 w-40 rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(6, 182, 212, 0.2) 0%, transparent 70%);"></div>
+                <div class="absolute -bottom-16 -left-16 h-40 w-40 rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%);"></div>
 
                 <!-- [PENJELASAN KODE UPDATE]: Mengecilkan tinggi logo (h-20 jadi h-16) dan margin bawah (mb-6 jadi mb-4) -->
                 <div class="mb-4 flex flex-col items-center justify-center relative z-10">

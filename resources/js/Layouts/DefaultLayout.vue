@@ -42,14 +42,18 @@ watch(() => page.props.wishlist?.product_ids, (newIds) => {
              style="background-image: radial-gradient(circle at 1.5px 1.5px, rgba(2, 60, 40, 0.45) 1.5px, transparent 0); background-size: 32px 32px;">
         </div>
 
-        <!-- [GLOW]: Efek Terang Kombinasi Hijau & Teal (Modern Forest Glow) -->
+        <!-- [GLOW]: Efek Terang Kombinasi Hijau & Teal (Modern Forest Glow) 
+             [OPTIMASI]: Menggunakan radial-gradient MURNI tanpa class 'blur-' untuk meringankan GPU Android. -->
         <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden">
             <!-- Cahaya Hijau Terang di Kiri Atas -->
-            <div class="absolute -top-[10%] -left-[10%] w-[500px] h-[500px] rounded-full bg-emerald-400/20 blur-[120px]"></div>
+            <div class="absolute -top-[10%] -left-[10%] w-[500px] h-[500px] rounded-full" 
+                 style="background: radial-gradient(circle, rgba(52, 211, 153, 0.15) 0%, transparent 70%);"></div>
             <!-- Cahaya Teal/Cyan di Kanan Tengah -->
-            <div class="absolute top-[30%] -right-[10%] w-[600px] h-[600px] rounded-full bg-teal-500/15 blur-[120px]"></div>
+            <div class="absolute top-[30%] -right-[10%] w-[600px] h-[600px] rounded-full" 
+                 style="background: radial-gradient(circle, rgba(20, 184, 166, 0.10) 0%, transparent 70%);"></div>
             <!-- Cahaya Hijau Halus di Kiri Bawah -->
-            <div class="absolute -bottom-[10%] left-[20%] w-[500px] h-[500px] rounded-full bg-emerald-500/10 blur-[120px]"></div>
+            <div class="absolute -bottom-[10%] left-[20%] w-[500px] h-[500px] rounded-full" 
+                 style="background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);"></div>
         </div>
 
         <div class="pointer-events-none absolute inset-0 -z-10">
