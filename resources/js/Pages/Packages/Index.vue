@@ -37,38 +37,8 @@ const formatCurrency = (value) => {
     }).format(Number(value || 0))
 }
 
-// Logika Animasi Scroll (Native Intersection Observer)
-const gridContainer = ref(null)
-const animateObserver = ref(null)
-
-onMounted(() => {
-    animateObserver.value = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                // Menghitung delay berjenjang berdasarkan index anak elemen
-                const delay = Array.from(gridContainer.value.children).indexOf(entry.target) * 80
-                setTimeout(() => {
-                    entry.target.classList.add('opacity-100', 'translate-y-0')
-                    entry.target.classList.remove('opacity-0', 'translate-y-10')
-                }, delay)
-                // Berhenti mengamati setelah animasi jalan
-                animateObserver.value.unobserve(entry.target)
-            }
-        })
-    }, { threshold: 0.1, rootMargin: '50px' })
-
-    if (gridContainer.value) {
-        Array.from(gridContainer.value.children).forEach((el) => {
-            animateObserver.value.observe(el)
-        })
-    }
-})
-
-onUnmounted(() => {
-    if (animateObserver.value) {
-        animateObserver.value.disconnect()
-    }
-})
+// [UPDATE]: Menghapus IntersectionObserver yang menyebabkan bug opacity-0 tersangkut di Desktop.
+// Kini menggunakan rendering native biasa agar 100% aman, sangat ringan, dan Lighthouse tetap hijau maksimal.
 </script>
 
 <template>
@@ -88,7 +58,7 @@ onUnmounted(() => {
                  class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
                 
                 <div v-for="pkg in packages.data" :key="pkg.id"
-                    class="group relative flex h-full flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-slate-100 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-[0_16px_32px_rgba(0,0,0,0.08)] hover:border-blue-100 opacity-0 translate-y-10">
+                    class="group relative flex h-full flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-slate-100 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-[0_16px_32px_rgba(0,0,0,0.08)] hover:border-blue-100">
                     
                     <!-- Area Gambar & Lencana -->
                     <div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-50">
