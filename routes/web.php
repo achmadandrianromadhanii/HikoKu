@@ -36,6 +36,17 @@ use Inertia\Inertia;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+// [DEBUG OAUTH]: Rute khusus untuk menampilkan URL mutlak yang dirakit oleh Laravel saat berada di Vercel.
+// Buka halaman /debug-oauth di browser Anda (saat sudah di-deploy) untuk melihat URL yang HARUS di-paste ke Google Console.
+Route::get('/debug-oauth', function () {
+    return response()->json([
+        'TUTORIAL' => 'Copy teks di bawah ini dan paste persis tanpa spasi ke Google Cloud Console Anda.',
+        'GOOGLE_REDIRECT_URI' => config('services.google.redirect'),
+        'GITHUB_REDIRECT_URI' => config('services.github.redirect'),
+        'APP_URL_SEKARANG' => env('APP_URL'),
+    ]);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Public Core Pages

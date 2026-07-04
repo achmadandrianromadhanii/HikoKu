@@ -16,8 +16,11 @@ class SocialAuthController extends Controller
      */
     public function redirect($provider)
     {
-        // [UPDATE]: Menggunakan URL absolut dari file konfigurasi (.env) agar skema (HTTPS) tidak turun menjadi HTTP saat memakai proxy seperti Ngrok.
-        return Socialite::driver($provider)->redirect();
+        // [UPDATE]: Menerapkan mode stateless() secara resmi sesuai dokumentasi Laravel.
+        // Fungsi stateless() mematikan verifikasi State berbasis Session.
+        // Ini SANGAT WAJIB untuk serverless hosting (Vercel/Lambda) karena Cookie dan Session
+        // sering terhapus otomatis oleh server saat melakukan redirect lintas domain (Cross-Site).
+        return Socialite::driver($provider)->stateless()->redirect();
     }
 
     /**
@@ -36,10 +39,10 @@ class SocialAuthController extends Controller
         }
 
         try {
-            // [UPDATE]: Langsung mengambil data user menggunakan Socialite. 
-            // Karena kita sudah tidak melakukan override URL secara dinamis, Socialite akan otomatis 
-            // memakai redirect URI absolut (HTTPS) dari .env untuk mencegah error 'redirect_uri_mismatch'.
-            $socialUser = Socialite::driver($provider)->user();
+            // [UPDATE]: Menerapkan mode stateless() pada tahap callback untuk menerima balasan 
+            // dari Google/GitHub tanpa mencocokkan Session State (karena Session di Vercel rentan hilang).
+            // Ini akan menyelesaikan masalah InvalidStateException dan otentikasi macet.
+            $socialUser = Socialite::driver($provider)->stateless()->user();
         } catch (\Exception $e) {
             return redirect()->route('login')->with('error', 'Login ' . ucfirst($provider) . ' gagal diproses. Silakan coba lagi.');
         }
