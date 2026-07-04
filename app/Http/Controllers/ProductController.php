@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
@@ -55,9 +56,14 @@ class ProductController extends Controller
             default => $query->latest(),
         };
 
+        // [OPTIMASI VERCEL/LATENCY]: Cache kategori produk agar loading halaman katalog cepat
+        $categories = Cache::remember('catalog_categories', now()->addHours(1), function () {
+            return Category::active()->orderBy('sort_order')->get(['id', 'name', 'slug']);
+        });
+
         return Inertia::render('Catalog/Index', [
             'products' => $query->paginate(12)->withQueryString(),
-            'categories' => Category::active()->orderBy('sort_order')->get(['id', 'name', 'slug']),
+            'categories' => $categories,
             'filters' => $request->only([
                 'category',
                 'search',
@@ -80,12 +86,15 @@ class ProductController extends Controller
             'variants',
         ])->where('slug', $slug)->active()->firstOrFail();
 
-        $relatedProducts = Product::with(['category:id,name,slug', 'images', 'variants'])
-            ->active()
-            ->where('category_id', $product->category_id)
-            ->where('id', '!=', $product->id)
-            ->take(4)
-            ->get();
+        // [OPTIMASI VERCEL/LATENCY]: Cache related products
+        $relatedProducts = Cache::remember('related_products_' . $product->id, now()->addHours(1), function () use ($product) {
+            return Product::with(['category:id,name,slug', 'images', 'variants'])
+                ->active()
+                ->where('category_id', $product->category_id)
+                ->where('id', '!=', $product->id)
+                ->take(4)
+                ->get();
+        });
 
         return Inertia::render('Products/Show', [
             'product' => $product,

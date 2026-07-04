@@ -176,9 +176,13 @@ class RentalService
                 'status' => 'confirmed',
             ]);
 
-            // [OPTIMASI VERCEL/LATENCY]: Gunakan queue() alih-alih send() agar tidak memblokir respon ke user
+            // [OPTIMASI VERCEL/LATENCY]: Gunakan afterResponse() agar email dikirim
+            // SETELAH browser menerima respon HTTP. Ini menghilangkan jeda "loading" 100% 
+            // tanpa perlu mensetting Queue Worker eksternal.
             try {
-                Mail::to($rental->user->email)->queue(new RentalConfirmedMail($rental));
+                dispatch(function () use ($rental) {
+                    Mail::to($rental->user->email)->send(new RentalConfirmedMail($rental));
+                })->afterResponse();
             } catch (\Exception $e) {
                 Log::error('Failed to send confirmation email in RentalService: ' . $e->getMessage());
             }

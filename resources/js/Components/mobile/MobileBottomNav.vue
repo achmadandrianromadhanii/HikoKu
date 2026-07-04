@@ -108,8 +108,8 @@ const tabs = computed(() => [
         - Glassmorphism level tinggi: bg-slate-900/95 dengan backdrop-blur-md transform-gpu.
         - Lebar 100% namun ada margin di pinggir (mx-4).
     -->
-    <div class="fixed inset-x-0 bottom-4 z-50 px-4 pointer-events-none" style="padding-bottom: env(safe-area-inset-bottom, 0px);">
-        <nav class="mx-auto flex h-[60px] max-w-lg items-stretch justify-around rounded-[24px] border border-white/10 bg-slate-900/95 shadow-[0_8px_32px_rgba(0,0,0,0.25)] backdrop-blur-md transform-gpu will-change-transform pointer-events-auto">
+    <div class="fixed inset-x-0 bottom-4 z-50 px-4" style="padding-bottom: env(safe-area-inset-bottom, 0px);">
+        <nav class="mx-auto flex h-[60px] max-w-lg items-stretch justify-around rounded-[24px] border border-white/10 bg-slate-900/95 shadow-[0_8px_32px_rgba(0,0,0,0.25)] backdrop-blur-md">
 
             <!-- Loop 5 Tab Navigasi -->
             <Link

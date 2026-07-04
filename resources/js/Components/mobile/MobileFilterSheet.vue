@@ -106,7 +106,7 @@ const sortOptions = [
         >
             <div
                 v-if="show"
-                class="fixed inset-x-0 bottom-0 z-[70] max-h-[80vh] overflow-y-auto rounded-t-[32px] border-t border-white/10 bg-slate-900/95 shadow-2xl backdrop-blur-md transform-gpu will-change-transform"
+                class="fixed inset-x-0 bottom-0 z-[70] max-h-[80vh] overflow-y-auto rounded-t-[32px] border-t border-white/10 bg-slate-900/95 shadow-2xl backdrop-blur-md"
             >
                 <!-- Komentar: Handle bar (garis kecil untuk indikator geser) -->
                 <div class="sticky top-0 z-10 flex justify-center bg-slate-900/90 pb-2 pt-3 backdrop-blur-md">
