@@ -497,7 +497,7 @@ onUnmounted(() => {
                  1. Class `sticky top-14` DIHAPUS. Sekarang kotak ini akan diam di atas dan ikut tergulir (scroll away) ke atas. Ini mencegah kotak ini melayang dan menutupi kotak produk di bawahnya.
                  2. Ditambahkan margin bawah `mb-6` agar ada jarak lega yang memisahkan kotak ini dengan kotak produk pertama.
             -->
-            <div class="bg-[#0B1120]/40 px-4 py-4 mb-6 shadow-lg border-b border-white/10 flex items-center justify-between relative z-10 backdrop-blur-2xl">
+            <div class="bg-[#0B1120]/40 px-4 py-4 mb-6 shadow-lg border-b border-white/10 flex items-center justify-between relative z-10 backdrop-blur-md md:backdrop-blur-2xl">
                 <div class="flex items-center gap-3">
                     <button type="button" @click="() => window.history.length > 1 ? window.history.back() : router.visit(route('home'))" class="flex h-9 w-9 items-center justify-center rounded-full bg-white/5 border border-white/10 text-slate-300 active:scale-90 transition-transform">
                         <ChevronLeft class="h-5 w-5" />
@@ -512,7 +512,7 @@ onUnmounted(() => {
             <div v-if="activeItems.length > 0">
                 <!-- Mobile Cart Items -->
                 <div class="px-4 py-5 flex flex-col gap-4">
-                    <div v-for="item in activeItems" :key="item.id" class="flex flex-col gap-3 rounded-[24px] bg-slate-800/40 p-4 shadow-xl border border-slate-700/50 backdrop-blur-xl relative overflow-hidden group">
+                    <div v-for="item in activeItems" :key="item.id" class="flex flex-col gap-3 rounded-[24px] bg-slate-800/40 p-4 shadow-xl border border-slate-700/50 backdrop-blur-sm md:backdrop-blur-xl relative overflow-hidden group">
                         
                         <!-- Glow Effect -->
                         <div class="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-cyan-500/10 blur-2xl pointer-events-none"></div>
