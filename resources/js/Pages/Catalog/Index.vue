@@ -5,6 +5,7 @@ import DefaultLayout from '@/Layouts/DefaultLayout.vue'
 import ProductCard from '@/Components/product/ProductCard.vue'
 import MobileProductCard from '@/Components/mobile/MobileProductCard.vue'
 import MobileFilterSheet from '@/Components/mobile/MobileFilterSheet.vue'
+import AppFooter from '@/Components/common/AppFooter.vue'
 import AppAutocomplete from '@/Components/common/AppAutocomplete.vue'
 import { PackageSearch, Filter } from 'lucide-vue-next'
 
@@ -90,17 +91,14 @@ const showMobileFilter = ref(false)
     <DefaultLayout>
         
         <!-- ========================================================= -->
-        <!-- [DESKTOP VIEW]: 100% TIDAK DIUBAH (hidden lg:block)       -->
+        <!-- [DESKTOP VIEW]: DASHBOARD STYLE (hidden lg:flex)          -->
         <!-- ========================================================= -->
-        <div class="hidden lg:block">
-        <!-- [UPDATE]: Mengurangi padding vertikal (py-8 menjadi py-4) agar halaman lebih naik ke atas -->
-        <section class="mx-auto max-w-[1400px] px-4 py-4 sm:px-6 lg:px-8">
-            <!-- [ROMBAK: Resolusi Layout] Layout diperlebar sedikit untuk memberi ruang pada 4 kolom produk -->
-            <div class="grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)] items-start">
-                
-                <!-- [FITUR PREMIUM]: STICKY FLOATING SIDEBAR 
-                     Sidebar tidak akan melar ke bawah, melainkan diam mengambang saat discroll! -->
-                <aside class="user-panel self-start sticky top-28 h-fit p-5 shadow-[0_4px_24px_rgba(0,0,0,0.02)] border-surface-100/50">
+        <div class="hidden lg:flex h-[calc(100vh-84px)] mx-auto w-full max-w-[1400px] px-4 py-4 sm:px-6 lg:px-8 gap-6 items-start">
+            
+            <!-- [FITUR PREMIUM]: FIXED SIDEBAR 
+                 Sidebar dikunci tinggi penuh dan tidak memiliki scrollbar mandiri (diam) -->
+            <aside class="w-[280px] shrink-0 h-full">
+                <div class="user-panel h-full overflow-hidden p-5 shadow-[0_4px_24px_rgba(0,0,0,0.02)] border-surface-100/50 bg-white/80 backdrop-blur-md">
                     <div class="space-y-4">
                         <!-- [UPDATE]: Fitur pencarian "Cari Produk" dipindah ke Navbar, jadi dihapus dari sidebar ini. -->
                         <div>
@@ -150,34 +148,39 @@ const showMobileFilter = ref(false)
                             </button>
                         </div>
                     </div>
-                </aside>
+                </div>
+            </aside>
 
-                <div class="space-y-6">
-                    <div class="user-panel flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between border-transparent shadow-sm bg-white/80 backdrop-blur-md">
-                        <p class="text-[13px] text-surface-600">
-                            Menampilkan
-                            <span class="font-extrabold text-surface-900">{{ products.from || 0 }}</span>
-                            -
-                            <span class="font-extrabold text-surface-900">{{ products.to || 0 }}</span>
-                            dari
-                            <span class="font-extrabold text-surface-900">{{ products.total || 0 }}</span>
-                            produk
-                        </p>
+            <!-- KONTEN KANAN: Berisi Top Filter (Diam) dan Grid Produk (Scroll) -->
+            <div class="flex-1 flex flex-col h-full overflow-hidden">
+                <!-- TOP FILTER STATIS -->
+                <div class="shrink-0 mb-6 user-panel flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between border-transparent shadow-sm bg-white/80 backdrop-blur-md">
+                    <p class="text-[13px] text-surface-600">
+                        Menampilkan
+                        <span class="font-extrabold text-surface-900">{{ products.from || 0 }}</span>
+                        -
+                        <span class="font-extrabold text-surface-900">{{ products.to || 0 }}</span>
+                        dari
+                        <span class="font-extrabold text-surface-900">{{ products.total || 0 }}</span>
+                        produk
+                    </p>
 
-                        <div class="flex items-center gap-2">
-                            <label class="text-[13px] font-extrabold text-surface-700">Urutkan</label>
+                    <div class="flex items-center gap-2">
+                        <label class="text-[13px] font-extrabold text-surface-700">Urutkan</label>
 
-                            <select v-model="form.sort"
-                                class="h-10 cursor-pointer rounded-full border border-transparent bg-surface-50 px-4 text-[13px] font-medium text-surface-800 outline-none transition hover:bg-surface-100 focus:border-cyan-300 focus:bg-white focus:ring-4 focus:ring-cyan-100"
-                                @change="submitFilter">
-                                <option value="latest">Terbaru</option>
-                                <option value="price_low">Harga Terendah</option>
-                                <option value="price_high">Harga Tertinggi</option>
-                                <option value="rating">Rating Tertinggi</option>
-                            </select>
-                        </div>
+                        <select v-model="form.sort"
+                            class="h-10 cursor-pointer rounded-full border border-transparent bg-surface-50 px-4 text-[13px] font-medium text-surface-800 outline-none transition hover:bg-surface-100 focus:border-cyan-300 focus:bg-white focus:ring-4 focus:ring-cyan-100"
+                            @change="submitFilter">
+                            <option value="latest">Terbaru</option>
+                            <option value="price_low">Harga Terendah</option>
+                            <option value="price_high">Harga Tertinggi</option>
+                            <option value="rating">Rating Tertinggi</option>
+                        </select>
                     </div>
+                </div>
 
+                <!-- AREA SCROLLABLE KHUSUS PRODUK DAN FOOTER -->
+                <div class="flex-1 overflow-y-auto pr-2 pb-6 custom-scrollbar">
                     <div v-if="productData.length > 0">
                         <!-- [FITUR PREMIUM]: ANIMASI SCROLL BAWAH STAGGERED MUNCUL PERLAHAN -->
                         <!-- [UPDATE]: Mengecilkan kembali ukuran kotak produk menjadi 4 kolom, disamakan dengan homepage -->
@@ -199,6 +202,7 @@ const showMobileFilter = ref(false)
                         </button>
                     </div>
 
+                    <!-- Paginasi jika ada (diletakkan di dalam area scroll) -->
                     <div v-if="products.links?.length > 3" class="flex flex-wrap items-center gap-2 pt-4">
                         <template v-for="(link, index) in products.links" :key="index">
                             <Link v-if="link.url" :href="link.url"
@@ -213,9 +217,17 @@ const showMobileFilter = ref(false)
                                 v-html="link.label" />
                         </template>
                     </div>
+
+                    <!-- [INJEKSI FOOTER]: Footer diletakkan di paling bawah setelah produk -->
+                    <div class="mt-12 -mx-2 -mb-6">
+                        <!-- Margin negatif digunakan agar footer bisa merentang sedikit lebih lebar 
+                             atau Anda bisa menggunakan mt-12 saja untuk tampilan boxed yang eksklusif -->
+                        <div class="rounded-[2.5rem] overflow-hidden shadow-2xl">
+                            <AppFooter />
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
         </div> <!-- End of DESKTOP VIEW -->
 
 

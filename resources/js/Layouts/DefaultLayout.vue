@@ -60,10 +60,16 @@ watch(() => page.props.wishlist?.product_ids, (newIds) => {
         <!-- 
             ========================================================================
             [DESKTOP WRAPPER]: Hanya Tampil di Layar >= 1024px (hidden lg:flex)
-            KODE ASLI 100% UTUH TIDAK DIUBAH SAMA SEKALI
+            [UPDATE: PENGATURAN KONDISIONAL TINGKAT LANJUT] 
+            Jika user berada di halaman Katalog ('Catalog/Index'), layout akan 
+            dikunci dengan h-screen overflow-hidden agar scrollbar utama (website) 
+            hilang 100%. Scroll akan ditangani secara internal di dalam grid produk.
             ========================================================================
         -->
-        <div class="relative min-h-screen flex-col z-10 hidden lg:flex">
+        <div :class="[
+            'relative flex-col z-10 hidden lg:flex',
+            page.component === 'Catalog/Index' ? 'h-screen overflow-hidden' : 'min-h-screen'
+        ]">
             <AppNavbar />
 
             <main class="relative z-[1] flex-1 pt-[84px]">
@@ -71,7 +77,13 @@ watch(() => page.props.wishlist?.product_ids, (newIds) => {
                 <slot />
             </main>
 
-            <AppFooter />
+            <!-- 
+                [UPDATE: MENYEMBUNYIKAN FOOTER BAWAAN]
+                Footer bawaan ini disembunyikan khusus untuk halaman Katalog Desktop,
+                karena Footer akan dipindahkan/diinjeksi ke dalam kotak grid produk
+                agar ikut terscroll bersama produk (Dashboard-style).
+            -->
+            <AppFooter v-if="page.component !== 'Catalog/Index'" />
         </div>
 
         <!-- 
