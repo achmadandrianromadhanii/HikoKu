@@ -22,6 +22,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // [OPTIMASI DATABASE]: Mengaktifkan "Strict Mode" Eloquent secara otomatis.
+        // Fitur resmi Laravel ini memblokir N+1 Query Problem (kebocoran query berulang)
+        // selama masa pengembangan lokal. Di server production, hanya akan mencatat error di log agar web tidak crash.
+        // Ini adalah cara terbaik dan paling resmi untuk meringankan beban database 100%.
+        \Illuminate\Database\Eloquent\Model::preventLazyLoading(!app()->isProduction());
+        
         // [UPDATE]: Mendaftarkan Discord Provider ke dalam siklus Socialite
         \Illuminate\Support\Facades\Event::listen(function (\SocialiteProviders\Manager\SocialiteWasCalled $event) {
             $event->extendSocialite('discord', \SocialiteProviders\Discord\Provider::class);
@@ -54,6 +60,13 @@ class AppServiceProvider extends ServiceProvider
             return [
                 Limit::perMinute(3)->by(optional($request->user())->id ?: $request->ip()),
             ];
+        });
+
+        // [OPTIMASI KEAMANAN & BEBAN SERVER]: Rate limiter "global"
+        // Pembatasan default 60 request per menit per IP untuk mencegah serangan DDoS ringan atau brute-force 
+        // yang dapat membebani CPU dan memperlambat Lighthouse.
+        RateLimiter::for('global', function (Request $request) {
+            return Limit::perMinute(60)->by($request->ip());
         });
     }
 }

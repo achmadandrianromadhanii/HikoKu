@@ -45,6 +45,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->web(append: [
             \App\Http\Middleware\HandleInertiaRequests::class,
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
+            // [OPTIMASI KEAMANAN]: Mengaktifkan rate limiter "global" untuk semua request web
+            'throttle:global',
         ]);
 
         $middleware->alias([
