@@ -45,25 +45,25 @@ return [
 
     // [UPDATE]: Menambahkan konfigurasi Google dan Github untuk mengatasi error "Missing required configuration keys" pada Laravel Socialite.
     // Konfigurasi ini mengambil data langsung dari file .env secara otomatis.
-    // PERBAIKAN BUG OAUTH 400 (FINAL): Menggunakan rtrim() pada env('APP_URL') untuk memastikan URL bersifat mutlak (absolute)
-    // dan menghapus potensi garis miring ganda (double slash) jika APP_URL diakhiri dengan '/'.
-    // Ini memastikan URL selalu persis sesuai dengan yang ada di Google Cloud Console.
+    // PERBAIKAN BUG OAUTH 400 (MUTLAK FINAL): Memaksa penggunaan env('APP_URL') secara langsung dan membuang
+    // pencarian env('GOOGLE_REDIRECT_URI'). Ini karena di Vercel, variabel seperti ${APP_URL} tidak diterjemahkan,
+    // melainkan dibaca mentah-mentah sebagai teks "${APP_URL}", yang merusak fungsi login.
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => env('GOOGLE_REDIRECT_URI', rtrim(env('APP_URL', 'http://localhost'), '/') . '/auth/google/callback'),
+        'redirect' => rtrim(env('APP_URL', 'http://localhost'), '/') . '/auth/google/callback',
     ],
 
     'github' => [
         'client_id' => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect' => env('GITHUB_REDIRECT_URI', rtrim(env('APP_URL', 'http://localhost'), '/') . '/auth/github/callback'),
+        'redirect' => rtrim(env('APP_URL', 'http://localhost'), '/') . '/auth/github/callback',
     ],
 
     'discord' => [
         'client_id' => env('DISCORD_CLIENT_ID'),
         'client_secret' => env('DISCORD_CLIENT_SECRET'),
-        'redirect' => env('DISCORD_REDIRECT_URI', rtrim(env('APP_URL', 'http://localhost'), '/') . '/auth/discord/callback'),
+        'redirect' => rtrim(env('APP_URL', 'http://localhost'), '/') . '/auth/discord/callback',
     ],
 
     // [NEW]: Konfigurasi untuk Cloudflare Turnstile
