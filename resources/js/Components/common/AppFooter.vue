@@ -11,11 +11,13 @@ import { Phone, Mail, MapPin, Instagram, Facebook, Music2 } from 'lucide-vue-nex
 const page = usePage()
 const logoError = ref(false)
 
+
+
 // [UPDATE]: Menyiapkan array gambar pegunungan HD untuk background footer
 const footerImages = [
-    'https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80',
-    'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'
+    'https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?q=60&w=1280&fm=webp&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=60&w=1280&fm=webp&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=60&w=1280&fm=webp&auto=format&fit=crop'
 ]
 const currentFooterImage = ref(0)
 let footerImageInterval = null
@@ -56,6 +58,11 @@ onMounted(() => {
         if (window.L) initMap()
     }
 
+    // [UPDATE]: Slider interval untuk background foto berganti setiap 5 detik dengan transisi halus
+    footerImageInterval = setInterval(() => {
+        currentFooterImage.value = (currentFooterImage.value + 1) % footerImages.length
+    }, 5000)
+
     // [FITUR PREMIUM]: Intersection Observer untuk Animasi List Menu Muncul Satu-persatu
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -72,11 +79,6 @@ onMounted(() => {
         el.style.transitionDelay = `${index * 100}ms`
         observer.observe(el)
     })
-
-    // [UPDATE]: Slider interval untuk background foto berganti setiap 5 detik dengan transisi halus
-    footerImageInterval = setInterval(() => {
-        currentFooterImage.value = (currentFooterImage.value + 1) % footerImages.length
-    }, 5000)
 })
 
 onUnmounted(() => {
@@ -120,14 +122,16 @@ const socialLinks = computed(() => [
 </script>
 
 <template>
-    <!-- [UPDATE]: Background solid dihapus diganti dengan bg-black sebagai warna dasar di belakang gambar -->
     <footer class="relative mt-16 overflow-hidden border-t border-white/5 bg-black text-white">
         
-        <!-- [UPDATE]: Gambar Mountain HD Slider -->
+        <!-- [UPDATE]: Gambar Mountain HD Slider dengan Loading Lazy & HD+ (Dikembalikan) -->
         <div class="absolute inset-0 z-0">
             <img v-for="(img, idx) in footerImages" :key="idx"
                  :src="img" 
-                 alt="Mountain Footer Background" 
+                 alt="Mountain Footer Background"
+                 loading="lazy"
+                 decoding="async" 
+                 width="1280" height="720"
                  class="absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-1000 ease-in-out"
                  :class="idx === currentFooterImage ? 'opacity-100 z-10' : 'opacity-0 z-0'" />
             
@@ -183,8 +187,8 @@ const socialLinks = computed(() => [
                     <!-- Naked Social Icons -->
                     <div v-if="socialLinks.length > 0" class="mt-8 flex flex-wrap items-center gap-4">
                         <a v-for="(item, idx) in socialLinks" :key="item.label" :href="item.href" target="_blank" rel="noopener noreferrer"
-                            class="footer-nav-item opacity-0 translate-y-4 group text-white/60 transition-all duration-300 hover:text-cyan-400 hover:-translate-y-1 hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]"
-                            :aria-label="item.label">
+                           :aria-label="item.label"
+                           class="footer-nav-item opacity-0 translate-y-4 group text-white/60 transition-all duration-300 hover:text-cyan-400 hover:-translate-y-1 hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]">
                             <component :is="item.icon" class="h-5 w-5" />
                         </a>
                     </div>

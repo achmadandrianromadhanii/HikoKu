@@ -95,17 +95,22 @@ const startAnimations = () => {
     // Jika stok ada angkanya, jalankan animasi perputaran angka
     if (target > 0) {
         const duration = 1200 // Durasi total animasi 1.2 detik (sangat halus)
-        const increment = target / (duration / 16) // Peningkatan angka tiap 16 milidetik
+        const startTime = performance.now();
         
-        const timer = setInterval(() => {
-            start += increment
-            if (start >= target) {
-                animatedStock.value = target
-                clearInterval(timer) // Berhentikan interval jika angka sudah mencapai target
+        const updateCounter = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            animatedStock.value = Math.floor(progress * target);
+            
+            if (progress < 1) {
+                requestAnimationFrame(updateCounter);
             } else {
-                animatedStock.value = Math.floor(start)
+                animatedStock.value = target;
             }
-        }, 16)
+        };
+        
+        requestAnimationFrame(updateCounter);
     }
 }
 
@@ -393,7 +398,7 @@ onMounted(() => {
         <div class="relative overflow-hidden bg-surface-50">
             <Link :href="productDetailUrl" class="block">
                 <!-- Foto menge-zoom lambat saat disorot kursor -->
-                <img v-if="imageUrl" :src="imageUrl" :alt="product.name" class="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                <img v-if="imageUrl" :src="imageUrl" :alt="product.name" width="400" height="300" class="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     loading="lazy" />
 
                 <!-- Fallback jika tidak ada gambar (Teks placeholder telah dihapus agar lebih bersih) -->
@@ -502,7 +507,7 @@ onMounted(() => {
                         <!-- Tombol Add to Cart Silently (dengan animasi terbang) -->
                         <button type="button" @click.prevent="addToCart(false, $event)"
                             class="inline-flex h-6 w-6 sm:h-7 sm:w-7 items-center justify-center rounded-full border border-cyan-500 bg-white text-cyan-500 shadow-sm transition-all duration-300 hover:scale-110 hover:bg-cyan-50 hover:shadow-[0_0_12px_rgba(34,211,238,0.3)] active:scale-95"
-                            title="Tambahkan ke Keranjang">
+                            title="Tambahkan ke Keranjang" aria-label="Tambahkan ke Keranjang">
                             <ShoppingCart class="h-3 w-3 sm:h-3.5 sm:w-3.5" stroke-width="2.5" />
                         </button>
 

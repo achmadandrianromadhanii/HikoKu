@@ -180,7 +180,7 @@ const submitFinal = () => {
                         <p class="text-[11px] font-semibold text-slate-400 mt-1">Pilih spesifikasi</p>
                     </div>
                     <!-- Komentar: Tombol Close Modern -->
-                    <button @click="close" class="shrink-0 rounded-full p-1.5 bg-slate-50 text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors">
+                    <button @click="close" class="shrink-0 rounded-full p-1.5 bg-slate-50 text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors" aria-label="Tutup Modals">
                         <X class="h-4 w-4" stroke-width="2.5" />
                     </button>
                 </div>

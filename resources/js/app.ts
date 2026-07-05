@@ -39,8 +39,11 @@ createInertiaApp({
             .use(ZiggyVue)
             .mount(el);
     },
-    // [OPTIMASI VERCEL]: Mematikan garis loading (Progress Bar) bawaan Inertia.js
-    // Sesuai permintaan Anda, mematikan indikator ini membuat transisi halaman 
-    // terasa "instan" dan langsung melompat (snappy) tanpa menunggu animasi selesai.
-    progress: false,
+    // [OPTIMASI UX: Progress Bar]
+    // Menghidupkan kembali progress bar agar saat tombol diklik, user tahu sedang loading
+    // Warna diubah menjadi Cyan Terang (Hiko Theme) agar lebih elegan
+    progress: {
+        color: '#22d3ee',
+        showSpinner: true,
+    },
 });

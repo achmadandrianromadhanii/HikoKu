@@ -2,11 +2,6 @@
 import AppNavbar from '@/Components/common/AppNavbar.vue'
 import AppFooter from '@/Components/common/AppFooter.vue'
 
-// [MOBILE]: Import komponen khusus Mobile (Tidak mengganggu Desktop)
-import MobileNavbar from '@/Components/mobile/MobileNavbar.vue'
-import MobileBottomNav from '@/Components/mobile/MobileBottomNav.vue'
-import MobileFooter from '@/Components/mobile/MobileFooter.vue'
-
 import WhatsAppButton from '@/Components/ui/WhatsAppButton.vue'
 import AppToast from '@/Components/ui/AppToast.vue'
 
@@ -63,15 +58,11 @@ watch(() => page.props.wishlist?.product_ids, (newIds) => {
 
         <!-- 
             ========================================================================
-            [DESKTOP WRAPPER]: Hanya Tampil di Layar >= 1024px (hidden lg:flex)
-            [UPDATE: PENGATURAN KONDISIONAL TINGKAT LANJUT] 
-            Jika user berada di halaman Katalog ('Catalog/Index'), layout akan 
-            dikunci dengan h-screen overflow-hidden agar scrollbar utama (website) 
-            hilang 100%. Scroll akan ditangani secara internal di dalam grid produk.
+            [MAIN WRAPPER]: Berlaku untuk SEMUA DEVICE (Mobile & Desktop)
             ========================================================================
         -->
         <div :class="[
-            'relative flex-col z-10 hidden lg:flex',
+            'relative flex-col z-10 flex',
             page.component === 'Catalog/Index' ? 'h-screen overflow-hidden' : 'min-h-screen'
         ]">
             <AppNavbar />
@@ -88,33 +79,6 @@ watch(() => page.props.wishlist?.product_ids, (newIds) => {
                 agar ikut terscroll bersama produk (Dashboard-style).
             -->
             <AppFooter v-if="page.component !== 'Catalog/Index'" />
-        </div>
-
-        <!-- 
-            ========================================================================
-            [MOBILE WRAPPER]: Hanya Tampil di Layar < 1024px (flex lg:hidden)
-            MENGGUNAKAN KOMPONEN BARU YANG SUPER RINGAN
-            ========================================================================
-        -->
-        <div class="relative min-h-screen flex-col z-10 flex lg:hidden">
-            <!-- Komentar: Header atas fixed (Search, User, Logo) -->
-            <MobileNavbar />
-
-            <!-- Komentar: Padding-top 56px (pt-14) mengompensasi tinggi MobileNavbar -->
-            <main class="relative z-[1] flex-1 pt-14">
-                <!-- 
-                    Komentar: <slot /> ini merender isi halaman (Welcome, Catalog, dll).
-                    Karena Vue pintar, slot bisa digunakan 2x di template, tapi isinya 
-                    mengikuti CSS display, jadi tidak ada overhead ganda.
-                -->
-                <slot />
-            </main>
-
-            <!-- Komentar: Footer statis yang ringan (tanpa Peta Leaflet) -->
-            <MobileFooter />
-
-            <!-- Komentar: Navigasi fixed di paling bawah (Home, Katalog, Keranjang, dll) -->
-            <MobileBottomNav />
         </div>
 
         <WhatsAppButton />

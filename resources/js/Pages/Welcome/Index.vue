@@ -11,7 +11,7 @@ import { Head, Link, usePage } from '@inertiajs/vue3'
 import { computed, ref, onMounted, onUnmounted } from 'vue'
 import DefaultLayout from '@/Layouts/DefaultLayout.vue'
 import ProductCard from '@/Components/product/ProductCard.vue'
-import MobileProductCard from '@/Components/mobile/MobileProductCard.vue' // [MOBILE COMPONENT]
+
 import { Tent, Backpack, Flame, ShieldCheck, ChevronLeft, ChevronRight, CheckCircle2, PackageCheck, Heart, Star, ChevronDown, HelpCircle } from 'lucide-vue-next'
 import WishlistButton from '@/Components/ui/WishlistButton.vue'
 import { useWishlistStore } from '@/stores/wishlist'
@@ -43,10 +43,11 @@ const productGrid = ref(null)
 const packageGrid = ref(null)
 
 // [FITUR PREMIUM]: 3 HD Mountain Backgrounds Slider
+// Dioptimalkan dengan w=1280, q=60, dan fm=webp agar tetap Tajam, Full HD, namun sangat ringan (Skor Lighthouse Hijau)
 const heroImages = [
-    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80', // Classic Mountain
-    'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80', // Snowy Peak Sunset
-    'https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80'  // Starry Mountain
+    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=60&w=1280&fm=webp&auto=format&fit=crop', // Classic Mountain
+    'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?q=60&w=1280&fm=webp&auto=format&fit=crop', // Snowy Peak Sunset
+    'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=60&w=1280&fm=webp&auto=format&fit=crop'  // Starry Mountain
 ]
 const currentHeroImage = ref(0)
 let heroImageInterval = null
@@ -55,17 +56,22 @@ const animateValues = () => {
     animatedStats.value.forEach(stat => {
         let start = 0
         const duration = 2000 // 2 detik animasi
-        const increment = stat.target / (duration / 16)
+        const startTime = performance.now();
         
-        const timer = setInterval(() => {
-            start += increment
-            if (start >= stat.target) {
-                stat.current = stat.target
-                clearInterval(timer)
+        const updateCounter = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            stat.current = Math.floor(progress * stat.target);
+            
+            if (progress < 1) {
+                requestAnimationFrame(updateCounter);
             } else {
-                stat.current = Math.floor(start)
+                stat.current = stat.target;
             }
-        }, 16)
+        };
+        
+        requestAnimationFrame(updateCounter);
     })
 }
 
@@ -135,34 +141,30 @@ onUnmounted(() => {
     <DefaultLayout>
         
         <!-- ========================================================= -->
-        <!-- [DESKTOP VIEW]: 100% TIDAK DIUBAH (hidden lg:block)       -->
+        <!-- [MAIN VIEW]: TAMPILAN UTAMA UNTUK SEMUA DEVICE (DESKTOP & MOBILE) -->
         <!-- ========================================================= -->
-        <div class="hidden lg:block">
-            <!-- 
-                [HERO SECTION] 
-                Ditambahkan Background Image HD bertema Hiking/Outdoor.
-            Menggunakan image tajam dengan overlay gradient gelap 
-            agar teks tetap terbaca sangat jelas (kontras tinggi) dan rapi.
-            -mt-[74px] pt-[74px] ditambahkan untuk menarik background hingga ke atas layar.
-        -->
-        <section class="-mt-[74px] pt-[74px] relative overflow-hidden text-white bg-[#081828]">
-            <!-- [ROMBAK: Background Image HD Slider (100% Visual Foto)] -->
-            <div class="absolute inset-0 z-0 bg-[#081828]">
-                <!-- Gambar HD dari Unsplash bertema Mountain dengan Transisi Crossfade Halus -->
-                <!-- opacity-100 digunakan agar gambar tampil tajam dan full, tidak pudar -->
-                <img v-for="(img, idx) in heroImages" :key="idx"
-                     :src="img" 
-                     :fetchpriority="idx === 0 ? 'high' : 'auto'"
-                     :loading="idx === 0 ? 'eager' : 'lazy'"
-                     decoding="async"
-                     alt="Mountain Background" 
-                     class="absolute inset-0 h-full w-full object-cover object-center bg-[#081828] transition-opacity duration-1000 ease-in-out transform-gpu will-change-transform"
-                     :class="idx === currentHeroImage ? 'opacity-100 z-10' : 'opacity-0 z-0'" />
-                
-                <!-- Overlay diubah menjadi hitam tipis transparan murni (hanya 30%) demi menjaga teks terbaca 
-                     sehingga foto asli tetap mendominasi dan skor Lighthouse terjaga 100% -->
-                <div class="absolute inset-0 bg-black/40 z-20"></div>
-            </div>
+        <div>
+            <!-- [HERO SECTION] -->
+            <section class="-mt-[74px] pt-[74px] relative overflow-hidden text-white bg-[#081828]">
+                <!-- Background Image Slider HD & Ringan -->
+                <div class="absolute inset-0 z-0 bg-[#081828]">
+                    <!--
+                        fetchpriority dan loading eager dipasang HANYA untuk gambar pertama (idx === 0)
+                        agar selaras dengan rel="preload" di app.blade.php. Sisanya di lazy load.
+                    -->
+                    <img v-for="(img, idx) in heroImages" :key="idx"
+                         :src="img" 
+                         :loading="idx === 0 ? 'eager' : 'lazy'"
+                         :fetchpriority="idx === 0 ? 'high' : 'auto'"
+                         decoding="async"
+                         alt="Mountain Background" 
+                         width="1280" height="720"
+                         class="absolute inset-0 h-full w-full object-cover object-center bg-[#081828] transition-opacity duration-1000 ease-in-out transform-gpu will-change-transform"
+                         :class="idx === currentHeroImage ? 'opacity-100 z-10' : 'opacity-0 z-0'" />
+                    
+                    <!-- Overlay hitam transparan murni (40%) demi menjaga teks terbaca -->
+                    <div class="absolute inset-0 bg-black/40 z-20"></div>
+                </div>
 
             <!-- Efek Cahaya / Glow tambahan -->
             <div class="absolute inset-0 z-20 bg-[radial-gradient(circle_at_top_left,_rgba(34,211,238,0.15),_transparent_50%)]" />
@@ -170,9 +172,6 @@ onUnmounted(() => {
 
             <div class="relative z-30 mx-auto grid min-h-[500px] max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:px-8 lg:py-20">
                 <div class="max-w-2xl">
-                    <!-- [UPDATE]: Badge atas "Hiko Outdoor Rental" telah dihapus sesuai permintaan -->
-
-                    <!-- [UPDATE]: Menggunakan font Outfit yang lebih modern, bold, dan dipadukan dengan animasi warna merambat (gradient text animation) menyeluruh yang pelan dan elegan -->
                     <h1 class="font-outfit text-5xl font-black leading-[1.1] sm:text-6xl lg:text-[70px] drop-shadow-[0_4px_15px_rgba(0,0,0,0.5)] animate-text-gradient bg-gradient-to-r from-white via-cyan-300 to-blue-500 bg-[length:200%_auto] bg-clip-text text-transparent pb-3">
                         Rental Hiking<br />
                         Lebih Rapi<br />
@@ -191,8 +190,6 @@ onUnmounted(() => {
                     </div>
                 </div>
 
-                <!-- [FITUR KANAN: Glassmorphism] -->
-                <!-- [PENJELASAN]: Kotak fitur dikembalikan ke posisi semula (ukuran normal, transparan dengan efek kaca/blur) sesuai desain awal yang Anda sukai karena ini paling seimbang. -->
                 <div class="flex flex-col gap-4 relative z-30">
                     <div class="group flex items-start gap-4 rounded-2xl border border-white/5 bg-white/5 p-4 backdrop-blur-xl transition-all duration-300 hover:bg-white/10 hover:-translate-y-1 hover:border-cyan-400/20 hover:shadow-[0_0_20px_rgba(34,211,238,0.1)]">
                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-cyan-400/20 to-blue-500/20 text-cyan-300 shadow-inner transition-colors group-hover:from-cyan-400 group-hover:text-white">
@@ -225,59 +222,26 @@ onUnmounted(() => {
                     </div>
                 </div>
             </div>
-
-            <!-- [ANIMASI KARAKTER HIKER] -->
-            <!-- [PENJELASAN FUNGSI]: 
-                 - 'bottom-[20px]': Menurunkan gambar tepat 20px agar kaki persis menempel di atas garis kotak statistik.
-                 - 'justify-end': Memastikan konten gambar merapat penuh ke sisi kanan container.
-                 - 'z-20': Karakter berada di layer tengah agar bisa bersinggungan rapi dengan teks. 
-                 - [UPDATE]: Menggeser posisi karakter ke kiri sedikit menggunakan inset-x-0 dan grid container agar sejajar dan pas secara presisi dengan garis kanan kotak angka (statistik). -->
-            <div class="absolute inset-x-0 bottom-[20px] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-20 flex items-end justify-end pointer-events-none drop-shadow-2xl">
-                <!-- [UPDATE]: Sesuai instruksi, HANYA 2 foto yang dipertahankan (Hiker 3 dan Hiker 4). Foto orang berjaket biru (Hiker 1) dan Hiker 2 dihapus. -->
-                
-                <!-- Gambar 1 (Hiker 3): Datang dari Bawah -->
-                <!-- [PENJELASAN]: Menghilangkan margin negatif agar menjadi foto dasar/pertama dalam grup -->
-                <img src="/images/hiker3.png" class="h-[260px] sm:h-[360px] lg:h-[460px] object-contain animate-hiker-3 drop-shadow-[5px_10px_15px_rgba(0,0,0,0.5)] relative z-30" alt="Hiker 3" />
-                
-                <!-- Gambar 2 (Hiker 4 - Jaket Kuning): Datang dari Kanan -->
-                <!-- [PENJELASAN]: Diberi z-40 agar dipastikan muncul paling depan. Margin negatif dipertahankan agar tumpang tindih natural. 
-                     [UPDATE]: Margin-bottom dihapus agar kakinya menempel pas di garis kotak angka sesuai instruksi. -->
-                <img src="/images/hiker4.png" class="h-[260px] sm:h-[360px] lg:h-[450px] object-contain animate-hiker-4 drop-shadow-[10px_10px_15px_rgba(0,0,0,0.5)] -ml-[15%] lg:-ml-[80px] relative z-40" alt="Hiker 4" />
-            </div>
         </section>
+        </div>
 
         <!-- [STATISTIK DENGAN ANIMASI ANGKA] -->
         <section ref="statsSection" class="relative z-10 mx-auto -mt-5 max-w-7xl px-4 sm:px-6 lg:px-8">
-            <!-- [UPDATE]: Container dipangkas lagi menjadi sangat tipis (py-2.5) dan elegan -->
             <div class="rounded-2xl border border-white/10 bg-[#082949]/95 px-6 py-2.5 shadow-2xl backdrop-blur-xl">
                 <div class="grid grid-cols-2 gap-3 md:grid-cols-4 items-center">
                     <div v-for="item in animatedStats" :key="item.label" class="group text-center">
                         <component :is="item.icon" class="mx-auto h-4 w-4 text-cyan-400 opacity-80 transition-transform duration-500 group-hover:scale-125 group-hover:text-cyan-300 group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
-                        <!-- [UPDATE]: Angka diperkecil ke text-xl dan margin atas dipepetkan agar ringkas -->
                         <p class="mt-1 text-xl font-extrabold tabular-nums text-white drop-shadow-md leading-tight">
                             {{ item.current }}{{ item.suffix }}
                         </p>
-                        <!-- [UPDATE]: Label diperkecil ke ukuran mikro (text-[9px]) tanpa margin berlebih -->
-                        <p class="text-[9px] font-bold uppercase tracking-widest text-white/60 leading-tight">{{ item.label }}</p>
+                        <p class="text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-white/80 leading-tight">{{ item.label }}</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 
-            [KONTEN UTAMA: MENYATU DENGAN BACKGROUND GLOBAL]
-            Background dan pola Map Grid sekarang diambil langsung dari DefaultLayout.vue secara global.
-            Div ini hanya berfungsi sebagai pembungkus layout utama (w-full).
-        -->
         <div class="relative w-full pb-16">
-            
-            <!-- Konten Utama (z-10) -->
             <div class="relative z-10">
-                <!-- 
-                    1. [PRODUK UNGGULAN: GRID + ANIMASI SCROLL]
-                    Dikembalikan menjadi format grid/list agar UI sesuai seperti halaman list produk,
-                    tetapi menggunakan efek animasi muncul satu per satu.
-                -->
                 <section class="overflow-hidden pt-16 pb-8">
                     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div class="mb-8 flex items-end justify-between gap-4">
@@ -294,12 +258,6 @@ onUnmounted(() => {
                         </div>
 
                         <div v-if="featuredProducts.length > 0" ref="productGrid" class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:gap-6">
-                            <!-- 
-                                [ANIMASI SCROLL NATIVE]: 
-                                Tiap elemen disembunyikan awalnya (opacity-0, translate-y-8).
-                                Saat elemen masuk layar, IntersectionObserver menghapusnya.
-                                Waktu kemunculan dibuat bergantian (stagger) menggunakan transitionDelay.
-                            -->
                             <div v-for="(product, idx) in featuredProducts" :key="product.id" 
                                  class="transition-all duration-700 ease-out drop-shadow-sm hover:drop-shadow-md">
                                 <ProductCard :product="product" class="h-full bg-white rounded-2xl" />
@@ -316,11 +274,6 @@ onUnmounted(() => {
                     </div>
                 </section>
 
-                <!-- 
-                    2. [PAKET REKOMENDASI: GRID SEPERTI HALAMAN PAKET]
-                    Memakai Layout Card yang sama persis seperti halaman list Paket.
-                    Menampilkan yang terbaru saja (dibatasi 3), dan dengan animasi muncul perlahan stagger.
-                -->
                 <section class="overflow-hidden pt-4 pb-10" v-if="packages && packages.length > 0">
                     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div class="mb-8 flex items-end justify-between gap-4">
@@ -336,57 +289,35 @@ onUnmounted(() => {
                             </div>
                         </div>
 
-                        <!-- [GRID PAKET & ANIMASI MUNCUL SATU PER SATU] -->
-                        <!-- 
-                            [UPDATE ANIMASI SCROLL PAKET]
-                            Menambahkan pembungkus (wrapper) khusus untuk animasi agar efek muncul perlahan dari bawah
-                            berjalan sangat mulus dan tidak bentrok dengan efek hover milik kotak kartu di dalamnya.
-                            Ini 100% sama dengan logika animasi di grid produk.
-                            [UPDATE GRID UKURAN] Ukuran grid class disamakan persis dengan halaman Packages/Index.vue
-                        -->
                         <div ref="packageGrid" class="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
-                            <!-- Wrapper Animasi Dihapus agar Paket langsung tampil aman -->
                             <div v-for="(pkg, idx) in packages.slice(0, 5)" :key="pkg.id" 
                                  class="transition-all duration-700 ease-out h-full">
                                  
-                                <!-- Kotak Kartu Utama disamakan persis dengan halaman Paket (Index.vue) -->
                                 <div class="group relative flex h-full flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-slate-100 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-[0_16px_32px_rgba(0,0,0,0.08)] hover:border-blue-100">
                                     
-                                    <!-- Area Gambar & Lencana -->
                                     <div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-50">
                                         <Link :href="route('packages.show', pkg.slug)" class="block h-full w-full">
                                             <img v-if="pkg.image_path" :src="`/storage/${pkg.image_path}`" :alt="pkg.name"
-                                                class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
+                                                 width="300" height="150"
+                                                 class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
                                             <div v-else class="flex h-full w-full items-center justify-center text-xs font-medium text-slate-400">
-                                                <!-- Kosong / Clean sesuai ProductCard -->
                                             </div>
                                         </Link>
 
-                                        <!-- Lencana Ketersediaan Tersedia -->
                                         <div class="absolute left-3 top-3 z-10">
                                             <span class="inline-flex rounded-full bg-emerald-500 px-3 py-1 text-[10px] font-extrabold tracking-wide text-white shadow-sm">
                                                 TERSEDIA
                                             </span>
                                         </div>
 
-                                        <!-- 
-                                            ==========================================================================
-                                            [PENJELASAN KODE FITUR ANIMASI TOMBOL LOVE]
-                                            - Menggunakan komponen WishlistButton layaknya halaman produk.
-                                            - Jika sudah di-wishlist, tombol tetap muncul jelas.
-                                            - Jika belum, tombol hanya nampak saat disorot (hover) dengan kursor.
-                                            ==========================================================================
-                                        -->
                                         <div class="absolute right-3 top-3 z-10 transition-all duration-500 ease-out hover:scale-110"
                                              :class="wishlistStore.isWishlisted(pkg.id) ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 group-hover:translate-y-0 group-hover:opacity-100'">
                                             <WishlistButton :product-id="pkg.id" />
                                         </div>
                                     </div>
 
-                                    <!-- Area Konten (Deskripsi & Rating) -->
                                     <div class="flex flex-1 flex-col p-5">
                                         
-                                        <!-- Rating Bintang Dinamis (Statis Sementara sesuai instruksi) -->
                                         <div class="mb-3 flex items-center gap-1">
                                             <div class="flex opacity-80 transition-all duration-300 group-hover:opacity-100">
                                                 <Star v-for="i in 5" :key="i" class="h-3 w-3 fill-amber-400 text-amber-400 drop-shadow-sm" />
@@ -404,10 +335,8 @@ onUnmounted(() => {
                                             {{ pkg.description || 'Paket komplit untuk kenyamanan maksimal di alam liar.' }}
                                         </p>
 
-                                        <!-- Spacer agar harga selalu di bawah -->
                                         <div class="flex-1"></div>
 
-                                        <!-- Area Harga -->
                                         <div class="mt-5 border-t border-slate-100 pt-4">
                                             <div class="flex items-end justify-between">
                                                 <div>
@@ -428,154 +357,14 @@ onUnmounted(() => {
                                     </div>
                                 </div>
                         </div>
-                        <!-- Tutup packageGrid -->
                         </div>
                     </div>
                 </section>
             </div>
         </div>
-        </div> <!-- End of DESKTOP VIEW -->
 
 
-        <!-- ========================================================= -->
-        <!-- [MOBILE VIEW]: TAMPILAN BARU KHUSUS MOBILE (block lg:hidden)-->
-        <!-- ========================================================= -->
-        <!-- ========================================================= -->
-        <!-- [MOBILE VIEW - MAHA KARYA]: NEON FOREST GLASSMORPHISM     -->
-        <!-- ========================================================= -->
-        <!-- [MOBILE VIEW - MAHA KARYA]: KERANJANG PREMIUM (DI-ADAPTASI UNTUK HOME) -->
-        <div class="block lg:hidden min-h-screen pb-24 relative overflow-hidden bg-gradient-to-br from-[#0B1120] via-[#0A1A2F] to-[#0B1120]">
-            
-            <!-- [KOMENTAR PENJELASAN]: Dekorasi Garis (Grid Pattern) & Bentuk Abstrak -->
-            <!-- Latar belakang tidak lagi gelap polos, ada jaring garis modern, titik halus, dan bentuk SVG abstrak -->
-            
-            <!-- Pattern Garis Tipis & Titik Grid Halus -->
-            <div class="absolute inset-0 bg-[linear-gradient(rgba(34,211,238,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.04)_1px,transparent_1px)] bg-[size:30px_30px] pointer-events-none"></div>
-            <div class="absolute inset-0 opacity-[0.15] pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, rgba(34, 211, 238, 0.4) 1px, transparent 0); background-size: 24px 24px;"></div>
-            
-            <!-- Elemen Garis Melengkung / Bentuk Abstrak Lembut (SVG Background) -->
-            <svg class="absolute top-0 right-0 w-full h-[500px] opacity-[0.03] pointer-events-none" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M 0,200 C 100,300 300,100 400,200" stroke="white" stroke-width="2" fill="none" />
-                <path d="M -50,150 C 150,350 350,50 450,150" stroke="white" stroke-width="1" fill="none" />
-                <circle cx="350" cy="50" r="100" stroke="white" stroke-width="1" fill="none" />
-            </svg>
 
-            <!-- Semburan warna warni (Mesh Gradient Overlay Glow) -->
-            <div class="absolute -top-10 left-0 w-72 h-72 bg-cyan-600/20 rounded-full blur-[120px] pointer-events-none mix-blend-screen"></div>
-            <div class="absolute top-[30%] -right-20 w-80 h-80 bg-purple-600/15 rounded-full blur-[120px] pointer-events-none mix-blend-screen"></div>
-            <div class="absolute bottom-40 left-10 w-72 h-72 bg-emerald-600/20 rounded-full blur-[120px] pointer-events-none mix-blend-screen"></div>
-            
-            <!-- Mobile Hero Section (Lebih dramatis dan gelap) -->
-            <section class="relative overflow-hidden pb-12 pt-8 text-white shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
-                <!-- Background slider -->
-                <div class="absolute inset-0 z-0">
-                    <img v-for="(img, idx) in heroImages" :key="idx"
-                         :src="img" alt="Background" 
-                         class="absolute inset-0 h-full w-full object-cover transition-opacity duration-[1500ms] ease-in-out"
-                         :class="idx === currentHeroImage ? 'opacity-100 z-10 scale-100' : 'opacity-0 z-0 scale-105'" />
-                    <!--
-                        [PENJELASAN KODE UPDATE]:
-                        Mengurangi opasitas gradient overlay dari sangat pekat (80%/40%/100%)
-                        menjadi sangat tipis (30%/10%/40%) agar foto background pegunungan
-                        terlihat jelas dan jernih. Gradient tipis ini tetap menjaga keterbacaan
-                        teks putih di atasnya tanpa menutupi/mengaburkan foto.
-                    -->
-                    <div class="absolute inset-0 z-20 bg-gradient-to-b from-[#061E1A]/30 via-black/10 to-[#061E1A]/40"></div>
-                </div>
-
-                <div class="relative z-40 px-5 pt-6 text-center">
-                    <h1 class="font-outfit text-5xl font-black leading-[1.05] tracking-tight drop-shadow-lg">
-                        <span class="animate-text-gradient bg-gradient-to-r from-cyan-300 via-emerald-200 to-cyan-400 bg-[length:200%_auto] bg-clip-text text-transparent">
-                            Rental Hiking<br/>Lebih Mudah
-                        </span>
-                    </h1>
-                    <p class="mx-auto mt-3 max-w-[280px] text-[11px] font-medium leading-relaxed text-emerald-50/70">
-                        Peralatan premium. Booking secepat kilat. Petualangan tanpa batas.
-                    </p>
-
-                    <div class="mt-8">
-                        <Link :href="route('catalog.index')" class="inline-flex h-12 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-emerald-400 px-8 text-[13px] font-black text-slate-900 shadow-[0_0_20px_rgba(34,211,238,0.4)] transition-transform active:scale-95">
-                            Jelajahi Katalog
-                        </Link>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Mobile Stats (Glassmorphism Melayang) -->
-            <section ref="mobileStatsSection" class="relative z-50 mx-4 -mt-8 rounded-[20px] border border-white/10 bg-slate-900/40 p-4 shadow-xl backdrop-blur-2xl">
-                <div class="grid grid-cols-4 gap-2 divide-x divide-white/10">
-                    <div v-for="item in animatedStats" :key="item.label" class="text-center px-1">
-                        <p class="text-sm font-black tabular-nums text-cyan-300 drop-shadow-[0_0_8px_rgba(34,211,238,0.5)]">
-                            {{ item.current }}{{ item.suffix }}
-                        </p>
-                        <p class="mt-0.5 text-[8px] font-bold uppercase tracking-wider text-slate-400">{{ item.label }}</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Mobile Featured Products (Padat & Rapi) -->
-            <section class="pt-10 pb-6 px-4">
-                <div class="mb-4 flex items-end justify-between">
-                    <div>
-                        <p class="text-[9px] font-black uppercase tracking-widest text-emerald-400">Paling Laris</p>
-                        <h2 class="mt-0.5 text-[17px] font-black tracking-tight text-white">Produk Unggulan</h2>
-                    </div>
-                    <Link :href="route('catalog.index')" class="flex items-center gap-1 text-[10px] font-bold text-cyan-400 active:text-cyan-300">
-                        Lihat Semua
-                        <svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
-                    </Link>
-                </div>
-
-                <div v-if="featuredProducts.length > 0" class="grid grid-cols-2 gap-3">
-                    <MobileProductCard v-for="product in featuredProducts.slice(0,4)" :key="product.id" :product="product" />
-                </div>
-                
-                <div v-else class="flex flex-col items-center justify-center rounded-2xl border border-white/10 bg-white/5 py-10 text-center backdrop-blur-md">
-                    <PackageCheck class="mb-2 h-8 w-8 text-slate-500" />
-                    <p class="text-[11px] font-bold text-slate-400">Belum ada produk</p>
-                </div>
-            </section>
-
-            <!-- Mobile Recommended Packages (Horizontal Snap) -->
-            <section class="py-6 pl-4" v-if="packages && packages.length > 0">
-                <div class="mb-4 pr-4 flex items-end justify-between">
-                    <div>
-                        <p class="text-[9px] font-black uppercase tracking-widest text-emerald-400">Hemat Banyak</p>
-                        <h2 class="mt-0.5 text-[17px] font-black tracking-tight text-white">Paket Spesial</h2>
-                    </div>
-                </div>
-
-                <!-- Horizontal Snap Container -->
-                <div class="flex gap-4 overflow-x-auto pb-4 pr-4 hide-scrollbar" style="scroll-snap-type: x mandatory;">
-                    <!-- Kartu Paket Glassmorphism -->
-                    <div v-for="pkg in packages.slice(0, 4)" :key="pkg.id" class="w-[260px] shrink-0 overflow-hidden rounded-[20px] bg-slate-900/60 shadow-lg border border-white/10 backdrop-blur-md transition-transform active:scale-[0.98]" style="scroll-snap-align: start;">
-                        <Link :href="route('packages.show', pkg.slug)" class="block relative aspect-[16/9] w-full bg-slate-800">
-                            <img v-if="pkg.image_path" :src="`/storage/${pkg.image_path}`" class="h-full w-full object-cover opacity-90" />
-                            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/90 to-transparent"></div>
-                            
-                            <!-- Judul di atas gambar (Overlaid) -->
-                            <div class="absolute bottom-3 left-3 right-3">
-                                <h3 class="line-clamp-1 text-[14px] font-black text-white drop-shadow-md">{{ pkg.name }}</h3>
-                            </div>
-                        </Link>
-                        
-                        <div class="p-3">
-                            <p class="line-clamp-2 text-[10px] text-slate-400 leading-relaxed">{{ pkg.description || 'Paket komplit untuk kenyamanan maksimal.' }}</p>
-                            
-                            <div class="mt-3 flex items-center justify-between border-t border-white/5 pt-3">
-                                <div class="flex flex-col">
-                                    <span class="text-[8px] font-black text-emerald-500/80 uppercase">Mulai</span>
-                                    <span class="text-sm font-black text-cyan-300">{{ formatCurrency(pkg.price_per_day) }}</span>
-                                </div>
-                                <Link :href="route('packages.show', pkg.slug)" class="rounded-full bg-white/10 px-4 py-2 text-[10px] font-bold text-white shadow-sm border border-white/5 active:bg-white/20">
-                                    Pilih
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
 
     </DefaultLayout>
 </template>

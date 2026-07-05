@@ -1,8 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
-// [OPTIMASI PERFORMA]: Mengimpor Vite Compression Plugin untuk mengecilkan aset (js/css) hingga 70%
-import viteCompression from 'vite-plugin-compression';
 
 export default defineConfig({
     plugins: [
@@ -17,16 +15,6 @@ export default defineConfig({
                     includeAbsolute: false,
                 },
             },
-        }),
-        // [OPTIMASI PERFORMA]: Kompresi Brotli & Gzip. Ini adalah standar industri wajib untuk mendapatkan skor LCP 100%
-        // dengan cara mengirimkan data yang sudah dimampatkan ke browser pengguna.
-        viteCompression({
-            algorithm: 'brotliCompress',
-            ext: '.br',
-        }),
-        viteCompression({
-            algorithm: 'gzip',
-            ext: '.gz',
         }),
     ],
     // [KOMENTAR PENJELASAN]: Konfigurasi server Vite untuk mengizinkan akses dari luar (seperti Ngrok) tanpa terblokir CORS Policy

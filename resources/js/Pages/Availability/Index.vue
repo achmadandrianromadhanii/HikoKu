@@ -1,37 +1,36 @@
 <script setup>
-import { Head, router } from '@inertiajs/vue3'
-import { ref } from 'vue'
-import DefaultLayout from '@/Layouts/DefaultLayout.vue'
-import ProductCard from '@/Components/product/ProductCard.vue'
+    import { Head, router } from '@inertiajs/vue3';
+    import { ref } from 'vue';
+    import DefaultLayout from '@/Layouts/DefaultLayout.vue';
+    import ProductCard from '@/Components/product/ProductCard.vue';
 
-const props = defineProps({
-    products: {
-        type: Array,
-        default: () => [],
-    },
-    filters: {
-        type: Object,
-        default: () => ({}),
-    },
-})
+    const props = defineProps({
+        products: {
+            type: Array,
+            default: () => [],
+        },
+        filters: {
+            type: Object,
+            default: () => ({}),
+        },
+    });
 
-const search = ref(props.filters.search || '')
+    const search = ref(props.filters.search || '');
 
-const submitSearch = () => {
-    router.get(
-        route('availability.index'),
-        { search: search.value },
-        {
-            preserveState: true,
-            preserveScroll: true,
-            replace: true,
-        }
-    )
-}
+    const submitSearch = () => {
+        router.get(
+            route('availability.index'),
+            { search: search.value },
+            {
+                preserveState: true,
+                preserveScroll: true,
+                replace: true,
+            }
+        );
+    };
 </script>
 
 <template>
-
     <Head title="Cek Ketersediaan" />
 
     <DefaultLayout>
@@ -46,13 +45,19 @@ const submitSearch = () => {
 
             <div class="mb-6 rounded-3xl border border-gray-200 bg-white p-5 shadow-sm">
                 <div class="flex flex-col gap-3 sm:flex-row">
-                    <input v-model="search" type="text"
+                    <input
+                        v-model="search"
+                        type="text"
                         class="h-12 flex-1 rounded-xl border border-gray-200 px-4 text-sm outline-none transition focus:border-primary-300 focus:ring-2 focus:ring-primary-100"
-                        placeholder="Cari nama produk..." @keyup.enter="submitSearch" />
+                        placeholder="Cari nama produk..."
+                        @keyup.enter="submitSearch"
+                    />
 
-                    <button type="button"
+                    <button
+                        type="button"
                         class="inline-flex h-12 items-center justify-center rounded-xl bg-primary-600 px-5 text-sm font-semibold text-white transition hover:bg-primary-700"
-                        @click="submitSearch">
+                        @click="submitSearch"
+                    >
                         Cari
                     </button>
                 </div>
@@ -62,8 +67,10 @@ const submitSearch = () => {
                 <ProductCard v-for="product in products" :key="product.id" :product="product" />
             </div>
 
-            <div v-else
-                class="rounded-3xl border border-dashed border-gray-300 bg-white px-6 py-20 text-center shadow-sm">
+            <div
+                v-else
+                class="rounded-3xl border border-dashed border-gray-300 bg-white px-6 py-20 text-center shadow-sm"
+            >
                 <h2 class="text-xl font-bold text-gray-900">Tidak ada produk ditemukan</h2>
                 <p class="mt-2 text-sm text-gray-500">
                     Coba ubah kata kunci pencarian untuk melihat stok produk lain.

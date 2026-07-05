@@ -237,7 +237,7 @@ onUnmounted(() => {
                     KOLOM 1: Identitas Logo 
                 -->
                 <div class="flex min-w-0 items-center gap-6 xl:gap-8">
-                    <Link :href="route('home')" class="inline-flex shrink-0 items-center transition-transform duration-300 hover:scale-105" @click="closeAllMenus">
+                    <Link :href="route('home')" class="inline-flex shrink-0 items-center transition-transform duration-300 hover:scale-105" @click="closeAllMenus" aria-label="Beranda">
                         <!-- 
                             [UPDATE UKURAN & KEJERNIHAN LOGO]
                             - Container dikembalikan jadi h-16
@@ -248,7 +248,7 @@ onUnmounted(() => {
                         -->
                         <div class="flex items-center justify-center h-16 w-auto overflow-visible">
                             <!-- Logo Navbar yang dikembalikan ke ukuran normal tapi sangat tajam karena shadow -->
-                            <img v-if="!logoError" :src="brandLogo" :alt="brandName" 
+                            <img v-if="!logoError" :src="brandLogo" :alt="brandName" width="64" height="64"
                                  class="h-16 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
                                  @error="logoError = true" />
                             <div v-else
@@ -298,7 +298,7 @@ onUnmounted(() => {
                 -->
                 <div class="hidden shrink-0 items-center gap-5 lg:flex">
                     <Link :href="route('wishlist.index')"
-                        class="group relative text-white/70 transition-all duration-300 hover:scale-110 hover:text-cyan-400">
+                        class="group relative text-white/70 transition-all duration-300 hover:scale-110 hover:text-cyan-400" aria-label="Wishlist">
                         <!-- Naked Wishlist Icon dengan Hover Glow -->
                         <Heart class="h-5 w-5 drop-shadow-sm group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]" />
                         
@@ -313,7 +313,7 @@ onUnmounted(() => {
                     </Link>
 
                     <Link :href="route('cart.index')"
-                        class="group relative text-white/70 transition-all duration-300 hover:scale-110 hover:text-cyan-400">
+                        class="group relative text-white/70 transition-all duration-300 hover:scale-110 hover:text-cyan-400" aria-label="Keranjang">
                         <!-- Naked Cart Icon dengan Hover Glow -->
                         <ShoppingCart class="h-5 w-5 drop-shadow-sm group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]" />
 
@@ -335,10 +335,12 @@ onUnmounted(() => {
                                      Juga menghapus transform-gpu yang kadang membuat gambar menjadi soft/blur di Chrome. -->
                                 <button type="button"
                                     class="group relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border-2 border-slate-300 bg-slate-100 transition-all duration-300 hover:border-cyan-400 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] hover:scale-105 active:scale-95"
-                                    @click="userMenuOpen = !userMenuOpen">
+                                    @click="userMenuOpen = !userMenuOpen"
+                                    aria-label="Menu Pengguna">
                                     <img v-if="user?.avatar" 
                                          :src="getHighResAvatar(user.avatar)" 
                                          alt="User Avatar" 
+                                         width="48" height="48"
                                          class="h-full w-full object-cover" />
                                     <User v-else class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-slate-600" stroke-width="2" />
                                 </button>
@@ -423,7 +425,8 @@ onUnmounted(() => {
 
                     <button type="button"
                         class="text-white/80 transition-transform active:scale-95"
-                        @click="mobileOpen = !mobileOpen">
+                        @click="mobileOpen = !mobileOpen"
+                        aria-label="Menu Navigasi Mobile">
                         <Menu v-if="!mobileOpen" class="h-5 w-5" />
                         <X v-else class="h-5 w-5" />
                     </button>
