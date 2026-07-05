@@ -39,7 +39,8 @@ createInertiaApp({
             .use(ZiggyVue)
             .mount(el);
     },
-    progress: {
-        color: '#4B5563',
-    },
+    // [OPTIMASI VERCEL]: Mematikan garis loading (Progress Bar) bawaan Inertia.js
+    // Sesuai permintaan Anda, mematikan indikator ini membuat transisi halaman 
+    // terasa "instan" dan langsung melompat (snappy) tanpa menunggu animasi selesai.
+    progress: false,
 });
