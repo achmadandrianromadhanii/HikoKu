@@ -28,8 +28,8 @@ window.axios = axios;
 // bukan dari form submission biasa. Laravel menggunakan ini untuk mendeteksi request type.
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-import Echo from 'laravel-echo';
-import Pusher from 'pusher-js';
+// import Echo from 'laravel-echo';
+// import Pusher from 'pusher-js';
 
 // Komentar: Deklarasi tipe global agar TypeScript mengenali
 // window.Pusher dan window.Echo tanpa error kompilasi.
@@ -42,21 +42,19 @@ declare global {
 
 // Komentar: Pusher-js harus di-attach ke window global karena
 // Laravel Echo mengaksesnya melalui window.Pusher secara internal.
-window.Pusher = Pusher;
+// window.Pusher = Pusher;
 
 /**
- * [UPDATE MIGRASI REVERB → PUSHER]:
- * Konfigurasi Echo sekarang menggunakan broadcaster 'pusher' dengan parameter:
- * - key: App Key dari dashboard Pusher (disimpan di .env sebagai VITE_PUSHER_APP_KEY)
- * - cluster: Region server Pusher terdekat (misal: 'ap1' untuk Asia Pacific)
- * - forceTLS: true — selalu gunakan koneksi terenkripsi (wss://) untuk keamanan
- * - disableStats: true — menonaktifkan statistik internal Pusher agar tidak
- *   menambah request yang bisa mempengaruhi performa (LCP/INP tetap optimal)
+ * [OPTIMASI LIGHTHOUSE & BUG FIX]:
+ * WebSocket Pusher dimatikan sementara (dikomentari) untuk:
+ * 1. Mengatasi error "WebSocket connection to wss://ws-ap1.pusher.com failed" di Vercel.
+ * 2. Menghemat payload JavaScript sebesar ~72KB (Pusher + Echo) yang membebani LCP dan TBT (mengatasi "Reduce unused JavaScript").
+ * 3. Jika nanti butuh Real-Time lagi, cukup uncomment kode di bawah ini dan pastikan credential Pusher valid di env.
  */
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: import.meta.env.VITE_PUSHER_APP_KEY,
-    cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'ap1',
-    forceTLS: true,
-    disableStats: true,
-});
+// window.Echo = new Echo({
+//     broadcaster: 'pusher',
+//     key: import.meta.env.VITE_PUSHER_APP_KEY,
+//     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'ap1',
+//     forceTLS: true,
+//     disableStats: true,
+// });

@@ -414,7 +414,7 @@ onUnmounted(() => {
                 <!-- Mobile Menu Toggles (Responsive) -->
                 <div class="flex shrink-0 items-center gap-4 lg:hidden">
                     <Link :href="route('cart.index')"
-                        class="relative text-white/80 transition-transform active:scale-95">
+                        class="relative text-white/80 transition-transform active:scale-95" aria-label="Keranjang Belanja">
                         <ShoppingCart class="h-5 w-5" />
                         <span v-if="displayCartCount > 0 && hasUnreadCart && !isOnCartPage"
                             :class="{'animate-bounce': isCartAnimating}"

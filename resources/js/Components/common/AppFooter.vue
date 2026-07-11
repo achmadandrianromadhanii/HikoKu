@@ -110,7 +110,11 @@ const initMap = () => {
             iconAnchor: [7, 7]
         })
 
-        window.L.marker([lat, lng], { icon: customIcon }).addTo(map)
+        window.L.marker([lat, lng], { 
+            icon: customIcon,
+            alt: 'Lokasi Hiko',
+            title: 'Lokasi Hiko'
+        }).addTo(map)
     }
 }
 
@@ -166,9 +170,9 @@ const socialLinks = computed(() => [
                         -->
                         <div class="flex items-center justify-start h-28 w-auto overflow-visible">
                             <!-- Gambar Logo Footer yang dikembalikan ke ukuran normal tapi sangat mulus tanpa pixelation -->
-                            <img v-if="!logoError" :src="brandLogo" :alt="brandName" 
-                                 class="h-28 max-w-[280px] object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)]" 
-                                 @error="logoError = true" />
+                            <img v-if="!logoError" :src="brandLogo" :alt="brandName" width="160" height="112"
+                                   class="h-28 max-w-[280px] object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)]" 
+                                   @error="logoError = true" />
                             <div v-else class="flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500 to-blue-500 text-2xl font-bold text-white shadow-lg">H</div>
                         </div>
 

@@ -246,13 +246,13 @@ onUnmounted(() => {
                     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div class="mb-8 flex items-end justify-between gap-4">
                             <div>
-                                <p class="text-[11px] font-bold uppercase tracking-widest text-cyan-600">Terbaik</p>
+                                <p class="text-[11px] font-bold uppercase tracking-widest text-cyan-700">Terbaik</p>
                                 <h2 class="mt-1 text-2xl font-extrabold tracking-tight text-slate-900">Peralatan Paling Dicari</h2>
                             </div>
                             <div class="flex items-center gap-4">
                                 <Link :href="route('catalog.index')"
-                                    class="text-[13px] font-bold text-cyan-600 transition hover:text-cyan-800">
-                                    Lihat semua
+                                    class="text-[13px] font-bold text-cyan-700 transition hover:text-cyan-900">
+                                    Lihat semua <span aria-hidden="true">&rarr;</span>
                                 </Link>
                             </div>
                         </div>
@@ -278,13 +278,13 @@ onUnmounted(() => {
                     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div class="mb-8 flex items-end justify-between gap-4">
                             <div class="translate-y-0 transform opacity-100 transition-all duration-700">
-                                <p class="text-[11px] font-bold uppercase tracking-widest text-cyan-600">Paket Hemat</p>
+                                <p class="text-[11px] font-bold uppercase tracking-widest text-cyan-700">Paket Hemat</p>
                                 <h2 class="mt-1 text-2xl font-extrabold tracking-tight text-slate-900">Rekomendasi Paket</h2>
                             </div>
                             <div class="flex items-center gap-4">
                                 <Link :href="route('packages.index')"
-                                    class="text-[13px] font-bold text-cyan-600 transition hover:text-cyan-800">
-                                    Lihat semua paket
+                                    class="text-[13px] font-bold text-cyan-700 transition hover:text-cyan-900">
+                                    Lihat semua paket <span aria-hidden="true">&rarr;</span>
                                 </Link>
                             </div>
                         </div>
