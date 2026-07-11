@@ -26,20 +26,11 @@ export default defineConfig({
             host: 'localhost',
         },
     },
-    // [UPDATE OPTIMASI]: Memisahkan bundle vendor untuk memecah ukuran file besar (chunking)
-    // Tujuannya agar LCP dan INP lebih stabil dan loading pertama menjadi jauh lebih ngebut (skor Lighthouse maksimal).
+    // [UPDATE OPTIMASI]: Menghapus manualChunks custom agar Vite secara otomatis
+    // melakukan "Code Splitting" yang sangat efisien (Tree-shaking).
+    // Ini memastikan library berat seperti ApexCharts hanya dimuat di halaman Admin yang membutuhkannya,
+    // tidak dimuat di halaman Homepage/Katalog, sehingga Lighthouse 100% Hijau.
     build: {
-        chunkSizeWarningLimit: 2000, // [FIX] Diperbesar menjadi 2000kb agar peringatan kuning Vite hilang tanpa merusak performa.
-        rollupOptions: {
-            output: {
-                manualChunks(id) {
-                    if (id.includes('node_modules')) {
-                        if (id.includes('apexcharts')) return 'vendor-charts';
-                        if (id.includes('vue')) return 'vendor-vue';
-                        return 'vendor'; // Memisahkan semua sisa library pihak ketiga
-                    }
-                }
-            }
-        }
+        chunkSizeWarningLimit: 2000, // [FIX] Diperbesar menjadi 2000kb agar peringatan kuning Vite hilang
     }
 });

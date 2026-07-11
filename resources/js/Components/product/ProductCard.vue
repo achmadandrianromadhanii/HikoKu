@@ -396,7 +396,8 @@ onMounted(() => {
         
         <!-- BAGIAN 1: Area Foto Produk -->
         <div class="relative overflow-hidden bg-surface-50">
-            <Link :href="productDetailUrl" class="block">
+            <!-- [OPTIMASI LIGHTHOUSE ACCESSIBILITY]: aria-label ditambahkan agar screen reader mengenali link gambar ini -->
+            <Link :href="productDetailUrl" class="block" :aria-label="`Lihat detail produk ${product.name}`">
                 <!-- Foto menge-zoom lambat saat disorot kursor -->
                 <img v-if="imageUrl" :src="imageUrl" :alt="product.name" width="400" height="300" class="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     loading="lazy" />

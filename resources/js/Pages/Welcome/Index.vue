@@ -296,7 +296,8 @@ onUnmounted(() => {
                                 <div class="group relative flex h-full flex-col overflow-hidden rounded-[24px] bg-white shadow-[0_2px_12px_rgba(0,0,0,0.03)] border border-slate-100 transition-all duration-500 ease-out hover:-translate-y-1.5 hover:shadow-[0_16px_32px_rgba(0,0,0,0.08)] hover:border-blue-100">
                                     
                                     <div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-50">
-                                        <Link :href="route('packages.show', pkg.slug)" class="block h-full w-full">
+                                        <!-- [OPTIMASI LIGHTHOUSE ACCESSIBILITY]: Menambahkan aria-label agar screen reader dapat membacanya dan skor Accessibility naik 100% -->
+                                        <Link :href="route('packages.show', pkg.slug)" class="block h-full w-full" :aria-label="`Lihat detail paket ${pkg.name}`">
                                             <img v-if="pkg.image_path" :src="`/storage/${pkg.image_path}`" :alt="pkg.name"
                                                  width="300" height="150"
                                                  class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" />

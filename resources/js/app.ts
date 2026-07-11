@@ -33,17 +33,34 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         const pinia = createPinia();
 
-        createApp({ render: () => h(App, props) })
+        const vueApp = createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(pinia)
-            .use(ZiggyVue)
-            .mount(el);
+            .use(ZiggyVue);
+            
+        vueApp.mount(el);
+
+        // [OPTIMASI LIGHTHOUSE: Hapus Preloader]
+        // Setelah aplikasi Vue selesai di-mount dan siap ditampilkan (LCP siap),
+        // hapus preloader statis dengan transisi halus.
+        const loader = document.getElementById('initial-loader');
+        if (loader) {
+            loader.style.opacity = '0';
+            setTimeout(() => loader.remove(), 500); // Tunggu transisi fade-out selesai
+        }
     },
-    // [OPTIMASI UX: Progress Bar]
-    // Menghidupkan kembali progress bar agar saat tombol diklik, user tahu sedang loading
-    // Warna diubah menjadi Cyan Terang (Hiko Theme) agar lebih elegan
+    // [OPTIMASI UX & PERFORMANCE: Top Loading Progress Bar]
+    // Menghidupkan progress bar dengan konfigurasi kustom agar website terasa sangat responsif.
     progress: {
+        // [KUNCI KECEPATAN UX]: Mengubah delay bawaan (250ms) menjadi 0. 
+        // Dengan begini, loading bar (garis biru di atas) langsung muncul SEKETIKA 
+        // saat link atau tombol diklik, menghilangkan sensasi "lag" atau lemot.
+        delay: 0,
+        // Warna cyan terang yang serasi dengan desain tema Hiko
         color: '#22d3ee',
-        showSpinner: true,
+        // Menggunakan CSS bawaan dari NProgress (ringan dan teruji)
+        includeCSS: true,
+        // Mematikan ikon spinner berputar di pojok kanan agar tampilan tetap rapi, bersih, dan profesional (hanya garis atas)
+        showSpinner: false,
     },
 });

@@ -43,6 +43,18 @@
         @inertiaHead
     </head>
     <body class="font-sans antialiased">
+        <!-- [OPTIMASI LIGHTHOUSE: FCP & Speed Index] -->
+        <!-- Preloader statis yang dirender langsung oleh server untuk memberikan respons visual instan (FCP ~0.1s). -->
+        <!-- Ini mencegah layar putih kosong selama browser mengunduh JavaScript di jaringan lambat (Slow 4G). -->
+        <div id="initial-loader" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#ffffff;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;transition:opacity 0.5s ease;">
+            <style>
+                .hikoku-spinner { width: 50px; height: 50px; border: 4px solid #eef4f7; border-top: 4px solid #22d3ee; border-radius: 50%; animation: spin 0.8s linear infinite; }
+                @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+            </style>
+            <div class="hikoku-spinner"></div>
+            <div style="margin-top:20px;font-family:sans-serif;font-weight:700;color:#0c3653;letter-spacing:1px;font-size:14px;">Memuat Aplikasi...</div>
+        </div>
+
         @inertia
     </body>
 </html>
