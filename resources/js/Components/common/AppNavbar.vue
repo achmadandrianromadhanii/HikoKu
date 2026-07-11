@@ -248,13 +248,8 @@ onUnmounted(() => {
                         -->
                         <div class="flex items-center justify-center h-16 w-auto overflow-visible">
                             <!-- Logo Navbar yang dikembalikan ke ukuran normal tapi sangat tajam karena shadow -->
-                            <img v-if="!logoError" :src="brandLogo" :alt="brandName" width="64" height="64"
-                                 class="h-16 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]"
-                                 @error="logoError = true" />
-                            <div v-else
-                                class="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-xl font-bold text-white shadow-lg">
-                                H
-                            </div>
+                            <img :src="brandLogo" :alt="brandName" width="64" height="64"
+                                 class="h-16 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]" />
                         </div>
                     </Link>
 

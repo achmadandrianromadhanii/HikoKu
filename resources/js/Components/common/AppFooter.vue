@@ -9,7 +9,6 @@ import { usePage, Link } from '@inertiajs/vue3'
 import { Phone, Mail, MapPin, Instagram, Facebook, Music2 } from 'lucide-vue-next'
 
 const page = usePage()
-const logoError = ref(false)
 
 
 
@@ -170,10 +169,8 @@ const socialLinks = computed(() => [
                         -->
                         <div class="flex items-center justify-start h-28 w-auto overflow-visible">
                             <!-- Gambar Logo Footer yang dikembalikan ke ukuran normal tapi sangat mulus tanpa pixelation -->
-                            <img v-if="!logoError" :src="brandLogo" :alt="brandName" width="160" height="112"
-                                   class="h-28 max-w-[280px] object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)]" 
-                                   @error="logoError = true" />
-                            <div v-else class="flex h-16 w-16 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-500 to-blue-500 text-2xl font-bold text-white shadow-lg">H</div>
+                            <img :src="brandLogo" :alt="brandName" width="160" height="112"
+                                   class="h-28 max-w-[280px] object-contain drop-shadow-[0_8px_20px_rgba(0,0,0,0.6)]" />
                         </div>
 
                         <!-- Tagline dipertahankan sebagai teks mini di bawah logo raksasa -->

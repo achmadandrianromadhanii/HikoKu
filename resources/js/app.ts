@@ -1,7 +1,7 @@
 import '../css/app.css';
 import './bootstrap';
 
-import { createInertiaApp } from '@inertiajs/vue3';
+import { createInertiaApp, Link } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createApp, DefineComponent, h } from 'vue';
 // [UPDATE VERSI VERCEL]: Mengimpor Ziggy dari NPM package (ziggy-js) alih-alih folder PHP (/vendor).
@@ -33,21 +33,15 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         const pinia = createPinia();
 
-        const vueApp = createApp({ render: () => h(App, props) })
+        // Inisialisasi Vue App
+        const app = createApp({ render: () => h(App, props) })
             .use(plugin)
-            .use(pinia)
-            .use(ZiggyVue);
-            
-        vueApp.mount(el);
+            .use(pinia) // Registrasi Pinia state management (diperlukan untuk shopping cart & auth)
+            .use(ZiggyVue)
+            .component('Link', Link);
 
-        // [OPTIMASI LIGHTHOUSE: Hapus Preloader]
-        // Setelah aplikasi Vue selesai di-mount dan siap ditampilkan (LCP siap),
-        // hapus preloader statis dengan transisi halus.
-        const loader = document.getElementById('initial-loader');
-        if (loader) {
-            loader.style.opacity = '0';
-            setTimeout(() => loader.remove(), 500); // Tunggu transisi fade-out selesai
-        }
+        // Mount aplikasi ke DOM
+        app.mount(el);
     },
     // [OPTIMASI UX & PERFORMANCE: Top Loading Progress Bar]
     // Menghidupkan progress bar dengan konfigurasi kustom agar website terasa sangat responsif.
