@@ -14,9 +14,9 @@ const page = usePage()
 
 // [UPDATE]: Menyiapkan array gambar pegunungan HD untuk background footer
 const footerImages = [
-    'https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?q=60&w=1280&fm=webp&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=60&w=1280&fm=webp&auto=format&fit=crop',
-    'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=60&w=1280&fm=webp&auto=format&fit=crop'
+    'https://images.unsplash.com/photo-1542332213-9b5a5a3fad35?q=50&w=800&fm=webp&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=50&w=800&fm=webp&auto=format&fit=crop',
+    'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=50&w=800&fm=webp&auto=format&fit=crop'
 ]
 const currentFooterImage = ref(0)
 let footerImageInterval = null

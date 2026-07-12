@@ -45,9 +45,9 @@ const packageGrid = ref(null)
 // [FITUR PREMIUM]: 3 HD Mountain Backgrounds Slider
 // Dioptimalkan dengan w=1280, q=60, dan fm=webp agar tetap Tajam, Full HD, namun sangat ringan (Skor Lighthouse Hijau)
 const heroImages = [
-    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=60&w=1280&fm=webp&auto=format&fit=crop', // Classic Mountain
-    'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?q=60&w=1280&fm=webp&auto=format&fit=crop', // Snowy Peak Sunset
-    'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=60&w=1280&fm=webp&auto=format&fit=crop'  // Starry Mountain
+    'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=50&w=800&fm=webp&auto=format&fit=crop', // Classic Mountain
+    'https://images.unsplash.com/photo-1454496522488-7a8e488e8606?q=50&w=800&fm=webp&auto=format&fit=crop', // Snowy Peak Sunset
+    'https://images.unsplash.com/photo-1519681393784-d120267933ba?q=50&w=800&fm=webp&auto=format&fit=crop'  // Starry Mountain
 ]
 const currentHeroImage = ref(0)
 let heroImageInterval = null
