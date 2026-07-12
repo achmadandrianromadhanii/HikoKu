@@ -258,7 +258,7 @@
                         class="flex flex-1 items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-300"
                         :class="
                             activeTab === 'personal'
-                                ? 'bg-cyan-50 text-cyan-700 shadow-sm'
+                                ? 'bg-cyan-50 text-cyan-800 shadow-sm'
                                 : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700'
                         "
                     >

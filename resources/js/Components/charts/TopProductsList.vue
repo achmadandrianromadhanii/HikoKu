@@ -54,7 +54,7 @@ const getInitials = (name) => {
                 <!-- Informasi Produk & Progress Bar -->
                 <div class="flex flex-1 flex-col justify-center min-w-0">
                     <div class="flex items-center justify-between mb-1.5">
-                        <span class="truncate text-[13px] font-bold text-slate-700 group-hover:text-cyan-700 transition-colors">
+                        <span class="truncate text-[13px] font-bold text-slate-700 group-hover:text-cyan-800 transition-colors">
                             {{ item.label }}
                         </span>
                         <span class="text-[13px] font-bold text-slate-900 ml-3">

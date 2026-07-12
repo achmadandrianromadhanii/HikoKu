@@ -13,7 +13,7 @@
                 </h1>
 
                 <div
-                    class="prose prose-slate max-w-none prose-headings:text-slate-900 prose-a:text-cyan-600 hover:prose-a:text-cyan-700"
+                    class="prose prose-slate max-w-none prose-headings:text-slate-900 prose-a:text-cyan-600 hover:prose-a:text-cyan-800"
                 >
                     <p class="lead">
                         Privasi Anda sangat penting bagi kami. Kebijakan ini menjelaskan bagaimana
@@ -44,7 +44,7 @@
                 <div class="mt-12 pt-8 border-t border-slate-100">
                     <Link
                         :href="route('home')"
-                        class="inline-flex items-center text-sm font-medium text-cyan-600 transition hover:text-cyan-700"
+                        class="inline-flex items-center text-sm font-medium text-cyan-600 transition hover:text-cyan-800"
                     >
                         <svg
                             class="mr-2 h-4 w-4"

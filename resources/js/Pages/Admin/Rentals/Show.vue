@@ -607,7 +607,7 @@
                                     class="text-[9px] font-extrabold uppercase tracking-wider text-slate-800"
                                     >Grand Total</span
                                 >
-                                <span class="text-lg font-extrabold text-cyan-700 drop-shadow-sm">{{
+                                <span class="text-lg font-extrabold text-cyan-800 drop-shadow-sm">{{
                                     formatCurrency(rental.grand_total)
                                 }}</span>
                             </div>

@@ -412,7 +412,7 @@
                             <button
                                 type="button"
                                 @click="addVariant"
-                                class="text-[11px] font-bold text-cyan-600 hover:text-cyan-700 flex items-center gap-1.5 bg-cyan-50 px-3 py-1.5 rounded-lg border border-cyan-100 transition-all hover:bg-cyan-100 active:scale-95"
+                                class="text-[11px] font-bold text-cyan-600 hover:text-cyan-800 flex items-center gap-1.5 bg-cyan-50 px-3 py-1.5 rounded-lg border border-cyan-100 transition-all hover:bg-cyan-100 active:scale-95"
                             >
                                 <Plus class="h-3.5 w-3.5" /> Tambah Varian
                             </button>

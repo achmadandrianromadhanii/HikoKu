@@ -354,7 +354,7 @@
                                                 }}
                                             </p>
                                             <h3
-                                                class="mt-0.5 truncate text-[15px] font-bold text-surface-900 transition-colors group-hover:text-cyan-700"
+                                                class="mt-0.5 truncate text-[15px] font-bold text-surface-900 transition-colors group-hover:text-cyan-800"
                                             >
                                                 {{ getItemName(item) }}
                                             </h3>
@@ -423,7 +423,7 @@
                                                 Subtotal Item
                                             </p>
                                             <p
-                                                class="mt-0.5 text-[14px] font-extrabold text-cyan-700"
+                                                class="mt-0.5 text-[14px] font-extrabold text-cyan-800"
                                             >
                                                 {{ formatCurrency(getSubtotal(item)) }}
                                             </p>
@@ -513,7 +513,7 @@
                                         class="h-4 w-4 rounded border-surface-300 text-cyan-500 shadow-sm transition-all focus:border-cyan-400 focus:ring focus:ring-cyan-200 focus:ring-opacity-50 cursor-pointer"
                                     />
                                     <span
-                                        class="text-[12px] font-bold text-surface-600 transition-colors group-hover:text-cyan-700"
+                                        class="text-[12px] font-bold text-surface-600 transition-colors group-hover:text-cyan-800"
                                         >Tambahkan Catatan (Opsional)</span
                                     >
                                 </label>
@@ -557,7 +557,7 @@
                                         >Total Harga</span
                                     >
                                     <span
-                                        class="text-[18px] font-extrabold text-cyan-700 tracking-tight"
+                                        class="text-[18px] font-extrabold text-cyan-800 tracking-tight"
                                         >{{ formatCurrency(subtotal) }}</span
                                     >
                                 </div>

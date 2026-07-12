@@ -489,7 +489,7 @@ onMounted(() => {
                     <div class="min-w-0 flex-1">
                         <p class="text-[8px] font-extrabold uppercase tracking-widest text-surface-400 mb-0.5">Mulai dari</p>
                         <div class="flex items-baseline min-w-0">
-                            <p class="truncate text-[13px] sm:text-[14px] font-extrabold tracking-tight text-cyan-700">
+                            <p class="truncate text-[13px] sm:text-[14px] font-extrabold tracking-tight text-cyan-800">
                                 {{ formatCurrency(product.price_per_day) }}
                             </p>
                             <span class="text-[8px] font-medium text-surface-400 shrink-0 ml-0.5">/hr</span>

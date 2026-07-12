@@ -76,7 +76,7 @@
 
                                 <!-- [UPDATE FONT PERTANYAAN]: Lebih tebal (extrabold) dan elegan -->
                                 <span
-                                    class="text-[15px] font-extrabold text-slate-800 transition-colors duration-300 group-hover:text-cyan-700"
+                                    class="text-[15px] font-extrabold text-slate-800 transition-colors duration-300 group-hover:text-cyan-800"
                                 >
                                     {{ faq.question }}
                                 </span>

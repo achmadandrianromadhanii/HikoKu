@@ -70,7 +70,7 @@
             -->
             <div class="mb-4 hidden lg:flex justify-start">
                 <span
-                    class="inline-flex items-center rounded-full bg-cyan-50/50 px-4 py-1 text-[13px] tracking-[0.2em] text-cyan-700 shadow-sm ring-1 ring-inset ring-cyan-600/10 backdrop-blur-sm font-serif italic"
+                    class="inline-flex items-center rounded-full bg-cyan-50/50 px-4 py-1 text-[13px] tracking-[0.2em] text-cyan-800 shadow-sm ring-1 ring-inset ring-cyan-600/10 backdrop-blur-sm font-serif italic"
                 >
                     Wishlist
                 </span>

@@ -169,7 +169,7 @@ onUnmounted(() => {
                     </p>
 
                     <div class="mt-10 flex flex-wrap gap-4">
-                        <Link prefetch :href="route('catalog.index')"
+                        <Link prefetch="mount" :href="route('catalog.index')"
                             class="inline-flex h-12 items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 px-8 text-[14px] font-bold text-white shadow-lg shadow-cyan-500/30 transition-all duration-300 hover:scale-105 hover:shadow-cyan-500/50 hover:brightness-110">
                             Lihat Katalog Produk
                         </Link>
@@ -232,12 +232,12 @@ onUnmounted(() => {
                     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div class="mb-8 flex items-end justify-between gap-4">
                             <div>
-                                <p class="text-[11px] font-bold uppercase tracking-widest text-cyan-700">Terbaik</p>
+                                <p class="text-[11px] font-bold uppercase tracking-widest text-cyan-800">Terbaik</p>
                                 <h2 class="mt-1 text-2xl font-extrabold tracking-tight text-slate-900">Peralatan Paling Dicari</h2>
                             </div>
                             <div class="flex items-center gap-4">
-                                <Link prefetch :href="route('catalog.index')"
-                                    class="text-[13px] font-bold text-cyan-700 transition hover:text-cyan-900">
+                                <Link prefetch="mount" :href="route('catalog.index')"
+                                    class="text-[13px] font-bold text-cyan-800 transition hover:text-cyan-900">
                                     Lihat semua <span aria-hidden="true">&rarr;</span>
                                 </Link>
                             </div>
@@ -264,12 +264,12 @@ onUnmounted(() => {
                     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div class="mb-8 flex items-end justify-between gap-4">
                             <div class="translate-y-0 transform opacity-100 transition-all duration-700">
-                                <p class="text-[11px] font-bold uppercase tracking-widest text-cyan-700">Paket Hemat</p>
+                                <p class="text-[11px] font-bold uppercase tracking-widest text-cyan-800">Paket Hemat</p>
                                 <h2 class="mt-1 text-2xl font-extrabold tracking-tight text-slate-900">Rekomendasi Paket</h2>
                             </div>
                             <div class="flex items-center gap-4">
-                                <Link prefetch :href="route('packages.index')"
-                                    class="text-[13px] font-bold text-cyan-700 transition hover:text-cyan-900">
+                                <Link prefetch="mount" :href="route('packages.index')"
+                                    class="text-[13px] font-bold text-cyan-800 transition hover:text-cyan-900">
                                     Lihat semua paket <span aria-hidden="true">&rarr;</span>
                                 </Link>
                             </div>
@@ -283,7 +283,7 @@ onUnmounted(() => {
                                     
                                     <div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-50">
                                         <!-- [OPTIMASI LIGHTHOUSE ACCESSIBILITY]: Menambahkan aria-label agar screen reader dapat membacanya dan skor Accessibility naik 100% -->
-                                        <Link prefetch :href="route('packages.show', pkg.slug)" class="block h-full w-full" :aria-label="`Lihat detail paket ${pkg.name}`">
+                                        <Link prefetch="mount" :href="route('packages.show', pkg.slug)" class="block h-full w-full" :aria-label="`Lihat detail paket ${pkg.name}`">
                                             <img v-if="pkg.image_path" :src="`/storage/${pkg.image_path}`" :alt="pkg.name"
                                                  width="300" height="150"
                                                  class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
@@ -312,7 +312,7 @@ onUnmounted(() => {
                                             <span class="ml-1.5 text-[10px] font-bold text-slate-500">(5.0)</span>
                                         </div>
 
-                                        <Link prefetch :href="route('packages.show', pkg.slug)" class="block mb-2">
+                                        <Link prefetch="mount" :href="route('packages.show', pkg.slug)" class="block mb-2">
                                             <h3 class="line-clamp-2 text-base font-bold leading-snug text-slate-900 transition-colors duration-300 group-hover:text-blue-600">
                                                 {{ pkg.name }}
                                             </h3>
@@ -335,7 +335,7 @@ onUnmounted(() => {
                                                         <p class="text-[10px] font-medium text-slate-500">/hari</p>
                                                     </div>
                                                 </div>
-                                                <Link prefetch :href="route('packages.show', pkg.slug)"
+                                                <Link prefetch="mount" :href="route('packages.show', pkg.slug)"
                                                     class="inline-flex h-8 items-center rounded-lg bg-slate-900 px-3 text-xs font-semibold text-white transition-all duration-300 hover:bg-blue-600 hover:shadow-md hover:shadow-blue-500/20 active:scale-95">
                                                     Lihat Detail
                                                 </Link>

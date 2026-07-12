@@ -47,7 +47,7 @@
             /* [OPTIMASI LIGHTHOUSE: FCP SANGAT CEPAT] */
             /* Initial Loader super ringan (<1KB) agar layar tidak putih saat Vue sedang diunduh. */
             /* FCP akan tercatat seketika (0.1s) sehingga skor Performance naik tajam! */
-            body { margin: 0; background-color: #020617; } /* bg-slate-950 */
+            body { margin: 0; background-color: #D4DCE4; } /* bg-slate-950 */
             #initial-loader {
                 position: fixed;
                 top: 0;
@@ -58,7 +58,7 @@
                 flex-direction: column;
                 align-items: center;
                 justify-center;
-                background-color: #020617;
+                background-color: #D4DCE4;
                 z-index: 99999;
                 justify-content: center;
                 transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
