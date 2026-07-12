@@ -99,7 +99,7 @@
     <body class="font-sans antialiased">
         <!-- Elemen Initial Loader yang langsung dirender oleh browser dalam milidetik! -->
         <div id="initial-loader">
-            <img src="/images/logo.png" alt="Loading" class="loader-logo" />
+            <img src="/images/logo.webp" alt="Loading" class="loader-logo" />
             <div class="loader-bar-container">
                 <div class="loader-bar-progress"></div>
             </div>

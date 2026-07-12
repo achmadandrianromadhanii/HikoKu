@@ -108,7 +108,7 @@ const socialLinks = computed(() => [
                         [UPDATE TATA LETAK & LOGO FOOTER] 
                         Tata letak logo dikembalikan ke asalnya agar rapi dan tidak terlalu mendominasi ruang.
                     -->
-                    <Link prefetch="mount" :href="route('home')" class="inline-flex flex-col items-start gap-4 transition-transform duration-300 hover:scale-105">
+                    <Link prefetch="hover" :href="route('home')" class="inline-flex flex-col items-start gap-4 transition-transform duration-300 hover:scale-105">
                         <!-- 
                             [UPDATE UKURAN & KEJERNIHAN LOGO]
                             - Container dikembalikan ke h-28
@@ -149,10 +149,10 @@ const socialLinks = computed(() => [
                 <div>
                     <h3 class="text-[11px] font-bold uppercase tracking-widest text-cyan-400">Navigasi</h3>
                     <div class="mt-6 flex flex-col gap-3.5 text-[13px] font-medium text-white/70">
-                        <Link prefetch="mount" :href="route('home')" class="footer-nav-item opacity-0 translate-y-4 w-fit transition-colors hover:text-cyan-300">Home</Link>
-                        <Link prefetch="mount" :href="route('catalog.index')" class="footer-nav-item opacity-0 translate-y-4 w-fit transition-colors hover:text-cyan-300">Katalog Produk</Link>
-                        <Link prefetch="mount" :href="route('packages.index')" class="footer-nav-item opacity-0 translate-y-4 w-fit transition-colors hover:text-cyan-300">Paket Hemat</Link>
-                        <Link prefetch="mount" :href="route('faq.index')" class="footer-nav-item opacity-0 translate-y-4 w-fit transition-colors hover:text-cyan-300">Bantuan (FAQ)</Link>
+                        <Link prefetch="hover" :href="route('home')" class="footer-nav-item opacity-0 translate-y-4 w-fit transition-colors hover:text-cyan-300">Home</Link>
+                        <Link prefetch="hover" :href="route('catalog.index')" class="footer-nav-item opacity-0 translate-y-4 w-fit transition-colors hover:text-cyan-300">Katalog Produk</Link>
+                        <Link prefetch="hover" :href="route('packages.index')" class="footer-nav-item opacity-0 translate-y-4 w-fit transition-colors hover:text-cyan-300">Paket Hemat</Link>
+                        <Link prefetch="hover" :href="route('faq.index')" class="footer-nav-item opacity-0 translate-y-4 w-fit transition-colors hover:text-cyan-300">Bantuan (FAQ)</Link>
                     </div>
                 </div>
 
