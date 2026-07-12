@@ -37,31 +37,6 @@ const mapLink = computed(() => {
 const mapContainer = ref(null)
 
 onMounted(() => {
-    // [FITUR PREMIUM]: Dinamis Injeksi Leaflet.js
-    // Murni dari CDN agar 100% cepat dan Lighthouse Hijau tanpa menambah beban Bundle Vite.
-    if (!document.getElementById('leaflet-css')) {
-        const link = document.createElement('link')
-        link.id = 'leaflet-css'
-        link.rel = 'stylesheet'
-        link.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'
-        document.head.appendChild(link)
-    }
-
-    if (!document.getElementById('leaflet-js')) {
-        const script = document.createElement('script')
-        script.id = 'leaflet-js'
-        script.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js'
-        script.onload = initMap
-        document.body.appendChild(script)
-    } else {
-        if (window.L) initMap()
-    }
-
-    // [UPDATE]: Slider interval untuk background foto berganti setiap 5 detik dengan transisi halus
-    footerImageInterval = setInterval(() => {
-        currentFooterImage.value = (currentFooterImage.value + 1) % footerImages.length
-    }, 5000)
-
     // [FITUR PREMIUM]: Intersection Observer untuk Animasi List Menu Muncul Satu-persatu
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -72,50 +47,25 @@ onMounted(() => {
             }
         })
     }, { threshold: 0.1 })
-
-    // Memasang observer ke semua elemen navigasi footer
-    document.querySelectorAll('.footer-nav-item').forEach((el, index) => {
-        el.style.transitionDelay = `${index * 100}ms`
-        observer.observe(el)
-    })
+    
+    // Terapkan observer ke semua item navigasi footer
+    setTimeout(() => {
+        const navItems = document.querySelectorAll('.footer-nav-item')
+        navItems.forEach((item, index) => {
+            item.style.transitionDelay = `${index * 100}ms`
+            observer.observe(item)
+        })
+    }, 100)
+    
+    // [UPDATE]: Slider interval untuk background foto berganti setiap 5 detik dengan transisi halus
+    footerImageInterval = setInterval(() => {
+        currentFooterImage.value = (currentFooterImage.value + 1) % footerImages.length
+    }, 5000)
 })
 
 onUnmounted(() => {
     if (footerImageInterval) clearInterval(footerImageInterval)
 })
-
-const initMap = () => {
-    // Kordinat default jika toko belum diatur (Misal: Bandung)
-    const lat = settings.value.store_lat || -6.914744
-    const lng = settings.value.store_lng || 107.609810
-
-    if (mapContainer.value && window.L) {
-        const map = window.L.map(mapContainer.value, {
-            zoomControl: false, // Menghilangkan tombol zoom bawaan agar minimalis
-            attributionControl: false
-        }).setView([lat, lng], 15)
-
-        // [FITUR PREMIUM]: Menggunakan BaseMap Dark Matter yang mewah, bukan map terang biasa
-        window.L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            maxZoom: 19
-        }).addTo(map)
-
-        // Custom Marker Melayang Menyala
-        const markerHtml = `<div style="background-color: #22d3ee; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 20px rgba(34,211,238,1), 0 0 10px rgba(34,211,238,0.5) inset;"></div>`
-        const customIcon = window.L.divIcon({
-            html: markerHtml,
-            className: 'custom-leaflet-marker',
-            iconSize: [14, 14],
-            iconAnchor: [7, 7]
-        })
-
-        window.L.marker([lat, lng], { 
-            icon: customIcon,
-            alt: 'Lokasi Hiko',
-            title: 'Lokasi Hiko'
-        }).addTo(map)
-    }
-}
 
 const socialLinks = computed(() => [
     { label: 'Instagram', href: settings.value.instagram_url || '#', icon: Instagram },
@@ -236,9 +186,14 @@ const socialLinks = computed(() => [
                 <!-- Kolom 4: Lokasi Toko (Leaflet.js) -->
                 <div>
                     <h3 class="text-[11px] font-bold uppercase tracking-widest text-cyan-400">Lokasi Toko</h3>
-                    <div class="footer-nav-item opacity-0 translate-y-4 mt-6 overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-2xl backdrop-blur-sm">
-                        <!-- Kontainer Peta Leaflet -->
-                        <div ref="mapContainer" class="h-40 w-full z-0 bg-[#071f36]"></div>
+                    <div class="footer-nav-item opacity-0 translate-y-4 mt-6 overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-2xl backdrop-blur-sm group relative">
+                        <!-- [OPTIMASI LIGHTHOUSE]: Menggunakan static placeholder alih-alih Leaflet JS yang berat -->
+                        <div class="h-40 w-full bg-gradient-to-br from-[#071f36] to-[#082949] flex flex-col items-center justify-center p-4 text-center">
+                            <MapPin class="h-8 w-8 text-cyan-400 mb-2 opacity-80 group-hover:scale-110 group-hover:opacity-100 transition-all duration-300" />
+                            <p class="text-white/70 text-xs font-medium">Klik untuk membuka Google Maps</p>
+                        </div>
+                        <!-- Overlay Link -->
+                        <a :href="mapLink" target="_blank" rel="noopener noreferrer" aria-label="Buka Google Maps" class="absolute inset-0 z-10"></a>
                     </div>
 
                     <a :href="mapLink" target="_blank" rel="noopener noreferrer"

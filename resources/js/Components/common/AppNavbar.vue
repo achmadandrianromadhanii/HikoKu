@@ -255,10 +255,11 @@ onUnmounted(() => {
 
                     <!-- Navigasi Teks Murni (Tanpa Grid/Background) -->
                     <nav class="hidden items-center gap-6 lg:flex">
-                        <Link v-for="link in navLinks" :key="link.label" :href="link.href()"
+                        <Link prefetch v-for="link in navLinks" :key="link.label" :href="link.href()"
                             class="text-[13px] font-medium tracking-wide transition-all duration-300" :class="isCurrentRoute(link.current)
                                 ? 'text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.4)]'
-                                : 'text-white/70 hover:text-cyan-300 hover:-translate-y-0.5'">
+                                : 'text-white/80 hover:text-cyan-300 hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.3)]'
+                                ">
                             {{ link.label }}
                         </Link>
                     </nav>
@@ -442,10 +443,10 @@ onUnmounted(() => {
 
                     <!-- Link Mobile -->
                     <div class="grid gap-1">
-                        <Link v-for="link in navLinks" :key="`mobile-${link.label}`" :href="link.href()"
+                        <Link prefetch v-for="link in navLinks" :key="`mobile-${link.label}`" :href="link.href()"
                             class="rounded-xl px-4 py-2.5 text-[13px] font-medium transition-colors" :class="isCurrentRoute(link.current)
                                 ? 'bg-cyan-500/10 text-cyan-300'
-                                : 'text-white/70 hover:bg-white/5 hover:text-white'" @click="closeAllMenus">
+                                : 'text-white/80 hover:bg-white/5 hover:text-white'" @click="closeAllMenus">
                             {{ link.label }}
                         </Link>
                     </div>
