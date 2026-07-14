@@ -71,9 +71,9 @@
                     class="mb-6 flex items-center justify-between animate-fade-up opacity-0"
                     style="animation-fill-mode: forwards"
                 >
-                    <Link
+                    <Link prefetch
                         :href="route('my-rentals.index')"
-                        class="inline-flex items-center gap-2 text-sm font-bold text-surface-500 hover:text-surface-900 transition-colors"
+                        class="inline-flex items-center gap-2 text-sm font-bold text-surface-600 hover:text-surface-900 transition-colors"
                     >
                         <svg
                             class="w-4 h-4"
@@ -138,7 +138,7 @@
                         >
                             {{ rental.rental_code }}
                         </h1>
-                        <p class="text-xs text-surface-500 font-medium mb-5">
+                        <p class="text-xs text-surface-600 font-medium mb-5">
                             {{ formatDate(rental.rental_start) }} &mdash;
                             {{ formatDate(rental.rental_end) }}
                         </p>
@@ -154,7 +154,7 @@
                                     class="w-40 h-40 object-contain mx-auto mix-blend-multiply"
                                 />
                             </div>
-                            <p class="text-[11px] text-surface-400 mt-1 font-medium">
+                            <p class="text-[11px] text-surface-600 mt-1 font-medium">
                                 Scan QR Code ini ke Admin untuk proses check-in/out
                             </p>
                         </div>
@@ -205,7 +205,7 @@
                     <!-- [UPDATE]: Bagian Bawah Tiket (Ringkasan Pesanan) yang dirapatkan spacingnya (p-6) -->
                     <div class="p-6 bg-white">
                         <h2
-                            class="text-xs font-extrabold text-surface-400 mb-4 tracking-widest uppercase text-center"
+                            class="text-xs font-extrabold text-surface-600 mb-4 tracking-widest uppercase text-center"
                         >
                             Ringkasan Pesanan
                         </h2>
@@ -220,7 +220,7 @@
                                     <p class="text-sm font-bold text-surface-800">
                                         {{ item.product_name }}
                                     </p>
-                                    <p class="mt-1 text-[11px] text-surface-500 font-medium">
+                                    <p class="mt-1 text-[11px] text-surface-600 font-medium">
                                         Qty: {{ item.quantity }} •
                                         {{ item.item_type === 'product' ? 'Produk' : 'Paket' }}
                                     </p>
@@ -233,7 +233,7 @@
 
                         <div class="rounded-3xl bg-surface-50 p-5 space-y-3">
                             <div class="flex items-center justify-between text-xs">
-                                <span class="text-surface-500 font-medium">Subtotal</span>
+                                <span class="text-surface-600 font-medium">Subtotal</span>
                                 <span class="font-bold text-surface-800">{{
                                     formatCurrency(rental.subtotal)
                                 }}</span>
@@ -242,7 +242,7 @@
                                 v-if="rental.discount_amount > 0"
                                 class="flex items-center justify-between text-xs"
                             >
-                                <span class="text-surface-500 font-medium">Diskon</span>
+                                <span class="text-surface-600 font-medium">Diskon</span>
                                 <span class="font-bold text-emerald-600"
                                     >-{{ formatCurrency(rental.discount_amount) }}</span
                                 >
@@ -251,7 +251,7 @@
                                 v-if="rental.late_fee > 0"
                                 class="flex items-center justify-between text-xs"
                             >
-                                <span class="text-surface-500 font-medium">Denda (Late Fee)</span>
+                                <span class="text-surface-600 font-medium">Denda (Late Fee)</span>
                                 <span class="font-bold text-red-600"
                                     >+{{ formatCurrency(rental.late_fee) }}</span
                                 >

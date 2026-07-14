@@ -78,7 +78,7 @@ const formatDate = (value) => {
 <template>
     <!-- [UPDATE]: Mengubah keseluruhan struktur menjadi seperti Boarding Pass / Tiket Konser Fisik -->
     <!-- [UPDATE]: Membuang tombol detail manual dan menjadikan seluruh kartu sebagai area yang bisa di-klik dengan animasi hover mulus -->
-    <Link :href="route('my-rentals.show', rental.rental_code)" class="group block relative overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-surface-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary-900/5 hover:ring-primary-200">
+    <Link prefetch="hover" cacheFor="1m" :href="route('my-rentals.show', rental.rental_code)" class="group block relative overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-surface-200 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary-900/5 hover:ring-primary-200">
         <div class="flex flex-col sm:flex-row h-full">
             
             <!-- Sisi Kiri: Informasi Tiket -->
@@ -88,24 +88,24 @@ const formatDate = (value) => {
                         <span class="inline-flex rounded-full px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-widest shadow-sm" :class="status.class">
                             {{ status.label }}
                         </span>
-                        <span v-if="canReorder" class="text-[10px] font-bold text-surface-400 bg-surface-100 px-2 py-0.5 rounded-full border border-surface-200">Sewa Ulang Tersedia</span>
+                        <span v-if="canReorder" class="text-[10px] font-bold text-surface-600 bg-surface-100 px-2 py-0.5 rounded-full border border-surface-200">Sewa Ulang Tersedia</span>
                     </div>
                     
                     <!-- [UPDATE]: Font Monospace untuk kode tiket agar terasa seperti kode digital profesional -->
                     <h3 class="text-xl font-mono font-bold text-surface-900 tracking-tight group-hover:text-primary-700 transition-colors">
                         {{ rental.rental_code }}
                     </h3>
-                    <p class="mt-1 text-xs font-medium text-surface-500 flex items-center gap-1.5">
-                        <svg class="h-3.5 w-3.5 text-surface-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    <p class="mt-1 text-xs font-medium text-surface-600 flex items-center gap-1.5">
+                        <svg class="h-3.5 w-3.5 text-surface-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                         {{ formatDate(rental.rental_start) }} <span class="text-surface-300 mx-1">→</span> {{ formatDate(rental.rental_end) }}
                     </p>
                 </div>
 
                 <div class="mt-6">
-                    <p class="text-[10px] font-bold text-surface-400 uppercase tracking-widest mb-1.5">Item Disewa</p>
+                    <p class="text-[10px] font-bold text-surface-600 uppercase tracking-widest mb-1.5">Item Disewa</p>
                     <p class="text-sm font-semibold text-surface-700 leading-snug">
                         {{ itemPreview.map(i => i.product_name).join(', ') }}
-                        <span v-if="moreCount > 0" class="text-surface-400 font-medium italic"> +{{ moreCount }} lainnya</span>
+                        <span v-if="moreCount > 0" class="text-surface-600 font-medium italic"> +{{ moreCount }} lainnya</span>
                     </p>
                 </div>
             </div>
@@ -127,7 +127,7 @@ const formatDate = (value) => {
             <!-- Sisi Kanan: Harga & Aksi -->
             <div class="w-full sm:w-48 bg-surface-50/50 p-5 sm:p-6 flex flex-col justify-center items-center text-center sm:items-end sm:text-right border-t border-surface-100 sm:border-t-0">
                 <div class="w-full flex justify-between sm:flex-col items-center sm:items-end gap-1">
-                    <span class="text-[10px] font-bold text-surface-400 uppercase tracking-widest">Total Biaya</span>
+                    <span class="text-[10px] font-bold text-surface-600 uppercase tracking-widest">Total Biaya</span>
                     <span class="text-lg font-extrabold text-primary-700">{{ formatCurrency(rental.grand_total) }}</span>
                 </div>
                 

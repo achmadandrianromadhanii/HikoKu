@@ -121,7 +121,7 @@ const chartOptions = computed(() => ({
             />
         </template>
         <div v-else class="flex h-full min-h-[300px] items-center justify-center rounded-xl border border-dashed border-slate-200 bg-slate-50/50">
-            <p class="text-sm font-medium text-slate-400">Belum ada data chart.</p>
+            <p class="text-sm font-medium text-slate-500">Belum ada data chart.</p>
         </div>
     </div>
 </template>

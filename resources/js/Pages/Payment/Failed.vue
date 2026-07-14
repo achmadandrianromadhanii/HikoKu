@@ -44,7 +44,7 @@
                                 <p class="text-sm font-semibold text-surface-900">
                                     Coba Lagi Pembayaran
                                 </p>
-                                <p class="mt-1 text-xs leading-6 text-surface-500">
+                                <p class="mt-1 text-xs leading-6 text-surface-600">
                                     Lanjutkan ulang pembayaran dari detail rental kamu.
                                 </p>
                             </div>
@@ -63,7 +63,7 @@
                                 <p class="text-sm font-semibold text-surface-900">
                                     Cek Riwayat Rental
                                 </p>
-                                <p class="mt-1 text-xs leading-6 text-surface-500">
+                                <p class="mt-1 text-xs leading-6 text-surface-600">
                                     Pantau status rental dan detail transaksi dari akun kamu.
                                 </p>
                             </div>

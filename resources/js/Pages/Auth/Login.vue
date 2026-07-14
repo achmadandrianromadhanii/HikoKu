@@ -51,7 +51,7 @@
             // Beri sedikit penanda visual agar developer tahu Turnstile sedang mode bypass
             if (turnstileContainer.value) {
                 turnstileContainer.value.innerHTML =
-                    '<div class="text-[10px] text-slate-400 text-center py-2 italic font-mono">Turnstile Bypassed (Local Mode)</div>';
+                    '<div class="text-[10px] text-slate-500 text-center py-2 italic font-mono">Turnstile Bypassed (Local Mode)</div>';
             }
             return; // Hentikan fungsi agar API Cloudflare tidak didownload sama sekali
         }
@@ -249,7 +249,7 @@
                 <!-- [PENJELASAN KODE UPDATE]: Mengecilkan tinggi logo (h-24 jadi h-16) dan margin bawah (mb-8 jadi mb-4) -->
                 <div class="mb-4 flex flex-col items-center justify-center relative z-10">
                     <img
-                        src="/images/logo.png"
+                        src="/images/logo.webp"
                         alt="Hiko Logo"
                         class="h-16 w-auto object-contain drop-shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-transform duration-300 hover:scale-105"
                     />
@@ -474,9 +474,9 @@
                     <!-- Sign Up Link -->
                     <!-- [PENJELASAN KODE UPDATE]: Mengurangi jarak sign up link (mt-6 jadi mt-4) -->
                     <div class="mt-4 flex flex-col items-center space-y-1 pt-1">
-                        <p class="text-[12px] font-bold text-slate-400">
+                        <p class="text-[12px] font-bold text-slate-500">
                             Belum ada akun?
-                            <Link
+                            <Link prefetch
                                 :href="route('register')"
                                 class="ml-1 font-black text-cyan-400 transition hover:text-cyan-300 hover:underline"
                             >
@@ -485,15 +485,15 @@
                         </p>
                         <p class="text-center text-[10px] font-bold text-slate-600 px-6">
                             Melanjutkan berarti setuju dengan
-                            <Link
+                            <Link prefetch
                                 :href="route('terms')"
-                                class="text-slate-400 hover:text-cyan-400 hover:underline"
+                                class="text-slate-500 hover:text-cyan-400 hover:underline"
                                 >Syarat</Link
                             >
                             &
-                            <Link
+                            <Link prefetch
                                 :href="route('privacy')"
-                                class="text-slate-400 hover:text-cyan-400 hover:underline"
+                                class="text-slate-500 hover:text-cyan-400 hover:underline"
                                 >Privasi</Link
                             >
                         </p>

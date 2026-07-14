@@ -297,7 +297,7 @@
              dan judul serta deskripsi dihapus agar lebih ringkas. -->
             <section class="mx-auto max-w-5xl px-4 pt-4 pb-8 sm:px-6 lg:px-8">
                 <div class="mb-4">
-                    <p class="text-[11px] font-extrabold uppercase tracking-widest text-cyan-600">
+                    <p class="text-[11px] font-extrabold uppercase tracking-widest text-cyan-700">
                         Keranjang
                     </p>
                     <!-- Judul dan deskripsi telah dihapus sesuai permintaan -->
@@ -334,7 +334,7 @@
                                     />
                                     <div
                                         v-else
-                                        class="flex h-full w-full items-center justify-center text-[10px] font-medium text-surface-400"
+                                        class="flex h-full w-full items-center justify-center text-[10px] font-medium text-surface-600"
                                     >
                                         No Image
                                     </div>
@@ -345,7 +345,7 @@
                                     <div class="flex items-start justify-between gap-4">
                                         <div class="min-w-0">
                                             <p
-                                                class="text-[9px] font-extrabold uppercase tracking-widest text-cyan-600"
+                                                class="text-[9px] font-extrabold uppercase tracking-widest text-cyan-700"
                                             >
                                                 {{
                                                     item.item_type === 'product'
@@ -360,7 +360,7 @@
                                             </h3>
                                             <p
                                                 v-if="item.notes"
-                                                class="mt-1 text-[11px] italic text-surface-500"
+                                                class="mt-1 text-[11px] italic text-surface-600"
                                             >
                                                 Catatan: {{ item.notes }}
                                             </p>
@@ -369,7 +369,7 @@
                                         <!-- [PENJELASAN KODE]: Tombol hapus diganti Icon Trash2 agar terlihat sangat elegan dan menyisakan banyak ruang putih -->
                                         <button
                                             type="button"
-                                            class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white border border-surface-100 text-surface-400 transition-all duration-300 hover:border-rose-200 hover:bg-rose-50 hover:text-rose-500 active:scale-95"
+                                            class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white border border-surface-100 text-surface-600 transition-all duration-300 hover:border-rose-200 hover:bg-rose-50 hover:text-rose-500 active:scale-95"
                                             @click="removeItem(item)"
                                             title="Hapus item"
                                         >
@@ -383,7 +383,7 @@
                                         <!-- Harga / Hari -->
                                         <div>
                                             <p
-                                                class="text-[10px] font-bold uppercase tracking-wider text-surface-400"
+                                                class="text-[10px] font-bold uppercase tracking-wider text-surface-600"
                                             >
                                                 Harga / hari
                                             </p>
@@ -397,7 +397,7 @@
                                         <!-- Input Qty -->
                                         <div>
                                             <p
-                                                class="text-[10px] font-bold uppercase tracking-wider text-surface-400 mb-0.5"
+                                                class="text-[10px] font-bold uppercase tracking-wider text-surface-600 mb-0.5"
                                             >
                                                 Qty
                                             </p>
@@ -418,7 +418,7 @@
                                         <!-- Subtotal Item -->
                                         <div class="text-right">
                                             <p
-                                                class="text-[10px] font-bold uppercase tracking-wider text-surface-400"
+                                                class="text-[10px] font-bold uppercase tracking-wider text-surface-600"
                                             >
                                                 Subtotal Item
                                             </p>
@@ -592,14 +592,14 @@
                         <ShoppingBag class="h-10 w-10" />
                     </div>
                     <h2 class="text-xl font-extrabold text-surface-900">Keranjang masih kosong</h2>
-                    <p class="mt-2 text-[13px] text-surface-500 max-w-sm">
+                    <p class="mt-2 text-[13px] text-surface-600 max-w-sm">
                         Belum ada perlengkapan yang dipilih. Yuk, temukan alat outdoor impianmu dan
                         mulai petualangan sekarang!
                     </p>
 
-                    <Link
+                    <Link prefetch
                         :href="route('catalog.index')"
-                        class="mt-8 inline-flex h-11 items-center justify-center rounded-full bg-surface-900 px-8 text-[13px] font-bold text-white shadow-md transition-all hover:bg-cyan-600 hover:shadow-cyan-500/25 active:scale-95"
+                        class="mt-8 inline-flex h-11 items-center justify-center rounded-full bg-surface-900 px-8 text-[13px] font-bold text-white shadow-md transition-all hover:bg-cyan-700 hover:shadow-cyan-500/25 active:scale-95"
                     >
                         Mulai Eksplorasi
                     </Link>

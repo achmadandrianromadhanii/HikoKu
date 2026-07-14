@@ -104,7 +104,7 @@
                             />
                             <div
                                 v-else
-                                class="flex h-80 items-center justify-center bg-gray-100 text-sm text-gray-400"
+                                class="flex h-80 items-center justify-center bg-gray-100 text-sm text-gray-600"
                             >
                                 Lokasi belum tersedia
                             </div>

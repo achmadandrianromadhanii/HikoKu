@@ -397,7 +397,7 @@ onMounted(() => {
         <!-- BAGIAN 1: Area Foto Produk -->
         <div class="relative overflow-hidden bg-surface-50">
             <!-- [OPTIMASI LIGHTHOUSE ACCESSIBILITY]: aria-label ditambahkan agar screen reader mengenali link gambar ini -->
-            <Link :href="productDetailUrl" class="block" :aria-label="`Lihat detail produk ${product.name}`">
+            <Link prefetch="hover" cacheFor="1m" :href="productDetailUrl" class="block" :aria-label="`Lihat detail produk ${product.name}`">
                 <!-- Foto menge-zoom lambat saat disorot kursor -->
                 <img v-if="imageUrl" :src="imageUrl" :alt="product.name" width="400" height="300" class="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     loading="lazy" />
@@ -411,7 +411,7 @@ onMounted(() => {
             <!-- Label Ketersediaan Produk (Kiri Atas) -->
             <div class="absolute left-3 top-3">
                 <span class="inline-flex rounded-full px-3 py-1 text-[10px] font-extrabold tracking-wide shadow-sm"
-                    :class="isAvailable ? 'bg-emerald-500 text-white' : 'bg-rose-500 text-white'">
+                    :class="isAvailable ? 'bg-emerald-700 text-white' : 'bg-rose-700 text-white'">
                     {{ isAvailable ? 'Tersedia' : 'Kosong' }}
                 </span>
             </div>
@@ -436,16 +436,16 @@ onMounted(() => {
             <!-- Informasi Judul -->
             <div>
                 <!-- Label Kategori Mungil -->
-                <p class="text-[10px] font-extrabold uppercase tracking-widest text-cyan-600">
+                <p class="text-[10px] font-extrabold uppercase tracking-widest text-cyan-700">
                     {{ product.category?.name || 'Outdoor' }}
                 </p>
 
-                <Link :href="productDetailUrl"
-                    class="mt-1 block line-clamp-2 text-[14px] sm:text-[15px] font-extrabold leading-tight text-surface-900 transition-colors group-hover:text-cyan-600">
+                <Link prefetch="hover" cacheFor="1m" :href="productDetailUrl"
+                    class="mt-1 block line-clamp-2 text-[14px] sm:text-[15px] font-extrabold leading-tight text-surface-900 transition-colors group-hover:text-cyan-700">
                     {{ product.name }}
                 </Link>
 
-                <p class="mt-1.5 line-clamp-2 text-[11px] sm:text-[12px] leading-relaxed text-surface-500">
+                <p class="mt-1.5 line-clamp-2 text-[11px] sm:text-[12px] leading-relaxed text-surface-600">
                     {{ productDescription }}
                 </p>
             </div>
@@ -461,7 +461,7 @@ onMounted(() => {
                     - Drop-shadow pada ikon Star memancarkan sinar emas palsu murni via CSS.
                     ==========================================================================
                 -->
-                <div class="mb-4 flex items-center justify-between text-[11px] text-surface-500">
+                <div class="mb-4 flex items-center justify-between text-[11px] text-surface-600">
                     <div class="inline-flex items-center gap-1.5">
                         <Star class="h-4 w-4 fill-amber-400 text-amber-400 transition-all duration-1000 ease-out"
                               :class="isAnimated ? 'scale-100 opacity-100 drop-shadow-[0_0_6px_rgba(251,191,36,0.6)]' : 'scale-50 opacity-0'" />
@@ -487,12 +487,12 @@ onMounted(() => {
                 <!-- Harga dan Tombol Sewa -->
                 <div class="flex items-center justify-between gap-1.5 mt-0.5">
                     <div class="min-w-0 flex-1">
-                        <p class="text-[8px] font-extrabold uppercase tracking-widest text-surface-400 mb-0.5">Mulai dari</p>
+                        <p class="text-[8px] font-extrabold uppercase tracking-widest text-surface-600 mb-0.5">Mulai dari</p>
                         <div class="flex items-baseline min-w-0">
                             <p class="truncate text-[13px] sm:text-[14px] font-extrabold tracking-tight text-cyan-800">
                                 {{ formatCurrency(product.price_per_day) }}
                             </p>
-                            <span class="text-[8px] font-medium text-surface-400 shrink-0 ml-0.5">/hr</span>
+                            <span class="text-[8px] font-medium text-surface-600 shrink-0 ml-0.5">/hr</span>
                         </div>
                     </div>
 
@@ -522,7 +522,7 @@ onMounted(() => {
 
                     <div v-else class="flex shrink-0 items-center gap-1.5">
                         <button type="button"
-                            class="inline-flex h-6 sm:h-7 cursor-not-allowed items-center justify-center rounded-full bg-surface-100 px-3 text-[9px] sm:text-[10px] font-bold text-surface-400"
+                            class="inline-flex h-6 sm:h-7 cursor-not-allowed items-center justify-center rounded-full bg-surface-100 px-3 text-[9px] sm:text-[10px] font-bold text-surface-600"
                             disabled>
                             <span>Habis</span>
                         </button>

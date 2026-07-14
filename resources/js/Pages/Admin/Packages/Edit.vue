@@ -40,6 +40,7 @@
 
     // Inisialisasi Form
     const form = useForm({
+        _method: 'put',
         name: props.packageItem.name || '',
         description: props.packageItem.description || '',
         price_per_day: props.packageItem.price_per_day || '',
@@ -146,7 +147,7 @@
                     Perbarui spesifikasi dan harga paket.
                 </p>
             </div>
-            <Link
+            <Link prefetch
                 :href="route('admin.packages.index')"
                 class="inline-flex h-8 items-center gap-2 rounded-lg bg-slate-50 px-3 text-[11px] font-bold text-slate-600 transition hover:bg-slate-100"
             >
@@ -156,13 +157,13 @@
         </div>
 
         <!-- Layout 7:5 -->
-        <form class="grid gap-4 lg:grid-cols-12" @submit.prevent="submit">
+        <form class="grid gap-4 lg:grid-cols-12 items-start" @submit.prevent="submit">
             <!-- Kolom Kiri: Identitas & Isi Paket -->
             <div class="space-y-4 lg:col-span-7">
                 <!-- Box: Identitas Paket -->
                 <section class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
                     <div class="mb-4 flex items-center gap-2 border-b border-slate-50 pb-3">
-                        <Package class="h-4 w-4 text-cyan-600" />
+                        <Package class="h-4 w-4 text-cyan-700" />
                         <h3 class="text-sm font-bold text-slate-900">Identitas Paket</h3>
                     </div>
 
@@ -189,7 +190,7 @@
                             <label class="group flex cursor-pointer items-center gap-2">
                                 <div
                                     class="relative inline-flex h-4 w-7 items-center rounded-full transition-colors"
-                                    :class="showDescription ? 'bg-cyan-500' : 'bg-slate-200'"
+                                    :class="showDescription ? 'bg-cyan-700' : 'bg-slate-200'"
                                 >
                                     <input
                                         type="checkbox"
@@ -268,7 +269,7 @@
                                     <span
                                         class="truncate text-[12px] font-semibold"
                                         :class="
-                                            item.product_id ? 'text-slate-800' : 'text-slate-400'
+                                            item.product_id ? 'text-slate-800' : 'text-slate-500'
                                         "
                                     >
                                         {{
@@ -278,7 +279,7 @@
                                     </span>
                                     <!-- Animasi Panah Berputar -->
                                     <ChevronDown
-                                        class="h-4 w-4 text-slate-400 transition-transform duration-200"
+                                        class="h-4 w-4 text-slate-500 transition-transform duration-200"
                                         :class="{
                                             'rotate-180 text-amber-500':
                                                 openDropdownIndex === index,
@@ -301,7 +302,7 @@
                                     >
                                         <div
                                             v-if="products.length === 0"
-                                            class="p-3 text-center text-[11px] font-medium text-slate-400"
+                                            class="p-3 text-center text-[11px] font-medium text-slate-500"
                                         >
                                             Tidak ada produk tersedia.
                                         </div>
@@ -335,7 +336,7 @@
                             <!-- Input Qty (Lebih Lega) -->
                             <div class="relative">
                                 <span
-                                    class="absolute inset-y-0 left-3 flex items-center text-[10px] font-bold text-slate-400"
+                                    class="absolute inset-y-0 left-3 flex items-center text-[10px] font-bold text-slate-500"
                                     >Qty</span
                                 >
                                 <input
@@ -350,7 +351,7 @@
                             <button
                                 type="button"
                                 @click="removeItem(index)"
-                                class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 transition hover:bg-rose-100 hover:text-rose-600"
+                                class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-500 transition hover:bg-rose-100 hover:text-rose-600"
                             >
                                 <Trash2 class="h-4 w-4" />
                             </button>
@@ -400,7 +401,7 @@
                                 class="block text-[12px] font-bold text-purple-600 hover:underline"
                                 >Ganti Gambar</span
                             >
-                            <span class="mt-1 block text-[10px] text-slate-400"
+                            <span class="mt-1 block text-[10px] text-slate-500"
                                 >JPG, PNG, WEBP (Otomatis Kompresi)</span
                             >
                             <input
@@ -425,7 +426,7 @@
                         >
                         <div class="relative">
                             <span
-                                class="absolute inset-y-0 left-3 flex items-center text-[11px] font-bold text-slate-400"
+                                class="absolute inset-y-0 left-3 flex items-center text-[11px] font-bold text-slate-500"
                                 >Rp</span
                             >
                             <input
@@ -447,7 +448,7 @@
                         <label class="group flex cursor-pointer items-center gap-2">
                             <div
                                 class="relative inline-flex h-4 w-7 items-center rounded-full transition-colors"
-                                :class="form.is_active ? 'bg-emerald-500' : 'bg-slate-200'"
+                                :class="form.is_active ? 'bg-emerald-700' : 'bg-slate-200'"
                             >
                                 <input type="checkbox" v-model="form.is_active" class="sr-only" />
                                 <span

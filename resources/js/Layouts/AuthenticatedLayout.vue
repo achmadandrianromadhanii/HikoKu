@@ -28,7 +28,7 @@ const showingNavigationDropdown = ref(false);
                                     Memastikan semua halaman (termasuk dashboard user) menggunakan logo yang seragam, HD, dan tajam.
                                 -->
                                 <Link :href="route('dashboard')">
-                                    <img src="/images/logo.png" alt="hikoku" class="block h-10 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]" />
+                                    <img src="/images/logo.webp" alt="hikoku" class="block h-10 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]" />
                                 </Link>
                             </div>
 

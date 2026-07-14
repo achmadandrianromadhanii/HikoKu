@@ -239,7 +239,7 @@
                     <p class="font-black text-slate-900 text-[13px] tracking-widest uppercase">
                         Administrator
                     </p>
-                    <p class="text-[10px] text-slate-400 mt-1">
+                    <p class="text-[10px] text-slate-500 mt-1">
                         Dicetak pada:
                         {{
                             new Date().toLocaleDateString('id-ID', {

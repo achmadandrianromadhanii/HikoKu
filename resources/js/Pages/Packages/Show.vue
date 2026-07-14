@@ -104,7 +104,7 @@
                             <!-- Kosong / Fallback Gambar Bersih -->
                             <div
                                 v-else
-                                class="flex aspect-[4/3] w-full items-center justify-center text-sm font-medium text-slate-400"
+                                class="flex aspect-[4/3] w-full items-center justify-center text-sm font-medium text-slate-500"
                             >
                                 <!-- Bebas dari tulisan jelek, cukup clean layout -->
                                 <Info class="h-8 w-8 opacity-20" />
@@ -212,7 +212,7 @@
                                 class="mt-8 rounded-3xl bg-gradient-to-br from-slate-50 to-slate-100 p-6 ring-1 ring-slate-200/60 shadow-inner"
                             >
                                 <p
-                                    class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-1"
+                                    class="text-xs font-bold uppercase tracking-widest text-slate-500 mb-1"
                                 >
                                     Total Biaya Sewa
                                 </p>

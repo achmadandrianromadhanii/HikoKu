@@ -270,9 +270,9 @@
                         5 aktivitas penyewaan terakhir yang masuk ke sistem.
                     </p>
                 </div>
-                <Link
+                <Link prefetch
                     :href="route('admin.rentals.index')"
-                    class="text-[13px] font-semibold text-cyan-600 hover:text-cyan-500 transition-colors flex items-center gap-1"
+                    class="text-[13px] font-semibold text-cyan-700 hover:text-cyan-500 transition-colors flex items-center gap-1"
                 >
                     Lihat Semua <span aria-hidden="true">&rarr;</span>
                 </Link>
@@ -281,7 +281,7 @@
             <div class="overflow-x-auto">
                 <table class="w-full text-left text-sm text-slate-600">
                     <thead
-                        class="bg-white text-[10px] font-bold uppercase tracking-widest text-slate-400 border-b border-slate-100/60"
+                        class="bg-white text-[10px] font-bold uppercase tracking-widest text-slate-500 border-b border-slate-100/60"
                     >
                         <tr>
                             <th class="px-6 py-4">Kode Transaksi</th>
@@ -295,7 +295,7 @@
                         <tr v-if="!recentTransactions || recentTransactions.length === 0">
                             <td
                                 colspan="5"
-                                class="px-6 py-16 text-center text-slate-400 font-medium"
+                                class="px-6 py-16 text-center text-slate-500 font-medium"
                             >
                                 <div class="flex flex-col items-center gap-3">
                                     <div
@@ -327,7 +327,7 @@
                                         'bg-emerald-50 text-emerald-600':
                                             trx.status === 'completed',
                                         'bg-amber-50 text-amber-600': trx.status === 'pending',
-                                        'bg-cyan-50 text-cyan-600': trx.status === 'active',
+                                        'bg-cyan-50 text-cyan-700': trx.status === 'active',
                                         'bg-slate-50 text-slate-600': ![
                                             'completed',
                                             'pending',
@@ -339,9 +339,9 @@
                                 </span>
                             </td>
                             <td class="px-6 py-4 text-right">
-                                <Link
+                                <Link prefetch
                                     :href="route('admin.rentals.show', trx.id)"
-                                    class="inline-flex items-center justify-center rounded-lg px-3 py-1.5 text-[11px] font-bold text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-900 group-hover:text-cyan-600 group-hover:bg-cyan-50"
+                                    class="inline-flex items-center justify-center rounded-lg px-3 py-1.5 text-[11px] font-bold text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900 group-hover:text-cyan-700 group-hover:bg-cyan-50"
                                 >
                                     Detail
                                 </Link>

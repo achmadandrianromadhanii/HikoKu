@@ -31,6 +31,15 @@ export default defineConfig({
     // Ini memastikan library berat seperti ApexCharts hanya dimuat di halaman Admin yang membutuhkannya,
     // tidak dimuat di halaman Homepage/Katalog, sehingga Lighthouse 100% Hijau.
     build: {
-        chunkSizeWarningLimit: 2000, // [FIX] Diperbesar menjadi 2000kb agar peringatan kuning Vite hilang
+        chunkSizeWarningLimit: 2000,
+        rollupOptions: {
+            output: {
+                manualChunks(id) {
+                    if (id.includes('lucide-vue-next')) {
+                        return 'icons';
+                    }
+                }
+            }
+        }
     }
 });

@@ -75,7 +75,7 @@
                             <h2 class="text-sm font-extrabold text-surface-900 tracking-tight">
                                 E-Ticket Aktif
                             </h2>
-                            <p class="text-[10px] sm:text-xs text-surface-500 font-medium">
+                            <p class="text-[10px] sm:text-xs text-surface-600 font-medium">
                                 Tiket yang sedang berjalan
                             </p>
                         </div>
@@ -83,7 +83,7 @@
 
                     <div class="flex flex-col items-end gap-1.5">
                         <span
-                            class="text-[9px] font-bold uppercase tracking-widest text-surface-400"
+                            class="text-[9px] font-bold uppercase tracking-widest text-surface-600"
                             >Riwayat Selesai</span
                         >
                         <button
@@ -118,7 +118,7 @@
 
                 <div v-else class="user-empty-state mt-10">
                     <h2 class="text-lg font-bold text-surface-900">Belum ada pesanan aktif</h2>
-                    <p class="mt-1 text-xs text-surface-500">
+                    <p class="mt-1 text-xs text-surface-600">
                         Tiket sewa Anda akan muncul di sini secara otomatis.
                     </p>
                 </div>
@@ -131,13 +131,13 @@
                                 <h3 class="text-lg font-extrabold text-surface-900 tracking-tight">
                                     Riwayat E-Ticket
                                 </h3>
-                                <p class="text-xs font-medium text-surface-500 mt-0.5">
+                                <p class="text-xs font-medium text-surface-600 mt-0.5">
                                     Daftar pesanan yang telah selesai atau batal
                                 </p>
                             </div>
                             <button
                                 @click="toggleHistory"
-                                class="p-2 rounded-full hover:bg-surface-100 text-surface-400 hover:text-surface-600 transition-colors"
+                                class="p-2 rounded-full hover:bg-surface-100 text-surface-600 hover:text-surface-600 transition-colors"
                             >
                                 <svg
                                     class="w-5 h-5"
@@ -173,7 +173,7 @@
                                 v-else
                                 class="py-12 text-center bg-surface-50 rounded-2xl border border-dashed border-surface-200"
                             >
-                                <p class="text-sm font-bold text-surface-400">Belum ada riwayat</p>
+                                <p class="text-sm font-bold text-surface-600">Belum ada riwayat</p>
                             </div>
                         </div>
                     </div>

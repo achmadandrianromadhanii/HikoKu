@@ -56,7 +56,7 @@
                         >
                             Wishlist Saya
                         </h1>
-                        <p class="text-[10px] font-bold text-cyan-600 dark:text-cyan-400 mt-0.5">
+                        <p class="text-[10px] font-bold text-cyan-700 dark:text-cyan-400 mt-0.5">
                             {{ products.length }} Barang Tersimpan
                         </p>
                     </div>
@@ -115,7 +115,7 @@
                         class="relative mb-6 flex h-24 w-24 items-center justify-center rounded-[24px] bg-gradient-to-tr from-cyan-50 to-emerald-50 shadow-sm border border-white/60 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
                     >
                         <PackageSearch
-                            class="h-10 w-10 text-cyan-600 drop-shadow-sm transition-transform duration-500 group-hover:text-cyan-500"
+                            class="h-10 w-10 text-cyan-700 drop-shadow-sm transition-transform duration-500 group-hover:text-cyan-500"
                         />
                         <div
                             class="absolute -right-1 -top-1 h-6 w-6 animate-ping rounded-full bg-teal-400 opacity-20"
@@ -133,7 +133,7 @@
                     </p>
 
                     <!-- Tombol CTA Premium -->
-                    <Link
+                    <Link prefetch
                         :href="route('catalog.index')"
                         class="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-teal-500 px-8 text-[13px] font-bold tracking-wide text-white shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-cyan-500/40 hover:brightness-110"
                     >

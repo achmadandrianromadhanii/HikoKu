@@ -22,7 +22,7 @@ const emit = defineEmits(['update:search', 'apply', 'reset'])
                 <div class="grid gap-3 lg:grid-cols-[minmax(280px,420px)_1fr]">
                     <div class="relative">
                         <Search
-                            class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+                            class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-500" />
 
                         <input :value="search" type="text"
                             class="h-10 w-full rounded-xl border border-slate-200 bg-white pl-10 pr-4 text-sm text-slate-700 outline-none transition focus:border-blue-300 focus:ring-2 focus:ring-blue-100"

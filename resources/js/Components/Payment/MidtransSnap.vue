@@ -124,7 +124,7 @@ const initSnap = () => {
             <!-- Teks Animasi -->
             <div class="text-center">
                 <h3 class="text-sm font-bold text-slate-800 tracking-tight mb-1">Menyiapkan Midtrans</h3>
-                <p class="text-[11px] text-slate-400 font-medium animate-pulse">Membuat koneksi terenkripsi...</p>
+                <p class="text-[11px] text-slate-500 font-medium animate-pulse">Membuat koneksi terenkripsi...</p>
             </div>
         </div>
     </div>

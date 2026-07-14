@@ -338,13 +338,13 @@
                                                 class="peer block w-full appearance-none rounded-none border-0 border-b-2 border-slate-200 bg-transparent px-0 py-2.5 pl-8 text-sm text-slate-900 transition-colors focus:border-cyan-600 focus:outline-none focus:ring-0"
                                             />
                                             <span
-                                                class="pointer-events-none absolute left-0 top-3 text-slate-400 transition-colors peer-focus:text-cyan-600"
+                                                class="pointer-events-none absolute left-0 top-3 text-slate-500 transition-colors peer-focus:text-cyan-700"
                                             >
                                                 <User class="h-4.5 w-4.5" stroke-width="2" />
                                             </span>
                                             <label
                                                 for="name"
-                                                class="absolute left-8 top-3 -z-10 origin-[0] -translate-y-5 scale-75 transform text-sm text-slate-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-8 peer-focus:-translate-y-5 peer-focus:scale-75 peer-focus:text-cyan-600"
+                                                class="absolute left-8 top-3 -z-10 origin-[0] -translate-y-5 scale-75 transform text-sm text-slate-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-8 peer-focus:-translate-y-5 peer-focus:scale-75 peer-focus:text-cyan-700"
                                             >
                                                 Nama Lengkap
                                             </label>
@@ -366,13 +366,13 @@
                                                 class="peer block w-full appearance-none rounded-none border-0 border-b-2 border-slate-200 bg-transparent px-0 py-2.5 pl-8 text-sm text-slate-900 transition-colors focus:border-cyan-600 focus:outline-none focus:ring-0"
                                             />
                                             <span
-                                                class="pointer-events-none absolute left-0 top-3 text-slate-400 transition-colors peer-focus:text-cyan-600"
+                                                class="pointer-events-none absolute left-0 top-3 text-slate-500 transition-colors peer-focus:text-cyan-700"
                                             >
                                                 <Phone class="h-4.5 w-4.5" stroke-width="2" />
                                             </span>
                                             <label
                                                 for="phone"
-                                                class="absolute left-8 top-3 -z-10 origin-[0] -translate-y-5 scale-75 transform text-sm text-slate-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-8 peer-focus:-translate-y-5 peer-focus:scale-75 peer-focus:text-cyan-600"
+                                                class="absolute left-8 top-3 -z-10 origin-[0] -translate-y-5 scale-75 transform text-sm text-slate-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-8 peer-focus:-translate-y-5 peer-focus:scale-75 peer-focus:text-cyan-700"
                                             >
                                                 Nomor HP
                                             </label>
@@ -394,18 +394,18 @@
                                             id="email"
                                             placeholder=" "
                                             :disabled="user?.is_social_login"
-                                            class="peer block w-full appearance-none rounded-none border-0 border-b-2 border-slate-200 bg-transparent px-0 py-2.5 pl-8 pr-24 text-sm text-slate-900 transition-colors focus:border-cyan-600 focus:outline-none focus:ring-0 disabled:text-slate-400 disabled:border-slate-100 disabled:cursor-not-allowed"
+                                            class="peer block w-full appearance-none rounded-none border-0 border-b-2 border-slate-200 bg-transparent px-0 py-2.5 pl-8 pr-24 text-sm text-slate-900 transition-colors focus:border-cyan-600 focus:outline-none focus:ring-0 disabled:text-slate-500 disabled:border-slate-100 disabled:cursor-not-allowed"
                                         />
 
                                         <span
-                                            class="pointer-events-none absolute left-0 top-3 text-slate-400 transition-colors peer-focus:text-cyan-600"
+                                            class="pointer-events-none absolute left-0 top-3 text-slate-500 transition-colors peer-focus:text-cyan-700"
                                         >
                                             <Mail class="h-4.5 w-4.5" stroke-width="2" />
                                         </span>
 
                                         <label
                                             for="email"
-                                            class="absolute left-8 top-3 -z-10 origin-[0] -translate-y-5 scale-75 transform text-sm text-slate-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-8 peer-focus:-translate-y-5 peer-focus:scale-75 peer-focus:text-cyan-600"
+                                            class="absolute left-8 top-3 -z-10 origin-[0] -translate-y-5 scale-75 transform text-sm text-slate-500 duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-8 peer-focus:-translate-y-5 peer-focus:scale-75 peer-focus:text-cyan-700"
                                         >
                                             Alamat Email
                                             <span
@@ -425,7 +425,7 @@
                                                 <span>Terverifikasi</span>
                                             </div>
                                             <div v-else-if="!user?.is_social_login">
-                                                <Link
+                                                <Link prefetch
                                                     :href="route('verify-email-otp')"
                                                     class="flex items-center gap-1 text-xs font-bold text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-full border border-blue-100 transition-colors shadow-sm"
                                                 >
@@ -546,7 +546,7 @@
                                         v-else
                                         class="flex flex-col items-center justify-center rounded-2xl border-2 border-dashed border-slate-200 bg-slate-50/50 py-12 text-center transition-all"
                                     >
-                                        <Info class="h-8 w-8 text-slate-400 mb-3" />
+                                        <Info class="h-8 w-8 text-slate-500 mb-3" />
                                         <h3 class="text-sm font-bold text-slate-700">
                                             Belum ada riwayat
                                         </h3>
@@ -576,14 +576,14 @@
                                         Terima email update untuk pesanan sewa Anda.
                                     </p>
                                 </div>
-                                <Link
+                                <Link prefetch
                                     :href="route('profile.toggle-notification')"
                                     method="post"
                                     as="button"
                                     preserve-scroll
                                     class="relative h-7 w-12 shrink-0 rounded-full transition-colors duration-300 border-2 border-transparent focus:outline-none focus:ring-2 focus:ring-emerald-500/50"
                                     :class="
-                                        user?.notification_email ? 'bg-emerald-500' : 'bg-slate-300'
+                                        user?.notification_email ? 'bg-emerald-700' : 'bg-slate-300'
                                     "
                                 >
                                     <span

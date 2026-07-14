@@ -63,7 +63,7 @@
             <div v-if="mustVerifyEmail && user.email_verified_at === null">
                 <p class="mt-2 text-sm text-gray-800">
                     Your email address is unverified.
-                    <Link
+                    <Link prefetch
                         :href="route('verification.send')"
                         method="post"
                         as="button"

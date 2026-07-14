@@ -81,7 +81,7 @@ onUnmounted(() => {
             <div class="hidden items-center gap-3 sm:flex">
                 <div class="text-right">
                     <p class="text-xs font-semibold tracking-wide text-slate-500">{{ currentTime }}</p>
-                    <p class="text-[10px] uppercase tracking-wider text-slate-400">{{ currentDate }}</p>
+                    <p class="text-[10px] uppercase tracking-wider text-slate-500">{{ currentDate }}</p>
                 </div>
             </div>
         </div>

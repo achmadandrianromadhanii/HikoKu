@@ -123,7 +123,7 @@
                 <!-- [PENJELASAN KODE UPDATE]: Mengecilkan tinggi logo (h-20 jadi h-16) dan margin bawah (mb-6 jadi mb-4) -->
                 <div class="mb-4 flex flex-col items-center justify-center relative z-10">
                     <img
-                        src="/images/logo.png"
+                        src="/images/logo.webp"
                         alt="Hiko Logo"
                         class="h-16 w-auto object-contain drop-shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-transform duration-300 hover:scale-105"
                     />
@@ -429,9 +429,9 @@
 
                     <!-- Sign In Link -->
                     <div class="mt-2 flex flex-col items-center space-y-1 pt-0">
-                        <p class="text-[12px] font-bold text-slate-400">
+                        <p class="text-[12px] font-bold text-slate-500">
                             Sudah punya akun?
-                            <Link
+                            <Link prefetch
                                 :href="route('login')"
                                 class="ml-1 font-black text-cyan-400 transition hover:text-cyan-300 hover:underline"
                             >
@@ -440,15 +440,15 @@
                         </p>
                         <p class="text-center text-[10px] font-bold text-slate-600 px-4">
                             Melanjutkan berarti setuju dengan
-                            <Link
+                            <Link prefetch
                                 :href="route('terms')"
-                                class="text-slate-400 hover:text-cyan-400 hover:underline"
+                                class="text-slate-500 hover:text-cyan-400 hover:underline"
                                 >Syarat</Link
                             >
                             &
-                            <Link
+                            <Link prefetch
                                 :href="route('privacy')"
-                                class="text-slate-400 hover:text-cyan-400 hover:underline"
+                                class="text-slate-500 hover:text-cyan-400 hover:underline"
                                 >Privasi</Link
                             >
                         </p>

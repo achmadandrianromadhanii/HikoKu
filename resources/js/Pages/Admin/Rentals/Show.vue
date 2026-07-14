@@ -334,7 +334,7 @@
 
                     <!-- [UPDATE]: Tombol "Kembali" dihapus dari header dan diletakkan di sini
                      berupa tombol kotak ber-icon X merah di pojok kanan atas -->
-                    <Link
+                    <Link prefetch
                         :href="route('admin.rentals.index')"
                         class="absolute top-4 right-4 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-red-50 text-red-600 transition-all hover:bg-red-100 hover:scale-105"
                         title="Kembali"
@@ -401,7 +401,7 @@
                             <div
                                 class="flex items-center gap-2 bg-slate-50/80 px-4 py-3 border-b border-slate-100"
                             >
-                                <User class="h-3.5 w-3.5 text-cyan-600" />
+                                <User class="h-3.5 w-3.5 text-cyan-700" />
                                 <h3
                                     class="text-[10px] font-extrabold uppercase tracking-widest text-slate-800"
                                 >
@@ -416,7 +416,7 @@
                                 <div class="grid gap-3 sm:grid-cols-2">
                                     <div class="space-y-0.5">
                                         <p
-                                            class="text-[9px] font-bold uppercase tracking-wider text-slate-400"
+                                            class="text-[9px] font-bold uppercase tracking-wider text-slate-500"
                                         >
                                             Nama Lengkap
                                         </p>
@@ -426,7 +426,7 @@
                                     </div>
                                     <div class="space-y-0.5">
                                         <p
-                                            class="text-[9px] font-bold uppercase tracking-wider text-slate-400"
+                                            class="text-[9px] font-bold uppercase tracking-wider text-slate-500"
                                         >
                                             Telepon
                                         </p>
@@ -436,7 +436,7 @@
                                     </div>
                                     <div class="space-y-0.5 sm:col-span-2">
                                         <p
-                                            class="text-[9px] font-bold uppercase tracking-wider text-slate-400"
+                                            class="text-[9px] font-bold uppercase tracking-wider text-slate-500"
                                         >
                                             Email
                                         </p>
@@ -446,7 +446,7 @@
                                     </div>
                                     <div class="space-y-0.5 sm:col-span-2">
                                         <p
-                                            class="text-[9px] font-bold uppercase tracking-wider text-slate-400"
+                                            class="text-[9px] font-bold uppercase tracking-wider text-slate-500"
                                         >
                                             Periode Sewa
                                         </p>
@@ -460,7 +460,7 @@
                                 <!-- List Item Rental -->
                                 <div class="lg:pl-5 pt-5 lg:pt-0">
                                     <div class="flex items-center gap-2 mb-3">
-                                        <ReceiptText class="h-3.5 w-3.5 text-cyan-600" />
+                                        <ReceiptText class="h-3.5 w-3.5 text-cyan-700" />
                                         <h4
                                             class="text-[9px] font-bold uppercase tracking-wider text-slate-800"
                                         >
@@ -480,7 +480,7 @@
                                                     {{ item.product_name || '-' }}
                                                 </p>
                                                 <p
-                                                    class="text-[8px] font-bold uppercase tracking-wider text-slate-400 mt-0.5"
+                                                    class="text-[8px] font-bold uppercase tracking-wider text-slate-500 mt-0.5"
                                                 >
                                                     QTY {{ item.quantity }} &bull;
                                                     {{ formatCurrency(item.subtotal) }}
@@ -521,12 +521,12 @@
                                 class="absolute inset-0 bg-white/80 backdrop-blur-sm z-10 flex flex-col items-center justify-center"
                             >
                                 <ScanLine class="h-6 w-6 text-cyan-500 animate-spin mb-1" />
-                                <span class="text-[10px] font-bold text-cyan-600"
+                                <span class="text-[10px] font-bold text-cyan-700"
                                     >Memproses...</span
                                 >
                             </div>
                             <h3
-                                class="text-[9px] font-bold uppercase tracking-wider text-slate-400 mb-0.5"
+                                class="text-[9px] font-bold uppercase tracking-wider text-slate-500 mb-0.5"
                             >
                                 Pusat Kendali
                             </h3>
@@ -537,7 +537,7 @@
                                 class="rounded-lg border-2 border-dashed border-cyan-300 bg-cyan-50/50 p-3 text-center transition hover:border-cyan-400 hover:bg-cyan-50 flex flex-col items-center gap-2"
                             >
                                 <div
-                                    class="h-8 w-8 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-600 shadow-sm"
+                                    class="h-8 w-8 rounded-full bg-cyan-100 flex items-center justify-center text-cyan-700 shadow-sm"
                                 >
                                     <ScanLine class="h-4 w-4" />
                                 </div>
@@ -550,10 +550,10 @@
                                         v-model="scanInput"
                                         @keyup.enter="handleManualScan"
                                         placeholder="Klik disini lalu Scan..."
-                                        class="w-full h-8 text-[11px] font-medium text-center border-cyan-200 rounded-lg focus:border-cyan-500 focus:ring-cyan-500/20 placeholder:text-cyan-600/40 bg-white"
+                                        class="w-full h-8 text-[11px] font-medium text-center border-cyan-200 rounded-lg focus:border-cyan-500 focus:ring-cyan-500/20 placeholder:text-cyan-700/40 bg-white"
                                         autofocus
                                     />
-                                    <p class="text-[8px] font-medium text-cyan-600/80 mt-1">
+                                    <p class="text-[8px] font-medium text-cyan-700/80 mt-1">
                                         Jika scan tidak otomatis, tekan Enter
                                     </p>
                                 </div>
@@ -573,7 +573,7 @@
                             <div
                                 class="mb-3 flex items-center gap-1.5 border-b border-slate-100 pb-2.5"
                             >
-                                <Wallet class="h-3.5 w-3.5 text-cyan-600" />
+                                <Wallet class="h-3.5 w-3.5 text-cyan-700" />
                                 <h3
                                     class="text-[10px] font-bold uppercase tracking-wider text-slate-800"
                                 >
@@ -618,7 +618,7 @@
                                 class="mt-4 rounded-lg border border-slate-100 bg-slate-50/50 p-3 transition-all hover:bg-slate-50"
                             >
                                 <div class="mb-2 flex items-center gap-1.5">
-                                    <CreditCard class="h-3 w-3 text-slate-400" />
+                                    <CreditCard class="h-3 w-3 text-slate-500" />
                                     <p
                                         class="text-[9px] font-bold uppercase tracking-wider text-slate-500"
                                     >
@@ -628,7 +628,7 @@
                                 <div class="grid grid-cols-2 gap-2">
                                     <div class="space-y-0.5">
                                         <p
-                                            class="text-[8px] font-bold uppercase tracking-wider text-slate-400"
+                                            class="text-[8px] font-bold uppercase tracking-wider text-slate-500"
                                         >
                                             Kode
                                         </p>
@@ -638,7 +638,7 @@
                                     </div>
                                     <div class="space-y-0.5">
                                         <p
-                                            class="text-[8px] font-bold uppercase tracking-wider text-slate-400"
+                                            class="text-[8px] font-bold uppercase tracking-wider text-slate-500"
                                         >
                                             Waktu
                                         </p>
@@ -653,7 +653,7 @@
                                     </div>
                                     <div class="space-y-0.5">
                                         <p
-                                            class="text-[8px] font-bold uppercase tracking-wider text-slate-400"
+                                            class="text-[8px] font-bold uppercase tracking-wider text-slate-500"
                                         >
                                             Metode
                                         </p>
@@ -667,7 +667,7 @@
                                     </div>
                                     <div class="space-y-0.5">
                                         <p
-                                            class="text-[8px] font-bold uppercase tracking-wider text-slate-400"
+                                            class="text-[8px] font-bold uppercase tracking-wider text-slate-500"
                                         >
                                             Status
                                         </p>

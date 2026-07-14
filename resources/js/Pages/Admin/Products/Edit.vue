@@ -36,9 +36,9 @@
 
     // Komentar: Daftar warna preset untuk varian
     const PREDEFINED_COLORS = [
-        { name: 'Merah', class: 'bg-rose-500' },
+        { name: 'Merah', class: 'bg-rose-700' },
         { name: 'Biru', class: 'bg-blue-500' },
-        { name: 'Hijau', class: 'bg-emerald-500' },
+        { name: 'Hijau', class: 'bg-emerald-700' },
         { name: 'Kuning', class: 'bg-amber-400' },
         { name: 'Hitam', class: 'bg-slate-900' },
         { name: 'Putih', class: 'bg-white border border-slate-200' },
@@ -58,6 +58,7 @@
     const addDescription = ref(!!props.product?.description);
 
     const form = useForm({
+        _method: 'put',
         category_id: props.product.category_id ?? '',
         name: props.product.name ?? '',
         sku: props.product.sku ?? '',
@@ -190,11 +191,11 @@
                                 class="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-slate-200 group-hover:scale-110 transition-transform"
                             >
                                 <UploadCloud
-                                    class="h-5 w-5 text-slate-400 group-hover:text-cyan-500 transition-colors"
+                                    class="h-5 w-5 text-slate-500 group-hover:text-cyan-500 transition-colors"
                                 />
                             </div>
                             <p class="text-xs font-bold text-slate-600">Klik / Tarik Gambar</p>
-                            <p class="text-[10px] text-slate-400 mt-1 uppercase tracking-wider">
+                            <p class="text-[10px] text-slate-500 mt-1 uppercase tracking-wider">
                                 Maksimal 4MB
                             </p>
                         </div>
@@ -220,7 +221,7 @@
                             <span class="text-xs font-bold text-slate-700">Tampil Katalog</span>
                             <div
                                 class="relative inline-flex h-5 w-9 items-center rounded-full transition-colors"
-                                :class="form.is_active ? 'bg-cyan-500' : 'bg-slate-200'"
+                                :class="form.is_active ? 'bg-cyan-700' : 'bg-slate-200'"
                             >
                                 <input type="checkbox" v-model="form.is_active" class="sr-only" />
                                 <span
@@ -264,7 +265,7 @@
                         class="mb-3 flex items-center justify-between border-b border-slate-100 pb-2"
                     >
                         <div class="flex items-center gap-2">
-                            <Sparkles class="h-4 w-4 text-cyan-600" />
+                            <Sparkles class="h-4 w-4 text-cyan-700" />
                             <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wide">
                                 Informasi Utama
                             </h3>
@@ -278,10 +279,10 @@
                             >
                                 <Save class="h-4 w-4" />
                             </button>
-                            <Link
+                            <Link prefetch
                                 :href="route('admin.products.index')"
                                 title="Batal / Tutup"
-                                class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white text-slate-400 shadow-sm ring-1 ring-inset ring-slate-200 transition-all hover:bg-rose-50 hover:text-rose-600 hover:ring-rose-200 active:scale-95"
+                                class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-white text-slate-500 shadow-sm ring-1 ring-inset ring-slate-200 transition-all hover:bg-rose-50 hover:text-rose-600 hover:ring-rose-200 active:scale-95"
                             >
                                 <X class="h-5 w-5" />
                             </Link>
@@ -292,7 +293,7 @@
                         <!-- Kategori (Tinggi h-10) -->
                         <div class="col-span-1">
                             <label
-                                class="mb-1.5 block text-[10px] font-bold uppercase tracking-widest text-slate-400"
+                                class="mb-1.5 block text-[10px] font-bold uppercase tracking-widest text-slate-500"
                                 >Kategori</label
                             >
                             <select
@@ -315,7 +316,7 @@
                         <!-- Nama (Tinggi h-10) -->
                         <div class="col-span-1">
                             <label
-                                class="mb-1.5 block text-[10px] font-bold uppercase tracking-widest text-slate-400"
+                                class="mb-1.5 block text-[10px] font-bold uppercase tracking-widest text-slate-500"
                                 >Nama Produk</label
                             >
                             <input
@@ -334,12 +335,12 @@
                                 class="mb-1.5 flex items-center justify-between cursor-pointer group"
                             >
                                 <span
-                                    class="text-[10px] font-bold uppercase tracking-widest text-slate-400 transition-colors"
+                                    class="text-[10px] font-bold uppercase tracking-widest text-slate-500 transition-colors"
                                     >Gunakan SKU</span
                                 >
                                 <div
                                     class="relative inline-flex h-4 w-7 items-center rounded-full transition-colors"
-                                    :class="useCustomSku ? 'bg-cyan-500' : 'bg-slate-200'"
+                                    :class="useCustomSku ? 'bg-cyan-700' : 'bg-slate-200'"
                                 >
                                     <input type="checkbox" v-model="useCustomSku" class="sr-only" />
                                     <span
@@ -368,12 +369,12 @@
                                 class="mb-1.5 flex items-center justify-between cursor-pointer group"
                             >
                                 <span
-                                    class="text-[10px] font-bold uppercase tracking-widest text-slate-400 transition-colors"
+                                    class="text-[10px] font-bold uppercase tracking-widest text-slate-500 transition-colors"
                                     >Deskripsi Tambahan</span
                                 >
                                 <div
                                     class="relative inline-flex h-4 w-7 items-center rounded-full transition-colors"
-                                    :class="addDescription ? 'bg-cyan-500' : 'bg-slate-200'"
+                                    :class="addDescription ? 'bg-cyan-700' : 'bg-slate-200'"
                                 >
                                     <input
                                         type="checkbox"
@@ -415,7 +416,7 @@
                         class="shrink-0 p-4 flex items-center justify-between border-b border-slate-100"
                     >
                         <div class="flex items-center gap-2">
-                            <Tag class="h-4 w-4 text-cyan-600" />
+                            <Tag class="h-4 w-4 text-cyan-700" />
                             <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wide">
                                 Spesifikasi, Harga & Varian
                             </h3>
@@ -425,7 +426,7 @@
                             <button
                                 type="button"
                                 @click="addVariant"
-                                class="text-[11px] font-bold text-cyan-600 hover:text-cyan-800 flex items-center gap-1.5 bg-cyan-50 px-3 py-1.5 rounded-lg border border-cyan-100 transition-all hover:bg-cyan-100 active:scale-95"
+                                class="text-[11px] font-bold text-cyan-700 hover:text-cyan-800 flex items-center gap-1.5 bg-cyan-50 px-3 py-1.5 rounded-lg border border-cyan-100 transition-all hover:bg-cyan-100 active:scale-95"
                             >
                                 <Plus class="h-3.5 w-3.5" /> Tambah Varian
                             </button>
@@ -442,14 +443,14 @@
                             <div class="grid grid-cols-4 gap-3 items-start">
                                 <div>
                                     <label
-                                        class="mb-1.5 block text-[10px] font-bold uppercase tracking-widest text-slate-400"
+                                        class="mb-1.5 block text-[10px] font-bold uppercase tracking-widest text-slate-500"
                                         >Harga / Hari</label
                                     >
                                     <div class="relative">
                                         <div
                                             class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
                                         >
-                                            <span class="text-xs font-bold text-slate-400">Rp</span>
+                                            <span class="text-xs font-bold text-slate-500">Rp</span>
                                         </div>
                                         <input
                                             v-model="form.price_per_day"
@@ -467,7 +468,7 @@
                                 </div>
                                 <div>
                                     <label
-                                        class="mb-1.5 block text-[10px] font-bold uppercase tracking-widest text-slate-400"
+                                        class="mb-1.5 block text-[10px] font-bold uppercase tracking-widest text-slate-500"
                                         >Berat (gram)</label
                                     >
                                     <input
@@ -485,7 +486,7 @@
                                 </div>
                                 <div>
                                     <label
-                                        class="mb-1.5 block text-[10px] font-bold uppercase tracking-widest text-slate-400"
+                                        class="mb-1.5 block text-[10px] font-bold uppercase tracking-widest text-slate-500"
                                         >Total Stok</label
                                     >
                                     <input
@@ -506,7 +507,7 @@
                                 <!-- Kondisi -->
                                 <div>
                                     <label
-                                        class="mb-1.5 block text-[10px] font-bold uppercase tracking-widest text-slate-400"
+                                        class="mb-1.5 block text-[10px] font-bold uppercase tracking-widest text-slate-500"
                                         >Kondisi</label
                                     >
                                     <select
@@ -546,7 +547,7 @@
                                     <!-- Label Dummy Varian -->
                                     <div
                                         v-if="!variant.size && !variant.color"
-                                        class="absolute -top-2.5 left-3 z-10 px-2 py-0.5 rounded-full bg-slate-100 border border-white text-[9px] font-bold text-slate-400 shadow-sm flex items-center gap-1.5"
+                                        class="absolute -top-2.5 left-3 z-10 px-2 py-0.5 rounded-full bg-slate-100 border border-white text-[9px] font-bold text-slate-500 shadow-sm flex items-center gap-1.5"
                                     >
                                         <span class="w-2 h-2 rounded-full bg-slate-300"></span>
                                         Kosong
@@ -565,7 +566,7 @@
                                         <!-- Ukuran -->
                                         <div>
                                             <label
-                                                class="mb-1.5 block text-[10px] font-bold uppercase tracking-widest text-slate-400"
+                                                class="mb-1.5 block text-[10px] font-bold uppercase tracking-widest text-slate-500"
                                                 >Ukuran</label
                                             >
                                             <select
@@ -588,7 +589,7 @@
                                         <!-- Warna (Hanya Icon Bulat) -->
                                         <div>
                                             <label
-                                                class="mb-1.5 block text-[10px] font-bold uppercase tracking-widest text-slate-400"
+                                                class="mb-1.5 block text-[10px] font-bold uppercase tracking-widest text-slate-500"
                                                 >Warna (Pilih)</label
                                             >
                                             <div class="flex flex-wrap gap-2">

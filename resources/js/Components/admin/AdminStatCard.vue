@@ -87,7 +87,7 @@ const variantMap = {
         glow: 'shadow-[0_0_15px_rgba(59,130,246,0.4)]',
     },
     emerald: {
-        iconWrap: 'bg-emerald-500/10 text-emerald-600',
+        iconWrap: 'bg-emerald-700/10 text-emerald-600',
         glow: 'shadow-[0_0_15px_rgba(16,185,129,0.4)]',
     },
     amber: {
@@ -120,7 +120,7 @@ const theme = variantMap[props.variant] || variantMap.blue
                     {{ formattedValue }}
                 </p>
 
-                <p v-if="hint" class="mt-1 text-xs font-medium text-slate-400">
+                <p v-if="hint" class="mt-1 text-xs font-medium text-slate-500">
                     {{ hint }}
                 </p>
             </div>

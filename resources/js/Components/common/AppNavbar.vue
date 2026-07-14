@@ -146,7 +146,7 @@ const firstName = computed(() => {
 })
 
 const brandName = 'hikoku'
-const brandLogo = '/images/logo.png'
+const brandLogo = '/images/logo.webp'
 
 const navLinks = [
     { label: 'Home', href: () => route('home'), current: ['home'] },
@@ -237,7 +237,7 @@ onUnmounted(() => {
                     KOLOM 1: Identitas Logo 
                 -->
                 <div class="flex min-w-0 items-center gap-6 xl:gap-8">
-                    <Link :href="route('home')" class="inline-flex shrink-0 items-center transition-transform duration-300 hover:scale-105" @click="closeAllMenus" aria-label="Beranda">
+                    <Link prefetch :href="route('home')" class="inline-flex shrink-0 items-center transition-transform duration-300 hover:scale-105" @click="closeAllMenus" aria-label="Beranda">
                         <!-- 
                             [UPDATE UKURAN & KEJERNIHAN LOGO]
                             - Container dikembalikan jadi h-16
@@ -248,7 +248,7 @@ onUnmounted(() => {
                         -->
                         <div class="flex items-center justify-center h-16 w-auto overflow-visible">
                             <!-- Logo Navbar yang dikembalikan ke ukuran normal tapi sangat tajam karena shadow -->
-                            <img :src="brandLogo" :alt="brandName" width="64" height="64"
+                            <img :src="brandLogo" :alt="brandName" width="64" height="64" fetchpriority="high" loading="eager"
                                  class="h-16 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)]" />
                         </div>
                     </Link>
@@ -293,7 +293,7 @@ onUnmounted(() => {
                     Semua ikon dibebaskan dari kotak. Menggunakan Naked Icon dengan Hover Glow.
                 -->
                 <div class="hidden shrink-0 items-center gap-5 lg:flex">
-                    <Link :href="route('wishlist.index')"
+                    <Link prefetch :href="route('wishlist.index')"
                         class="group relative text-white/70 transition-all duration-300 hover:scale-110 hover:text-cyan-400" aria-label="Wishlist">
                         <!-- Naked Wishlist Icon dengan Hover Glow -->
                         <Heart class="h-5 w-5 drop-shadow-sm group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]" />
@@ -308,7 +308,7 @@ onUnmounted(() => {
                         </span>
                     </Link>
 
-                    <Link :href="route('cart.index')"
+                    <Link prefetch :href="route('cart.index')"
                         class="group relative text-white/70 transition-all duration-300 hover:scale-110 hover:text-cyan-400" aria-label="Keranjang">
                         <!-- Naked Cart Icon dengan Hover Glow -->
                         <ShoppingCart class="h-5 w-5 drop-shadow-sm group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]" />
@@ -338,7 +338,7 @@ onUnmounted(() => {
                                          alt="User Avatar" 
                                          width="48" height="48"
                                          class="h-full w-full object-cover" />
-                                    <User v-else class="h-6 w-6 text-slate-400 transition-colors duration-300 group-hover:text-slate-600" stroke-width="2" />
+                                    <User v-else class="h-6 w-6 text-slate-500 transition-colors duration-300 group-hover:text-slate-600" stroke-width="2" />
                                 </button>
 
                                 <!-- Dropdown Menu Profile dengan Transisi Lembut Vue -->
@@ -357,19 +357,19 @@ onUnmounted(() => {
                                         <!-- [KOMENTAR PENJELASAN]: Bagian Header Profil dalam Dropdown dihapus sesuai permintaan agar kotak navigasi lebih kecil dan rapi -->
 
                                         <div class="grid gap-0.5">
-                                            <Link :href="profileUrl"
+                                            <Link prefetch :href="profileUrl"
                                                 class="group flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-[13px] font-semibold text-white/80 transition-all duration-300 hover:bg-white/10 hover:text-white"
                                                 @click="closeAllMenus">
-                                                <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white/5 transition-all duration-300 group-hover:bg-cyan-500/20 group-hover:shadow-[0_0_12px_rgba(34,211,238,0.3)]">
+                                                <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white/5 transition-all duration-300 group-hover:bg-cyan-700/20 group-hover:shadow-[0_0_12px_rgba(34,211,238,0.3)]">
                                                     <User class="h-4 w-4 text-cyan-400 transition-transform duration-300 group-hover:scale-110" stroke-width="2" />
                                                 </div>
                                                 <span class="truncate">Profil Saya</span>
                                             </Link>
 
-                                            <Link :href="route('my-rentals.index')"
+                                            <Link prefetch :href="route('my-rentals.index')"
                                                 class="group flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-[13px] font-semibold text-white/80 transition-all duration-300 hover:bg-white/10 hover:text-white"
                                                 @click="closeAllMenus">
-                                                <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white/5 transition-all duration-300 group-hover:bg-cyan-500/20 group-hover:shadow-[0_0_12px_rgba(34,211,238,0.3)]">
+                                                <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-white/5 transition-all duration-300 group-hover:bg-cyan-700/20 group-hover:shadow-[0_0_12px_rgba(34,211,238,0.3)]">
                                                     <PackageCheck class="h-4 w-4 text-cyan-400 transition-transform duration-300 group-hover:scale-110" stroke-width="2" />
                                                 </div>
                                                 <span class="truncate">E-Ticket Saya</span>
@@ -393,13 +393,13 @@ onUnmounted(() => {
 
                         <template v-else>
                             <!-- Tombol Login (Ghost / Text Only Minimalis) -->
-                            <Link :href="route('login')"
+                            <Link prefetch :href="route('login')"
                                 class="text-[13px] font-medium text-white/80 transition-all duration-300 hover:text-cyan-300 hover:-translate-y-0.5">
                                 Masuk
                             </Link>
 
                             <!-- Tombol Daftar (Pill Button Premium) -->
-                            <Link :href="route('register')"
+                            <Link prefetch :href="route('register')"
                                 class="inline-flex h-8 items-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 px-5 text-[13px] font-bold text-white shadow-md shadow-cyan-500/20 transition-all duration-300 hover:scale-105 hover:shadow-cyan-500/40">
                                 Daftar
                             </Link>
@@ -409,12 +409,12 @@ onUnmounted(() => {
 
                 <!-- Mobile Menu Toggles (Responsive) -->
                 <div class="flex shrink-0 items-center gap-4 lg:hidden">
-                    <Link :href="route('cart.index')"
+                    <Link prefetch :href="route('cart.index')"
                         class="relative text-white/80 transition-transform active:scale-95" aria-label="Keranjang Belanja">
                         <ShoppingCart class="h-5 w-5" />
                         <span v-if="displayCartCount > 0 && hasUnreadCart && !isOnCartPage"
                             :class="{'animate-bounce': isCartAnimating}"
-                            class="absolute -right-2 -top-2 inline-flex h-4 min-w-[16px] items-center justify-center rounded-full bg-cyan-500 px-1 text-[9px] font-bold text-white shadow-sm transition-all duration-300">
+                            class="absolute -right-2 -top-2 inline-flex h-4 min-w-[16px] items-center justify-center rounded-full bg-cyan-700 px-1 text-[9px] font-bold text-white shadow-sm transition-all duration-300">
                             {{ displayCartCount }}
                         </span>
                     </Link>
@@ -445,7 +445,7 @@ onUnmounted(() => {
                     <div class="grid gap-1">
                         <Link prefetch="mount" v-for="link in navLinks" :key="`mobile-${link.label}`" :href="link.href()"
                             class="rounded-xl px-4 py-2.5 text-[13px] font-medium transition-colors" :class="isCurrentRoute(link.current)
-                                ? 'bg-cyan-500/10 text-cyan-300'
+                                ? 'bg-cyan-700/10 text-cyan-300'
                                 : 'text-white/80 hover:bg-white/5 hover:text-white'" @click="closeAllMenus">
                             {{ link.label }}
                         </Link>
@@ -453,7 +453,7 @@ onUnmounted(() => {
 
                     <!-- Akses Tambahan Mobile -->
                     <div class="grid gap-1 border-t border-white/10 pt-3">
-                        <Link :href="route('wishlist.index')"
+                        <Link prefetch :href="route('wishlist.index')"
                             class="inline-flex items-center gap-3 rounded-xl px-4 py-2.5 text-[13px] font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white"
                             @click="closeAllMenus">
                             <div class="relative">
@@ -476,12 +476,12 @@ onUnmounted(() => {
                                 <p class="mt-0.5 truncate text-[11px] text-white/50">{{ user.email }}</p>
 
                                 <div class="mt-4 grid gap-1.5">
-                                    <Link :href="profileUrl"
+                                    <Link prefetch :href="profileUrl"
                                         class="inline-flex h-9 items-center justify-center rounded-xl border border-white/10 text-[13px] font-medium text-white/90 transition hover:bg-white/10"
                                         @click="closeAllMenus">
                                         Profil Saya
                                     </Link>
-                                    <Link :href="route('my-rentals.index')"
+                                    <Link prefetch :href="route('my-rentals.index')"
                                         class="inline-flex h-9 items-center justify-center rounded-xl border border-white/10 text-[13px] font-medium text-white/90 transition hover:bg-white/10"
                                         @click="closeAllMenus">
                                         E-Ticket Saya
@@ -497,12 +497,12 @@ onUnmounted(() => {
 
                         <template v-else>
                             <div class="grid gap-2 sm:grid-cols-2">
-                                <Link :href="route('login')"
+                                <Link prefetch :href="route('login')"
                                     class="inline-flex h-9 items-center justify-center rounded-xl border border-white/10 text-[13px] font-medium text-white transition hover:bg-white/10"
                                     @click="closeAllMenus">
                                     Masuk
                                 </Link>
-                                <Link :href="route('register')"
+                                <Link prefetch :href="route('register')"
                                     class="inline-flex h-9 items-center justify-center rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 text-[13px] font-bold text-white shadow-lg shadow-cyan-500/20 transition hover:brightness-110"
                                     @click="closeAllMenus">
                                     Daftar

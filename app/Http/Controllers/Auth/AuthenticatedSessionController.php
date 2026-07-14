@@ -38,8 +38,8 @@ class AuthenticatedSessionController extends Controller
         // [UPDATE]: Blokir mutlak jika akun Admin mencoba login lewat pintu User
         if ($user && method_exists($user, 'hasRole') && $user->hasRole('admin')) {
             Auth::guard('web')->logout();
-            $request->session()->invalidate();
-            $request->session()->regenerateToken();
+            // $request->session()->invalidate(); // [FIX] Dihapus agar tidak bertabrakan dengan sesi Admin
+            // $request->session()->regenerateToken(); // [FIX] Dihapus agar CSRF token Admin tidak expired
             
             throw \Illuminate\Validation\ValidationException::withMessages([
                 'email' => 'Akun Admin tidak diizinkan masuk ke halaman User. Silakan login di halaman Admin.',
@@ -62,9 +62,9 @@ class AuthenticatedSessionController extends Controller
     {
         Auth::guard('web')->logout();
 
-        $request->session()->invalidate();
+        // $request->session()->invalidate(); // [FIX] Dihapus agar tidak bertabrakan dengan sesi Admin
 
-        $request->session()->regenerateToken();
+        // $request->session()->regenerateToken(); // [FIX] Dihapus agar CSRF token Admin tidak expired
 
         return redirect('/');
     }

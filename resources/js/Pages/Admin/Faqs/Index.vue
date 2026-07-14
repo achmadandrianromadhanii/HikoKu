@@ -211,7 +211,7 @@
             <template #actions>
                 <button
                     type="button"
-                    class="inline-flex h-10 items-center gap-2 rounded-2xl bg-emerald-600 px-4 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                    class="inline-flex h-10 items-center gap-2 rounded-2xl bg-emerald-700 px-4 text-sm font-semibold text-white transition hover:bg-emerald-700"
                     @click="openCreateModal = true"
                 >
                     <Plus class="h-4 w-4" />
@@ -254,7 +254,7 @@
             <template #right-actions>
                 <button
                     type="button"
-                    class="inline-flex h-11 items-center gap-2 rounded-2xl bg-emerald-600 px-5 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                    class="inline-flex h-11 items-center gap-2 rounded-2xl bg-emerald-700 px-5 text-sm font-semibold text-white transition hover:bg-emerald-700"
                     @click="applyFilters"
                 >
                     <Filter class="h-4 w-4" />
@@ -370,7 +370,7 @@
 
                 <button
                     type="button"
-                    class="inline-flex h-10 items-center rounded-2xl bg-emerald-600 px-4 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                    class="inline-flex h-10 items-center rounded-2xl bg-emerald-700 px-4 text-sm font-semibold text-white transition hover:bg-emerald-700"
                     :disabled="createForm.processing"
                     @click="submitCreate"
                 >
@@ -443,7 +443,7 @@
 
                 <button
                     type="button"
-                    class="inline-flex h-10 items-center rounded-2xl bg-emerald-600 px-4 text-sm font-semibold text-white transition hover:bg-emerald-700"
+                    class="inline-flex h-10 items-center rounded-2xl bg-emerald-700 px-4 text-sm font-semibold text-white transition hover:bg-emerald-700"
                     :disabled="editForm.processing"
                     @click="submitEdit"
                 >

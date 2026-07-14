@@ -64,7 +64,7 @@
                     >
                         <!-- Area Gambar & Lencana -->
                         <div class="relative aspect-[4/3] w-full overflow-hidden bg-slate-50">
-                            <Link
+                            <Link prefetch
                                 :href="route('packages.show', pkg.slug)"
                                 class="block h-full w-full"
                             >
@@ -81,7 +81,7 @@
                                 />
                                 <div
                                     v-else
-                                    class="flex h-full w-full items-center justify-center text-xs font-medium text-slate-400"
+                                    class="flex h-full w-full items-center justify-center text-xs font-medium text-slate-500"
                                 >
                                     <!-- Kosong / Clean sesuai ProductCard -->
                                 </div>
@@ -90,7 +90,7 @@
                             <!-- Lencana Ketersediaan Tersedia -->
                             <div class="absolute left-3 top-3 z-10">
                                 <span
-                                    class="inline-flex rounded-full bg-emerald-500 px-3 py-1 text-[10px] font-extrabold tracking-wide text-white shadow-sm"
+                                    class="inline-flex rounded-full bg-emerald-700 px-3 py-1 text-[10px] font-extrabold tracking-wide text-white shadow-sm"
                                 >
                                     TERSEDIA
                                 </span>
@@ -157,7 +157,7 @@
                                 <div class="flex items-end justify-between">
                                     <div>
                                         <p
-                                            class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-0.5"
+                                            class="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-0.5"
                                         >
                                             Mulai dari
                                         </p>
@@ -170,7 +170,7 @@
                                             </p>
                                         </div>
                                     </div>
-                                    <Link
+                                    <Link prefetch
                                         :href="route('packages.show', pkg.slug)"
                                         class="inline-flex h-8 items-center rounded-lg bg-slate-900 px-3 text-xs font-semibold text-white transition-all duration-300 hover:bg-blue-600 hover:shadow-md hover:shadow-blue-500/20 active:scale-95"
                                     >

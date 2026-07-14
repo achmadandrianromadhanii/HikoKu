@@ -11,6 +11,12 @@ class CacheService
     {
         Cache::forget('products.featured');
         Cache::forget('products.all');
+        Cache::forget('home_featured_products');
+    }
+
+    public static function bustPackages(): void
+    {
+        Cache::forget('home_packages');
     }
 
     public static function bustCategories(): void

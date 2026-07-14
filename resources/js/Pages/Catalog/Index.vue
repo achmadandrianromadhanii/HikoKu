@@ -138,7 +138,7 @@
                             <input
                                 v-model="form.available_only"
                                 type="checkbox"
-                                class="h-4 w-4 rounded border-cyan-300 text-cyan-600 focus:ring-cyan-500"
+                                class="h-4 w-4 rounded border-cyan-300 text-cyan-700 focus:ring-cyan-500"
                             />
                             Tampilkan stok tersedia saja
                         </label>
@@ -226,7 +226,7 @@
                         <h3 class="text-lg font-extrabold text-surface-900">
                             Tidak ada produk ditemukan
                         </h3>
-                        <p class="mt-2 text-[13px] text-surface-500 max-w-sm leading-relaxed">
+                        <p class="mt-2 text-[13px] text-surface-600 max-w-sm leading-relaxed">
                             Maaf, produk dengan kriteria filter yang Anda cari sedang kosong. Coba
                             hapus beberapa filter pencarian Anda.
                         </p>
@@ -245,7 +245,7 @@
                         class="flex flex-wrap items-center gap-2 pt-4"
                     >
                         <template v-for="(link, index) in products.links" :key="index">
-                            <Link
+                            <Link prefetch
                                 v-if="link.url"
                                 :href="link.url"
                                 class="inline-flex min-w-[40px] items-center justify-center rounded-full border border-transparent px-3 py-2 text-[13px] font-bold transition-all hover:scale-105"
@@ -259,7 +259,7 @@
 
                             <span
                                 v-else
-                                class="inline-flex min-w-[40px] items-center justify-center rounded-full border border-surface-100 bg-surface-50 px-3 py-2 text-[13px] text-surface-400"
+                                class="inline-flex min-w-[40px] items-center justify-center rounded-full border border-surface-100 bg-surface-50 px-3 py-2 text-[13px] text-surface-600"
                                 v-html="link.label"
                             />
                         </template>

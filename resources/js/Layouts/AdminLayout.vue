@@ -96,7 +96,7 @@ onUnmounted(() => {
 
             <!-- Main container FIXED, konten di dalamnya yang mengatur scroll sendiri -->
             <main class="flex-1 flex flex-col min-h-0 relative">
-                <div class="px-4 py-4 sm:px-5 lg:px-6 mx-auto w-full max-w-[1600px] h-full flex flex-col min-h-0 overflow-hidden">
+                <div class="px-4 py-4 sm:px-5 lg:px-6 mx-auto w-full max-w-[1600px] h-full flex flex-col min-h-0 overflow-y-auto overflow-x-hidden">
                     <slot />
                 </div>
             </main>

@@ -59,7 +59,7 @@
 
             <p class="mt-6 text-center text-sm text-gray-500">
                 Salah email?
-                <Link
+                <Link prefetch
                     :href="route('profile.edit')"
                     class="font-semibold text-primary-600 hover:text-primary-700"
                 >

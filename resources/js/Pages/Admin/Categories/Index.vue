@@ -202,7 +202,7 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div class="flex items-center gap-3 text-sm font-medium text-slate-500">
                 <div class="flex items-center gap-1.5 px-3 py-1 bg-slate-100 rounded-full">
-                    <FolderKanban class="w-4 h-4 text-slate-400" />
+                    <FolderKanban class="w-4 h-4 text-slate-500" />
                     <span class="text-slate-700 font-bold">{{ stats.total }}</span> Total Kategori
                 </div>
                 <span class="text-slate-300">•</span>
@@ -211,7 +211,7 @@
 
             <button
                 @click="openCreateModal = true"
-                class="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-cyan-500/30 transition-all hover:bg-cyan-500 hover:shadow-cyan-500/40"
+                class="inline-flex items-center justify-center gap-2 rounded-xl bg-cyan-700 px-5 py-2.5 text-sm font-semibold text-white shadow-sm shadow-cyan-500/30 transition-all hover:bg-cyan-700 hover:shadow-cyan-500/40"
             >
                 <Plus class="h-4 w-4" stroke-width="3" />
                 Tambah Kategori
@@ -232,7 +232,7 @@
                         <div
                             class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
                         >
-                            <Search class="h-4 w-4 text-slate-400" />
+                            <Search class="h-4 w-4 text-slate-500" />
                         </div>
                         <input
                             v-model="search"
@@ -252,7 +252,7 @@
                         >
                         <div
                             class="relative inline-flex h-5 w-9 items-center rounded-full transition-colors"
-                            :class="activeOnly ? 'bg-cyan-500' : 'bg-slate-200'"
+                            :class="activeOnly ? 'bg-cyan-700' : 'bg-slate-200'"
                         >
                             <input type="checkbox" v-model="activeOnly" class="sr-only" />
                             <span
@@ -268,7 +268,7 @@
             <div class="flex-1 min-h-0 overflow-auto custom-scrollbar relative z-10">
                 <table class="w-full text-left text-sm text-slate-600 whitespace-nowrap">
                     <thead
-                        class="sticky top-0 z-20 bg-white text-[10px] font-bold uppercase tracking-widest text-slate-400 shadow-[0_1px_2px_rgba(0,0,0,0.05)] after:absolute after:inset-x-0 after:bottom-0 after:border-b after:border-slate-100/60"
+                        class="sticky top-0 z-20 bg-white text-[10px] font-bold uppercase tracking-widest text-slate-500 shadow-[0_1px_2px_rgba(0,0,0,0.05)] after:absolute after:inset-x-0 after:bottom-0 after:border-b after:border-slate-100/60"
                     >
                         <tr>
                             <th class="px-6 py-4">Kategori</th>
@@ -326,7 +326,7 @@
                                         <!-- Green dot indicator if active -->
                                         <div
                                             v-if="row.is_active"
-                                            class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"
+                                            class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-700 border-2 border-white rounded-full"
                                         ></div>
                                     </div>
                                     <div class="flex flex-col overflow-hidden">
@@ -335,7 +335,7 @@
                                             >{{ row.name }}</span
                                         >
                                         <span
-                                            class="text-[11px] font-medium text-slate-400 truncate mt-0.5"
+                                            class="text-[11px] font-medium text-slate-500 truncate mt-0.5"
                                             >{{ row.description || row.slug || '-' }}</span
                                         >
                                     </div>
@@ -347,14 +347,14 @@
                                 <span
                                     class="inline-flex items-center text-[12px] font-bold text-slate-600 bg-slate-50 px-3 py-1 rounded-full border border-slate-100"
                                 >
-                                    <Box class="w-3.5 h-3.5 mr-1.5 text-slate-400" />
+                                    <Box class="w-3.5 h-3.5 mr-1.5 text-slate-500" />
                                     {{ row.products_count }}
                                 </span>
                             </td>
 
                             <!-- Col 3: Sort Order -->
                             <td
-                                class="px-6 py-3 text-center tabular-nums font-bold text-[13px] text-slate-400"
+                                class="px-6 py-3 text-center tabular-nums font-bold text-[13px] text-slate-500"
                             >
                                 #{{ row.sort_order }}
                             </td>
@@ -366,7 +366,7 @@
                                     class="inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-600 border border-emerald-100/50"
                                 >
                                     <span
-                                        class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-1.5 animate-pulse"
+                                        class="w-1.5 h-1.5 rounded-full bg-emerald-700 mr-1.5 animate-pulse"
                                     ></span>
                                     Aktif
                                 </span>
@@ -386,14 +386,14 @@
                                     <button
                                         @click="openEdit(row)"
                                         title="Edit"
-                                        class="p-2 text-slate-400 hover:text-cyan-600 hover:bg-cyan-50 rounded-lg transition-colors"
+                                        class="p-2 text-slate-500 hover:text-cyan-700 hover:bg-cyan-50 rounded-lg transition-colors"
                                     >
                                         <Pencil class="w-4 h-4" />
                                     </button>
                                     <button
                                         @click="openDelete(row)"
                                         title="Hapus"
-                                        class="p-2 text-slate-400 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
+                                        class="p-2 text-slate-500 hover:text-rose-600 hover:bg-rose-50 rounded-lg transition-colors"
                                     >
                                         <Trash2 class="w-4 h-4" />
                                     </button>
@@ -409,13 +409,13 @@
                 v-if="categories.total > 0"
                 class="shrink-0 border-t border-slate-100/60 p-4 flex items-center justify-between bg-white/30 relative z-20"
             >
-                <div class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider">
+                <div class="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
                     Hal <span class="text-slate-700">{{ categories.current_page }}</span> /
                     {{ categories.last_page }}
                 </div>
 
                 <div class="flex items-center gap-2">
-                    <Link
+                    <Link prefetch
                         v-if="categories.prev_page_url"
                         :href="categories.prev_page_url"
                         preserve-scroll
@@ -430,7 +430,7 @@
                         <ChevronLeft class="w-4 h-4" stroke-width="2.5" />
                     </div>
 
-                    <Link
+                    <Link prefetch
                         v-if="categories.next_page_url"
                         :href="categories.next_page_url"
                         preserve-scroll
@@ -461,7 +461,7 @@
             <div class="grid grid-cols-12 gap-3">
                 <div class="col-span-8">
                     <label
-                        class="mb-1.5 block text-[10px] font-semibold uppercase tracking-widest text-slate-400"
+                        class="mb-1.5 block text-[10px] font-semibold uppercase tracking-widest text-slate-500"
                         >Nama Kategori</label
                     >
                     <input
@@ -476,7 +476,7 @@
 
                 <div class="col-span-4">
                     <label
-                        class="mb-1.5 block text-[10px] font-semibold uppercase tracking-widest text-slate-400"
+                        class="mb-1.5 block text-[10px] font-semibold uppercase tracking-widest text-slate-500"
                         >Icon / Emoji</label
                     >
                     <input
@@ -496,7 +496,7 @@
                 <label class="group mb-2 flex cursor-pointer items-center gap-2">
                     <div
                         class="relative inline-flex h-4 w-7 items-center rounded-full transition-colors"
-                        :class="createAddDescription ? 'bg-cyan-500' : 'bg-slate-200'"
+                        :class="createAddDescription ? 'bg-cyan-700' : 'bg-slate-200'"
                     >
                         <input type="checkbox" v-model="createAddDescription" class="sr-only" />
                         <span
@@ -534,7 +534,7 @@
                 <label class="group flex cursor-pointer items-center gap-2">
                     <div
                         class="relative inline-flex h-4 w-7 items-center rounded-full transition-colors"
-                        :class="createForm.is_active ? 'bg-cyan-500' : 'bg-slate-200'"
+                        :class="createForm.is_active ? 'bg-cyan-700' : 'bg-slate-200'"
                     >
                         <input type="checkbox" v-model="createForm.is_active" class="sr-only" />
                         <span
@@ -552,7 +552,7 @@
                     <button
                         type="button"
                         @click="openCreateModal = false"
-                        class="inline-flex h-9 items-center justify-center rounded-lg border border-transparent px-3 text-[11px] font-bold text-slate-400 transition-all hover:border-slate-200 hover:bg-slate-50 hover:text-slate-600"
+                        class="inline-flex h-9 items-center justify-center rounded-lg border border-transparent px-3 text-[11px] font-bold text-slate-500 transition-all hover:border-slate-200 hover:bg-slate-50 hover:text-slate-600"
                     >
                         Batal
                     </button>
@@ -580,7 +580,7 @@
             <div class="grid grid-cols-12 gap-3">
                 <div class="col-span-8">
                     <label
-                        class="mb-1.5 block text-[10px] font-semibold uppercase tracking-widest text-slate-400"
+                        class="mb-1.5 block text-[10px] font-semibold uppercase tracking-widest text-slate-500"
                         >Nama Kategori</label
                     >
                     <input
@@ -595,7 +595,7 @@
 
                 <div class="col-span-4">
                     <label
-                        class="mb-1.5 block text-[10px] font-semibold uppercase tracking-widest text-slate-400"
+                        class="mb-1.5 block text-[10px] font-semibold uppercase tracking-widest text-slate-500"
                         >Icon / Emoji</label
                     >
                     <input
@@ -614,7 +614,7 @@
                 <label class="group mb-2 flex cursor-pointer items-center gap-2">
                     <div
                         class="relative inline-flex h-4 w-7 items-center rounded-full transition-colors"
-                        :class="editAddDescription ? 'bg-cyan-500' : 'bg-slate-200'"
+                        :class="editAddDescription ? 'bg-cyan-700' : 'bg-slate-200'"
                     >
                         <input type="checkbox" v-model="editAddDescription" class="sr-only" />
                         <span
@@ -652,7 +652,7 @@
                 <label class="group flex cursor-pointer items-center gap-2">
                     <div
                         class="relative inline-flex h-4 w-7 items-center rounded-full transition-colors"
-                        :class="editForm.is_active ? 'bg-cyan-500' : 'bg-slate-200'"
+                        :class="editForm.is_active ? 'bg-cyan-700' : 'bg-slate-200'"
                     >
                         <input type="checkbox" v-model="editForm.is_active" class="sr-only" />
                         <span
@@ -670,7 +670,7 @@
                     <button
                         type="button"
                         @click="openEditModal = false"
-                        class="inline-flex h-9 items-center justify-center rounded-lg border border-transparent px-3 text-[11px] font-bold text-slate-400 transition-all hover:border-slate-200 hover:bg-slate-50 hover:text-slate-600"
+                        class="inline-flex h-9 items-center justify-center rounded-lg border border-transparent px-3 text-[11px] font-bold text-slate-500 transition-all hover:border-slate-200 hover:bg-slate-50 hover:text-slate-600"
                     >
                         Batal
                     </button>

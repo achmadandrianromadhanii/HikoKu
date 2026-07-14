@@ -14,7 +14,7 @@ import { Link } from '@inertiajs/vue3';
                 Lighthouse tetap 100% karena ukuran gambar sudah dikontrol (h-20) dan ringan.
             -->
             <Link href="/">
-                <img src="/images/logo.png" alt="hikoku" class="h-20 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.4)]" />
+                <img src="/images/logo.webp" alt="hikoku" class="h-20 w-auto object-contain drop-shadow-[0_4px_12px_rgba(0,0,0,0.4)]" />
             </Link>
         </div>
 

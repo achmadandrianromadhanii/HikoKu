@@ -113,12 +113,11 @@ onUnmounted(() => {
                     -->
                     <img v-for="(img, idx) in heroImages" :key="idx"
                          :src="img" 
-                         loading="eager"
+                         :alt="`Hero ${idx + 1}`"
                          fetchpriority="high"
+                         loading="eager"
                          decoding="async"
-                         alt="Mountain Background" 
-                         width="1280" height="720"
-                         class="absolute inset-0 h-full w-full object-cover object-center bg-[#081828] transition-opacity duration-1000 ease-in-out transform-gpu will-change-transform"
+                         class="absolute inset-0 h-full w-full object-cover object-[center_30%] transition-all duration-1000 ease-in-out transform-gpu will-change-transform"
                          :class="idx === currentHeroImage ? 'opacity-100 z-10' : 'opacity-0 z-0'" />
                     
                     <!-- Overlay hitam transparan murni (40%) demi menjaga teks terbaca -->
@@ -224,7 +223,7 @@ onUnmounted(() => {
                         </div>
 
                         <div v-else class="flex flex-col items-center justify-center rounded-[24px] border border-dashed border-slate-300 bg-white/60 py-16 text-center backdrop-blur-sm">
-                            <PackageCheck class="mb-3 h-10 w-10 text-slate-400" />
+                            <PackageCheck class="mb-3 h-10 w-10 text-slate-500" />
                             <h3 class="text-[15px] font-bold text-slate-800">Belum ada produk</h3>
                             <p class="mt-1 text-[13px] text-slate-500">
                                 Produk unggulan akan tampil di sini.
@@ -260,12 +259,12 @@ onUnmounted(() => {
                                             <img v-if="pkg.image_path" :src="`/storage/${pkg.image_path}`" :alt="pkg.name"
                                                  width="300" height="150"
                                                  class="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
-                                            <div v-else class="flex h-full w-full items-center justify-center text-xs font-medium text-slate-400">
+                                            <div v-else class="flex h-full w-full items-center justify-center text-xs font-medium text-slate-500">
                                             </div>
                                         </Link>
 
                                         <div class="absolute left-3 top-3 z-10">
-                                            <span class="inline-flex rounded-full bg-emerald-500 px-3 py-1 text-[10px] font-extrabold tracking-wide text-white shadow-sm">
+                                            <span class="inline-flex rounded-full bg-emerald-700 px-3 py-1 text-[10px] font-extrabold tracking-wide text-white shadow-sm">
                                                 TERSEDIA
                                             </span>
                                         </div>
@@ -300,7 +299,7 @@ onUnmounted(() => {
                                         <div class="mt-5 border-t border-slate-100 pt-4">
                                             <div class="flex items-end justify-between">
                                                 <div>
-                                                    <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-0.5">Mulai dari</p>
+                                                    <p class="text-[10px] font-bold uppercase tracking-wider text-slate-500 mb-0.5">Mulai dari</p>
                                                     <div class="flex items-baseline gap-1">
                                                         <p class="text-lg font-extrabold text-slate-900">
                                                             {{ formatCurrency(pkg.price_per_day) }}

@@ -47,7 +47,7 @@ const getInitials = (name) => {
                 class="group flex items-center gap-4 rounded-2xl p-2.5 transition-all duration-300 hover:bg-slate-50">
                 
                 <!-- Avatar / Icon -->
-                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-400 group-hover:bg-white group-hover:text-cyan-600 group-hover:shadow-sm transition-all duration-300">
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100 text-slate-500 group-hover:bg-white group-hover:text-cyan-700 group-hover:shadow-sm transition-all duration-300">
                     <Package class="h-5 w-5" />
                 </div>
 
@@ -75,7 +75,7 @@ const getInitials = (name) => {
 
         <!-- Empty State -->
         <div v-else class="flex h-full min-h-[200px] items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-slate-50/50">
-            <p class="text-sm font-medium text-slate-400">Belum ada produk terjual.</p>
+            <p class="text-sm font-medium text-slate-500">Belum ada produk terjual.</p>
         </div>
     </div>
 </template>

@@ -27,16 +27,16 @@ const emit = defineEmits(['close'])
             <div v-for="item in items" :key="item.id" class="flex items-center gap-4 p-3 border border-slate-100 rounded-xl hover:bg-slate-50 transition">
                 <img v-if="item.cover_image" :src="'/storage/' + item.cover_image" class="w-16 h-16 object-cover rounded-lg" />
                 <div v-else class="w-16 h-16 bg-slate-100 rounded-lg flex items-center justify-center">
-                    <span class="text-xs text-slate-400">No Image</span>
+                    <span class="text-xs text-slate-500">No Image</span>
                 </div>
                 
                 <div class="flex-1 min-w-0">
                     <h4 class="font-bold text-slate-900 truncate">{{ item.name }}</h4>
                     <p class="text-xs text-slate-500 truncate">{{ item.brand?.name || 'Tanpa Merek' }}</p>
-                    <p class="text-sm font-semibold text-cyan-600 mt-1">Rp {{ item.price.toLocaleString('id-ID') }}</p>
+                    <p class="text-sm font-semibold text-cyan-700 mt-1">Rp {{ item.price.toLocaleString('id-ID') }}</p>
                 </div>
                 
-                <Link :href="route('catalog.show', item.slug)" class="px-4 py-2 bg-slate-900 text-white text-xs font-semibold rounded-lg hover:bg-cyan-600 transition">
+                <Link :href="route('catalog.show', item.slug)" class="px-4 py-2 bg-slate-900 text-white text-xs font-semibold rounded-lg hover:bg-cyan-700 transition">
                     Lihat
                 </Link>
             </div>

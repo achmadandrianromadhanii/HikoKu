@@ -308,7 +308,7 @@
             <div class="flex flex-col items-end gap-1 w-full max-w-xs">
                 <div class="relative w-full">
                     <ScanLine
-                        class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-cyan-600"
+                        class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-cyan-700"
                     />
                     <!-- [UPDATE]: Mengganti @keyup.enter menjadi @keydown.enter.prevent karena aplikasi emulasi scanner sering gagal mengirimkan keyup.
                          Serta menggunakan @input murni untuk mendeteksi setiap huruf yang masuk. -->
@@ -319,12 +319,12 @@
                         @input="onScannerInput"
                         @keydown.enter.prevent="handleManualScan"
                         placeholder="Klik disini lalu Scan Barcode..."
-                        class="w-full h-9 pl-9 pr-3 text-xs border-cyan-200 rounded-xl focus:border-cyan-500 focus:ring-cyan-500/20 bg-cyan-50/30 placeholder:text-cyan-600/50 text-cyan-900 font-semibold shadow-inner"
+                        class="w-full h-9 pl-9 pr-3 text-xs border-cyan-200 rounded-xl focus:border-cyan-500 focus:ring-cyan-500/20 bg-cyan-50/30 placeholder:text-cyan-700/50 text-cyan-900 font-semibold shadow-inner"
                     />
                 </div>
                 <div
                     v-if="isScanning"
-                    class="flex items-center gap-1.5 text-xs font-semibold text-cyan-600 animate-pulse"
+                    class="flex items-center gap-1.5 text-xs font-semibold text-cyan-700 animate-pulse"
                 >
                     <ScanLine class="h-3.5 w-3.5 animate-spin" />
                     Memproses...
@@ -363,7 +363,7 @@
             <!-- Smart Auto-Suggest Search -->
             <div class="relative w-full sm:w-64" ref="searchInputRef">
                 <div class="relative flex items-center">
-                    <Search class="absolute left-3 h-4 w-4 text-slate-400" />
+                    <Search class="absolute left-3 h-4 w-4 text-slate-500" />
                     <input
                         v-model="search"
                         type="text"
@@ -375,7 +375,7 @@
                     <button
                         v-if="search"
                         @click="clearSearch"
-                        class="absolute right-2 p-1 rounded-full hover:bg-slate-200 text-slate-400 transition"
+                        class="absolute right-2 p-1 rounded-full hover:bg-slate-200 text-slate-500 transition"
                     >
                         <X class="h-3 w-3" />
                     </button>
@@ -396,7 +396,7 @@
                     >
                         <div class="px-3 py-2 border-b border-slate-50 bg-slate-50/50">
                             <span
-                                class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider"
+                                class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider"
                                 >Hasil Pencarian Cepat</span
                             >
                         </div>
@@ -407,7 +407,7 @@
                             >
                                 Tidak ada hasil untuk "{{ search }}"
                             </div>
-                            <Link
+                            <Link prefetch
                                 v-for="row in rows.slice(0, 5)"
                                 :key="row.id"
                                 :href="route('admin.rentals.show', row.id)"
@@ -435,7 +435,7 @@
                             class="p-2 border-t border-slate-50 text-center"
                             v-if="rows.length > 5"
                         >
-                            <span class="text-[10px] text-slate-400"
+                            <span class="text-[10px] text-slate-500"
                                 >Tekan Enter untuk melihat semua {{ rows.length }} hasil.</span
                             >
                         </div>
@@ -470,7 +470,7 @@
                         <tr v-if="rows.length === 0">
                             <td colspan="5" class="px-4 py-12 text-center">
                                 <div
-                                    class="flex flex-col items-center justify-center text-slate-400"
+                                    class="flex flex-col items-center justify-center text-slate-500"
                                 >
                                     <Search class="h-8 w-8 mb-3 opacity-20" />
                                     <p class="text-sm font-medium text-slate-600">
@@ -492,7 +492,7 @@
                             <td class="px-4 py-2.5 pl-5">
                                 <div class="flex items-center gap-3">
                                     <div
-                                        class="h-8 w-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400 flex-shrink-0 overflow-hidden"
+                                        class="h-8 w-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 flex-shrink-0 overflow-hidden"
                                     >
                                         <UserCircle2 class="h-5 w-5" />
                                     </div>
@@ -509,7 +509,7 @@
 
                             <!-- Rental Info -->
                             <td class="px-4 py-2.5">
-                                <Link
+                                <Link prefetch
                                     :href="route('admin.rentals.show', row.id)"
                                     class="inline-flex font-bold text-blue-600 hover:text-blue-800 transition hover:underline"
                                 >
@@ -530,7 +530,7 @@
                             <!-- Timeline -->
                             <td class="px-4 py-2.5">
                                 <div class="flex items-center gap-1.5 text-slate-600">
-                                    <Calendar class="h-3.5 w-3.5 text-slate-400" />
+                                    <Calendar class="h-3.5 w-3.5 text-slate-500" />
                                     <span>{{ row.period_label || '-' }}</span>
                                 </div>
                             </td>

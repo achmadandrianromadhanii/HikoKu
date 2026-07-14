@@ -43,16 +43,6 @@ createInertiaApp({
         // Mount aplikasi ke DOM
         app.mount(el);
 
-        // [OPTIMASI LIGHTHOUSE]: Menghapus Initial Loader dengan transisi halus setelah Vue dan DOM selesai dirender.
-        // Ini memastikan FCP dicatat < 1 detik oleh Lighthouse dan layar tidak pernah "putih kosong" saat menunggu JavaScript diurai.
-        const loader = document.getElementById('initial-loader');
-        if (loader) {
-            loader.style.opacity = '0';
-            loader.style.visibility = 'hidden';
-            setTimeout(() => {
-                loader.remove();
-            }, 150);
-        }
     },
     // [OPTIMASI UX & PERFORMANCE: Top Loading Progress Bar]
     // Menghidupkan progress bar dengan konfigurasi kustom agar website terasa sangat responsif.
@@ -60,7 +50,7 @@ createInertiaApp({
         // [KUNCI KECEPATAN UX]: Mengubah delay bawaan (250ms) menjadi 0. 
         // Dengan begini, loading bar (garis biru di atas) langsung muncul SEKETIKA 
         // saat link atau tombol diklik, menghilangkan sensasi "lag" atau lemot.
-        delay: 0,
+        delay: 250,
         // Warna cyan terang yang serasi dengan desain tema Hiko
         color: '#22d3ee',
         // Menggunakan CSS bawaan dari NProgress (ringan dan teruji)

@@ -178,7 +178,7 @@ const closeIfMobile = () => {
             <!-- Header -->
             <div class="border-b border-slate-800 px-5 py-5 transition-all duration-300" :class="collapsed ? 'px-4' : 'px-5'">
                 <div class="flex items-start justify-between gap-3">
-                    <Link :href="route('admin.dashboard')" class="flex min-w-0 flex-1 items-center gap-3">
+                    <Link prefetch :href="route('admin.dashboard')" class="flex min-w-0 flex-1 items-center gap-3">
                         <!-- 
                             [UPDATE LOGO ADMIN]
                             Logo di Admin Panel tetap menggunakan logo.png.
@@ -186,13 +186,13 @@ const closeIfMobile = () => {
                             Tidak menggunakan filter image-rendering agar gambar tetap mulus anti-aliased (tidak pecah/pixelated).
                         -->
                         <div class="flex h-12 w-auto shrink-0 items-center justify-center overflow-visible">
-                            <img src="/images/logo.png" alt="hikoku" class="h-12 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
+                            <img src="/images/logo.webp" alt="hikoku" class="h-12 w-auto object-contain drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" />
                         </div>
 
                         <!-- Komentar: Sembunyikan teks nama dan admin panel saat sidebar menyempit agar rapi -->
                         <div class="min-w-0 transition-opacity duration-300" :class="collapsed ? 'lg:hidden opacity-0' : 'opacity-100'">
                             <p class="truncate text-[22px] bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent drop-shadow-sm leading-none" style="font-family: 'Pacifico', cursive;">hikoku</p>
-                            <p class="truncate text-[11px] font-medium text-slate-400">Admin Panel</p>
+                            <p class="truncate text-[11px] font-medium text-slate-500">Admin Panel</p>
                         </div>
                     </Link>
 
@@ -222,7 +222,7 @@ const closeIfMobile = () => {
                                 <Link v-if="item.type === 'link'" :href="route(item.route)"
                                     class="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm transition-all duration-300" 
                                     :class="[
-                                        isActiveRoute(item.route) ? 'bg-gradient-to-r from-cyan-500/10 to-blue-500/5 text-cyan-400 shadow-[inset_3px_0_0_0_#06b6d4]' : 'text-slate-400 hover:bg-white/5 hover:text-white',
+                                        isActiveRoute(item.route) ? 'bg-gradient-to-r from-cyan-500/10 to-blue-500/5 text-cyan-400 shadow-[inset_3px_0_0_0_#06b6d4]' : 'text-slate-500 hover:bg-white/5 hover:text-white',
                                         collapsed ? 'lg:justify-center lg:px-0' : ''
                                     ]" 
                                     @click="closeIfMobile">
@@ -239,7 +239,7 @@ const closeIfMobile = () => {
                                     <button type="button" @click="toggleDropdown(item.id)"
                                         class="group flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2.5 text-sm transition-all duration-300"
                                         :class="[
-                                            (isDropdownActive(item.subItems) || openDropdowns[item.id]) ? 'text-white' : 'text-slate-400 hover:bg-white/5 hover:text-white',
+                                            (isDropdownActive(item.subItems) || openDropdowns[item.id]) ? 'text-white' : 'text-slate-500 hover:bg-white/5 hover:text-white',
                                             collapsed ? 'lg:justify-center lg:px-0' : ''
                                         ]">
                                         
@@ -266,12 +266,12 @@ const closeIfMobile = () => {
                                                 <!-- Komentar: Garis vertikal di sini sudah dihapus mutlak. Sesuai pesanan hanya menggunakan icon O -->
                                                 <Link v-for="subItem in item.subItems" :key="subItem.route" :href="route(subItem.route)"
                                                     class="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all duration-300"
-                                                    :class="isActiveRoute(subItem.route) ? 'text-cyan-400 bg-cyan-500/10' : 'text-slate-400 hover:text-white hover:bg-white/5'"
+                                                    :class="isActiveRoute(subItem.route) ? 'text-cyan-400 bg-cyan-700/10' : 'text-slate-500 hover:text-white hover:bg-white/5'"
                                                     @click="closeIfMobile">
                                                     
                                                     <!-- Circle Icon (Icon O bulat) inside dropdown -->
                                                     <Circle class="h-2 w-2 shrink-0 transition-all duration-300" 
-                                                        :class="isActiveRoute(subItem.route) ? 'fill-cyan-400 text-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]' : 'text-slate-600 fill-slate-800 group-hover:fill-slate-400 group-hover:text-slate-400'" />
+                                                        :class="isActiveRoute(subItem.route) ? 'fill-cyan-400 text-cyan-400 shadow-[0_0_8px_rgba(6,182,212,0.8)]' : 'text-slate-600 fill-slate-800 group-hover:fill-slate-400 group-hover:text-slate-500'" />
                                                     
                                                     <span class="truncate font-medium">{{ subItem.label }}</span>
                                                 </Link>
@@ -303,7 +303,7 @@ const closeIfMobile = () => {
 
                 <!-- Minimal Toggle Switch Button -->
                 <button type="button" @click="toggleProfileMenu"
-                    class="group flex h-10 w-full items-center justify-center gap-2.5 rounded-xl border border-white/5 bg-white/[0.02] text-slate-400 transition-all duration-300 hover:bg-white/10 hover:text-white hover:shadow-inner"
+                    class="group flex h-10 w-full items-center justify-center gap-2.5 rounded-xl border border-white/5 bg-white/[0.02] text-slate-500 transition-all duration-300 hover:bg-white/10 hover:text-white hover:shadow-inner"
                     :class="[
                         profileMenuOpen ? 'bg-white/10 text-white border-white/10 shadow-inner' : '',
                         collapsed ? 'px-0' : 'px-3'

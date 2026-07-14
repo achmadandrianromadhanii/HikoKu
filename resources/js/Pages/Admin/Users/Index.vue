@@ -106,7 +106,7 @@
             'bg-emerald-100 text-emerald-600 border-emerald-200',
             'bg-amber-100 text-amber-600 border-amber-200',
             'bg-purple-100 text-purple-600 border-purple-200',
-            'bg-cyan-100 text-cyan-600 border-cyan-200',
+            'bg-cyan-100 text-cyan-700 border-cyan-200',
         ];
         const index = name.charCodeAt(0) % colors.length;
         return colors[index];
@@ -273,7 +273,7 @@
                 <!-- Live Search -->
                 <div class="relative w-full sm:w-64" ref="searchInputRef">
                     <div class="relative flex items-center">
-                        <Search class="absolute left-3 h-4 w-4 text-slate-400" />
+                        <Search class="absolute left-3 h-4 w-4 text-slate-500" />
                         <input
                             v-model="search"
                             type="text"
@@ -285,7 +285,7 @@
                         <button
                             v-if="search"
                             @click="clearSearch"
-                            class="absolute right-2 p-1 rounded-full hover:bg-slate-200 text-slate-400 transition"
+                            class="absolute right-2 p-1 rounded-full hover:bg-slate-200 text-slate-500 transition"
                         >
                             <X class="h-3 w-3" />
                         </button>
@@ -306,7 +306,7 @@
                         >
                             <div class="px-3 py-2 border-b border-slate-50 bg-slate-50/50">
                                 <span
-                                    class="text-[10px] font-semibold text-slate-400 uppercase tracking-wider"
+                                    class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider"
                                     >Hasil Pencarian Cepat</span
                                 >
                             </div>
@@ -353,7 +353,7 @@
                                 class="p-2 border-t border-slate-50 text-center"
                                 v-if="rows.length > 5"
                             >
-                                <span class="text-[10px] text-slate-400"
+                                <span class="text-[10px] text-slate-500"
                                     >Tekan Enter untuk melihat semua {{ rows.length }} hasil.</span
                                 >
                             </div>
@@ -384,7 +384,7 @@
                         <tr v-if="rows.length === 0">
                             <td colspan="5" class="px-4 py-12 text-center">
                                 <div
-                                    class="flex flex-col items-center justify-center text-slate-400"
+                                    class="flex flex-col items-center justify-center text-slate-500"
                                 >
                                     <Search class="h-8 w-8 mb-3 opacity-20" />
                                     <p class="text-sm font-medium text-slate-600">
@@ -424,13 +424,13 @@
                                             </p>
                                         </div>
                                         <div class="flex items-center gap-1.5 mt-0.5">
-                                            <Mail class="h-3 w-3 text-slate-400" />
+                                            <Mail class="h-3 w-3 text-slate-500" />
                                             <p class="text-[10px] text-slate-500 truncate">
                                                 {{ row.email || '-' }}
                                             </p>
                                             <button
                                                 @click="copyToClipboard(row.email)"
-                                                class="opacity-0 group-hover/copyemail:opacity-100 transition focus:opacity-100 text-slate-400 hover:text-blue-500"
+                                                class="opacity-0 group-hover/copyemail:opacity-100 transition focus:opacity-100 text-slate-500 hover:text-blue-500"
                                                 title="Copy Email"
                                             >
                                                 <Check
@@ -448,14 +448,14 @@
                             <td class="px-4 py-2.5">
                                 <div class="flex flex-col justify-center group/copyphone">
                                     <div class="flex items-center gap-1.5">
-                                        <Phone class="h-3 w-3 text-slate-400" />
+                                        <Phone class="h-3 w-3 text-slate-500" />
                                         <span class="font-medium text-slate-700">{{
                                             row.phone || 'Belum ada nomor'
                                         }}</span>
                                         <button
                                             v-if="row.phone"
                                             @click="copyToClipboard(row.phone)"
-                                            class="opacity-0 group-hover/copyphone:opacity-100 transition focus:opacity-100 text-slate-400 hover:text-blue-500"
+                                            class="opacity-0 group-hover/copyphone:opacity-100 transition focus:opacity-100 text-slate-500 hover:text-blue-500"
                                             title="Copy Phone"
                                         >
                                             <Check
@@ -501,7 +501,7 @@
                                             <span
                                                 class="relative inline-flex rounded-full h-2 w-2"
                                                 :class="
-                                                    row.is_active ? 'bg-emerald-500' : 'bg-rose-500'
+                                                    row.is_active ? 'bg-emerald-700' : 'bg-rose-700'
                                                 "
                                             ></span>
                                         </span>
@@ -531,7 +531,7 @@
                                         :class="
                                             row.is_active
                                                 ? 'bg-white border-rose-200 text-rose-600 hover:bg-rose-50'
-                                                : 'bg-emerald-50 border-emerald-200 text-emerald-700 hover:bg-emerald-600 hover:text-white'
+                                                : 'bg-emerald-50 border-emerald-200 text-emerald-700 hover:bg-emerald-700 hover:text-white'
                                         "
                                     >
                                         <Lock v-if="row.is_active" class="h-3.5 w-3.5" />

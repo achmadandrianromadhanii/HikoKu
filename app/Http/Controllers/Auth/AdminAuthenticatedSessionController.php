@@ -71,8 +71,8 @@ class AdminAuthenticatedSessionController extends Controller
     {
         Auth::guard('admin')->logout();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        // $request->session()->invalidate(); // [FIX] Dihapus agar tidak logout user saat admin logout
+        // $request->session()->regenerateToken(); // [FIX] Dihapus agar token CSRF tab user tidak kedaluwarsa
 
         return redirect()->route('admin.login');
     }

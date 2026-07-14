@@ -84,7 +84,7 @@
 
                             <!-- [UPDATE ANIMASI IKON TOGGLE]: Berganti Plus ke Minus dengan putaran (rotate) sangat halus -->
                             <div
-                                class="shrink-0 flex items-center justify-center rounded-full bg-slate-50 p-2 text-slate-400 transition-all duration-300 group-hover:bg-cyan-50 group-hover:text-cyan-500"
+                                class="shrink-0 flex items-center justify-center rounded-full bg-slate-50 p-2 text-slate-500 transition-all duration-300 group-hover:bg-cyan-50 group-hover:text-cyan-500"
                                 :class="
                                     openId === faq.id
                                         ? 'rotate-180 bg-cyan-50 text-cyan-500 shadow-inner'
@@ -115,7 +115,7 @@
                     class="user-empty-state rounded-[24px] border border-dashed border-slate-200 bg-white/50 backdrop-blur-sm py-16 text-center"
                 >
                     <div
-                        class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-slate-100 text-slate-400 mb-4"
+                        class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-slate-100 text-slate-500 mb-4"
                     >
                         <MessageCircleQuestion class="h-6 w-6" />
                     </div>

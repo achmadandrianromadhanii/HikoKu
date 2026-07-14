@@ -142,7 +142,7 @@ const chartSeries = computed(() => [
             <VueApexCharts type="area" height="100%" width="100%" :options="chartOptions" :series="chartSeries" />
         </div>
         <div v-else class="flex h-full items-center justify-center rounded-2xl border border-dashed border-slate-200 bg-slate-50/50">
-            <p class="text-sm font-medium text-slate-400">Belum ada data transaksi.</p>
+            <p class="text-sm font-medium text-slate-500">Belum ada data transaksi.</p>
         </div>
     </div>
 </template>

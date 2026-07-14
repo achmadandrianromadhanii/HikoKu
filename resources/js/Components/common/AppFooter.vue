@@ -25,7 +25,7 @@ const settings = computed(() => page.props.settings?.public || {})
 
 const brandName = computed(() => settings.value.app_name || 'Hiko')
 const brandTagline = computed(() => settings.value.app_tagline || 'Rental Hiking & Outdoor')
-const brandLogo = '/images/logo.png'
+const brandLogo = '/images/logo.webp'
 
 const mapLink = computed(() => {
     const lat = settings.value.store_lat
@@ -197,7 +197,7 @@ const socialLinks = computed(() => [
                     </div>
 
                     <a :href="mapLink" target="_blank" rel="noopener noreferrer"
-                        class="footer-nav-item opacity-0 translate-y-4 mt-4 inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-white/10 px-4 text-[13px] font-bold text-white transition-all duration-300 hover:bg-cyan-500 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)]">
+                        class="footer-nav-item opacity-0 translate-y-4 mt-4 inline-flex h-10 w-full items-center justify-center gap-2 rounded-xl bg-white/10 px-4 text-[13px] font-bold text-white transition-all duration-300 hover:bg-cyan-700 hover:shadow-[0_0_15px_rgba(34,211,238,0.4)]">
                         <MapPin class="h-4 w-4" /> Buka di Google Maps
                     </a>
                 </div>

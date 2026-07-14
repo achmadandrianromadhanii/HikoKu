@@ -42,7 +42,7 @@ const buttonClass = computed(() => {
         return 'border-red-200 bg-red-50 text-red-500 shadow-sm'
     }
 
-    return 'border-surface-200 bg-white text-surface-500 hover:border-red-200 hover:bg-red-50/60 hover:text-red-500'
+    return 'border-surface-200 bg-white text-surface-600 hover:border-red-200 hover:bg-red-50/60 hover:text-red-500'
 })
 
 // [KOMENTAR PENJELASAN]: Menerapkan "Optimistic UI", tidak ada loading state.

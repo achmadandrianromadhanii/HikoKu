@@ -53,7 +53,7 @@ defineProps({
         <div v-else class="px-6 py-16">
             <div class="rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-6 py-14 text-center">
                 <div
-                    class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-slate-200/60 text-slate-400">
+                    class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-slate-200/60 text-slate-500">
                     <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="1.8">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 17V7l7 5-7 5Z" />
                     </svg>

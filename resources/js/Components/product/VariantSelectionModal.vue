@@ -60,9 +60,9 @@ const availableColors = computed(() => {
 // Komentar: Pemetaan Warna Dinamis (Color Dictionary)
 // Mengubah teks inputan admin menjadi warna visual (Hex/CSS)
 const COLOR_MAP = {
-    'merah': 'bg-rose-500 ring-rose-500',
+    'merah': 'bg-rose-700 ring-rose-500',
     'biru': 'bg-blue-500 ring-blue-500',
-    'hijau': 'bg-emerald-500 ring-emerald-500',
+    'hijau': 'bg-emerald-700 ring-emerald-500',
     'kuning': 'bg-amber-400 ring-amber-400',
     'hitam': 'bg-slate-900 ring-slate-900',
     'putih': 'bg-white border border-slate-200 ring-slate-300 text-slate-900',
@@ -177,10 +177,10 @@ const submitFinal = () => {
                 <div class="p-5 pb-3 flex items-start justify-between">
                     <div class="pr-4">
                         <h3 class="text-[15px] font-black text-slate-900 leading-tight">{{ product?.name }}</h3>
-                        <p class="text-[11px] font-semibold text-slate-400 mt-1">Pilih spesifikasi</p>
+                        <p class="text-[11px] font-semibold text-slate-500 mt-1">Pilih spesifikasi</p>
                     </div>
                     <!-- Komentar: Tombol Close Modern -->
-                    <button @click="close" class="shrink-0 rounded-full p-1.5 bg-slate-50 text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors" aria-label="Tutup Modals">
+                    <button @click="close" class="shrink-0 rounded-full p-1.5 bg-slate-50 text-slate-500 hover:text-slate-600 hover:bg-slate-100 transition-colors" aria-label="Tutup Modals">
                         <X class="h-4 w-4" stroke-width="2.5" />
                     </button>
                 </div>
@@ -192,7 +192,7 @@ const submitFinal = () => {
                         
                         <!-- Komentar: Bagian Ukuran (Pill Buttons) -->
                         <div v-if="availableSizes.length > 0">
-                            <label class="mb-3 block text-[10px] font-bold uppercase tracking-widest text-slate-400">Ukuran</label>
+                            <label class="mb-3 block text-[10px] font-bold uppercase tracking-widest text-slate-500">Ukuran</label>
                             <div class="flex flex-wrap gap-2">
                                 <button v-for="size in availableSizes" :key="size" type="button"
                                     @click="selectSize(size)"
@@ -211,7 +211,7 @@ const submitFinal = () => {
 
                         <!-- Komentar: Bagian Warna (Color Swatches Bulat) -->
                         <div v-if="availableColors.length > 0">
-                            <label class="mb-3 block text-[10px] font-bold uppercase tracking-widest text-slate-400">Warna</label>
+                            <label class="mb-3 block text-[10px] font-bold uppercase tracking-widest text-slate-500">Warna</label>
                             <div class="flex flex-wrap gap-3">
                                 <button v-for="color in availableColors" :key="color" type="button"
                                     @click="selectColor(color)"
@@ -241,7 +241,7 @@ const submitFinal = () => {
                     <div class="pt-2 border-t border-slate-50">
                         <label class="flex items-center gap-2 cursor-pointer group w-max">
                             <input type="checkbox" v-model="showNotes" class="sr-only" />
-                            <div class="relative flex h-4 w-7 items-center rounded-full transition-colors duration-200" :class="showNotes ? 'bg-cyan-500' : 'bg-slate-200'">
+                            <div class="relative flex h-4 w-7 items-center rounded-full transition-colors duration-200" :class="showNotes ? 'bg-cyan-700' : 'bg-slate-200'">
                                 <span class="inline-block h-3 w-3 transform rounded-full bg-white transition-transform duration-200" :class="showNotes ? 'translate-x-3.5' : 'translate-x-0.5'"></span>
                             </div>
                             <span class="text-[11px] font-bold text-slate-500 group-hover:text-slate-700 transition-colors flex items-center gap-1.5">
@@ -253,7 +253,7 @@ const submitFinal = () => {
                         <!-- Komentar: Animasi meluncur turun untuk textarea -->
                         <div class="overflow-hidden transition-all duration-300" :class="showNotes ? 'max-h-[150px] opacity-100 mt-3' : 'max-h-0 opacity-0'">
                             <textarea v-model="notes" rows="2"
-                                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-[12px] font-medium text-slate-700 placeholder:text-slate-400 outline-none transition-all focus:border-cyan-500 focus:bg-white focus:ring-2 focus:ring-cyan-500/20 resize-none"
+                                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-[12px] font-medium text-slate-700 placeholder:text-slate-500 outline-none transition-all focus:border-cyan-500 focus:bg-white focus:ring-2 focus:ring-cyan-500/20 resize-none"
                                 placeholder="Tulis catatan (misal: bungkus rapi)..."></textarea>
                         </div>
                     </div>

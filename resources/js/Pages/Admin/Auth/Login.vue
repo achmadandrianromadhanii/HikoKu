@@ -78,7 +78,7 @@
                     <!-- Username dengan Floating Label & Icon di Luar -->
                     <div class="flex items-end gap-3">
                         <!-- Icon di sebelah kolom -->
-                        <div class="pb-2.5 text-slate-400">
+                        <div class="pb-2.5 text-slate-500">
                             <User class="h-6 w-6" />
                         </div>
                         <div class="relative w-full">
@@ -95,7 +95,7 @@
                             <!-- Floating Label Animasi -->
                             <label
                                 for="username"
-                                class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-slate-400 transition-all duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-cyan-500"
+                                class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-slate-500 transition-all duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-cyan-500"
                             >
                                 Username
                             </label>
@@ -108,7 +108,7 @@
                     <!-- Password dengan Floating Label & Icon di Luar -->
                     <div class="flex items-end gap-3">
                         <!-- Icon di sebelah kolom -->
-                        <div class="pb-2.5 text-slate-400">
+                        <div class="pb-2.5 text-slate-500">
                             <LockKeyhole class="h-6 w-6" />
                         </div>
                         <div class="relative w-full">
@@ -125,7 +125,7 @@
                             <!-- Floating Label Animasi -->
                             <label
                                 for="password"
-                                class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-slate-400 transition-all duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-cyan-500"
+                                class="absolute top-3 -z-10 origin-[0] -translate-y-6 scale-75 transform text-sm text-slate-500 transition-all duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:left-0 peer-focus:-translate-y-6 peer-focus:scale-75 peer-focus:text-cyan-500"
                             >
                                 Password
                             </label>
@@ -133,7 +133,7 @@
                             <!-- Toggle Lihat Sandi -->
                             <button
                                 type="button"
-                                class="absolute bottom-2.5 right-0 text-slate-400 transition-colors hover:text-cyan-400 focus:outline-none"
+                                class="absolute bottom-2.5 right-0 text-slate-500 transition-colors hover:text-cyan-400 focus:outline-none"
                                 @click="showPassword = !showPassword"
                             >
                                 <EyeOff v-if="showPassword" class="h-5 w-5" />
@@ -148,7 +148,7 @@
                     <!-- Ingat Sesi -->
                     <div class="flex items-center pt-2">
                         <label
-                            class="flex cursor-pointer items-center gap-2 text-sm text-slate-400 transition-colors hover:text-white"
+                            class="flex cursor-pointer items-center gap-2 text-sm text-slate-500 transition-colors hover:text-white"
                         >
                             <input
                                 v-model="form.remember"
@@ -162,7 +162,7 @@
                     <!-- Tombol Masuk -->
                     <button
                         type="submit"
-                        class="relative mt-6 flex h-12 w-full items-center justify-center rounded-xl bg-cyan-600 px-4 text-sm font-semibold tracking-wide text-white transition-all duration-300 hover:bg-cyan-500 hover:shadow-[0_0_15px_rgba(6,182,212,0.4)] focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-70 disabled:shadow-none"
+                        class="relative mt-6 flex h-12 w-full items-center justify-center rounded-xl bg-cyan-700 px-4 text-sm font-semibold tracking-wide text-white transition-all duration-300 hover:bg-cyan-700 hover:shadow-[0_0_15px_rgba(6,182,212,0.4)] focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-70 disabled:shadow-none"
                         :disabled="form.processing"
                     >
                         <LoaderCircle v-if="form.processing" class="mr-2 h-5 w-5 animate-spin" />

@@ -42,7 +42,7 @@
                                 <p class="text-sm font-semibold text-surface-900">
                                     Pantau Status Rental
                                 </p>
-                                <p class="mt-1 text-xs leading-6 text-surface-500">
+                                <p class="mt-1 text-xs leading-6 text-surface-600">
                                     Cek progres rental dari akun kamu kapan saja.
                                 </p>
                             </div>
@@ -61,7 +61,7 @@
                                 <p class="text-sm font-semibold text-surface-900">
                                     Pembayaran Aman
                                 </p>
-                                <p class="mt-1 text-xs leading-6 text-surface-500">
+                                <p class="mt-1 text-xs leading-6 text-surface-600">
                                     Transaksi berhasil diproses melalui payment gateway.
                                 </p>
                             </div>

@@ -44,7 +44,7 @@
                     <!-- Judul Kicker & Judul Utama -->
                     <p class="user-heading-kicker">Cara Sewa</p>
                     <h1 class="user-page-title drop-shadow-sm">Alur rental dalam 4 langkah</h1>
-                    <p class="user-page-desc mx-auto max-w-2xl text-surface-500/90">
+                    <p class="user-page-desc mx-auto max-w-2xl text-surface-600/90">
                         Proses dibuat sederhana agar kamu bisa fokus ke persiapan trip, bukan ribet
                         urusan sewa.
                     </p>
@@ -97,7 +97,7 @@
                 >
                     <!-- Latar Belakang Lingkaran Abstrak -->
                     <div
-                        class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-cyan-500/20 blur-[80px]"
+                        class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-cyan-700/20 blur-[80px]"
                     ></div>
                     <div
                         class="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-blue-500/20 blur-[80px]"
@@ -118,7 +118,7 @@
 
                         <!-- [UPDATE TOMBOL] Tombol lebih tinggi (h-14), melengkung sempurna (rounded-full), dengan shadow memancar -->
                         <div class="mt-8 sm:mt-0 sm:shrink-0 flex justify-center">
-                            <Link
+                            <Link prefetch
                                 :href="route('catalog.index')"
                                 class="inline-flex h-14 items-center justify-center rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 px-8 text-[14px] font-bold tracking-wide text-white shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_25px_rgba(34,211,238,0.6)]"
                             >

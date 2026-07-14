@@ -382,7 +382,7 @@
                     <div
                         class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none"
                     >
-                        <Search class="h-4 w-4 text-slate-400" />
+                        <Search class="h-4 w-4 text-slate-500" />
                     </div>
                     <!-- 
                         Auto-Search Input dengan Event Focus/Blur & Auto-Enter Barcode Scanner 
@@ -494,7 +494,7 @@
 
                 <div
                     v-if="products.length === 0"
-                    class="flex flex-col items-center justify-center py-20 text-slate-400"
+                    class="flex flex-col items-center justify-center py-20 text-slate-500"
                 >
                     <Search class="w-12 h-12 mb-3 text-slate-300" />
                     <p class="text-sm">Barang tidak ditemukan.</p>
@@ -534,7 +534,7 @@
                             />
                             <div
                                 v-else
-                                class="text-slate-400 font-bold text-lg tracking-wider opacity-60"
+                                class="text-slate-500 font-bold text-lg tracking-wider opacity-60"
                             >
                                 No Img
                             </div>
@@ -635,7 +635,7 @@
                         />
                         <label
                             for="name"
-                            class="absolute left-0 -top-3 text-[9px] font-bold text-slate-400 uppercase tracking-wider transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:top-1.5 peer-focus:-top-3 peer-focus:text-[9px] peer-focus:text-primary"
+                            class="absolute left-0 -top-3 text-[9px] font-bold text-slate-500 uppercase tracking-wider transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:top-1.5 peer-focus:-top-3 peer-focus:text-[9px] peer-focus:text-primary"
                             >Nama Pelanggan</label
                         >
                     </div>
@@ -649,7 +649,7 @@
                         />
                         <label
                             for="wa"
-                            class="absolute left-0 -top-3 text-[9px] font-bold text-slate-400 uppercase tracking-wider transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:top-1.5 peer-focus:-top-3 peer-focus:text-[9px] peer-focus:text-primary"
+                            class="absolute left-0 -top-3 text-[9px] font-bold text-slate-500 uppercase tracking-wider transition-all peer-placeholder-shown:text-xs peer-placeholder-shown:top-1.5 peer-focus:-top-3 peer-focus:text-[9px] peer-focus:text-primary"
                             >No. WhatsApp</label
                         >
                     </div>
@@ -658,11 +658,11 @@
                 <!-- Durasi Sewa Kompak -->
                 <div class="bg-slate-900/80 p-2.5 rounded-xl border border-slate-800">
                     <div class="flex justify-between items-center mb-2">
-                        <h3 class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">
+                        <h3 class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">
                             Masa Sewa
                         </h3>
                         <span
-                            class="text-[9px] font-black text-cyan-500 bg-cyan-500/10 px-1.5 py-0.5 rounded"
+                            class="text-[9px] font-black text-cyan-500 bg-cyan-700/10 px-1.5 py-0.5 rounded"
                             >{{ totalDays }} Hari</span
                         >
                     </div>
@@ -691,7 +691,7 @@
                     class="flex flex-col max-h-[160px] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']"
                 >
                     <h3
-                        class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-2 shrink-0"
+                        class="text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-2 shrink-0"
                     >
                         Keranjang Item
                     </h3>
@@ -731,7 +731,7 @@
                                     </div>
                                     <div
                                         v-if="item.notes"
-                                        class="text-[8px] text-slate-400 truncate italic mt-0.5"
+                                        class="text-[8px] text-slate-500 truncate italic mt-0.5"
                                     >
                                         Catatan: {{ item.notes }}
                                     </div>
@@ -739,7 +739,7 @@
                                 <div class="flex items-center gap-1">
                                     <button
                                         @click="decrementQty(item)"
-                                        class="w-5 h-5 flex items-center justify-center bg-slate-900 rounded hover:bg-slate-700 text-slate-400"
+                                        class="w-5 h-5 flex items-center justify-center bg-slate-900 rounded hover:bg-slate-700 text-slate-500"
                                     >
                                         <Minus class="w-2.5 h-2.5" />
                                     </button>
@@ -748,7 +748,7 @@
                                     }}</span>
                                     <button
                                         @click="incrementQty(item)"
-                                        class="w-5 h-5 flex items-center justify-center bg-slate-900 rounded hover:bg-slate-700 text-slate-400"
+                                        class="w-5 h-5 flex items-center justify-center bg-slate-900 rounded hover:bg-slate-700 text-slate-500"
                                     >
                                         <Plus class="w-2.5 h-2.5" />
                                     </button>
@@ -760,7 +760,7 @@
 
                 <!-- Pilihan Pembayaran Estetik -->
                 <div class="bg-slate-800/30 p-2 rounded-xl border border-slate-700/50 mt-4">
-                    <h3 class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                    <h3 class="text-[9px] font-bold text-slate-500 uppercase tracking-widest mb-2">
                         Metode Bayar
                     </h3>
                     <div class="grid grid-cols-3 gap-1.5">
@@ -832,7 +832,7 @@
             <!-- Footer Area: Total & Action Button (Gradient) -->
             <div class="p-4 border-t border-slate-800 bg-slate-900/90 backdrop-blur-lg shrink-0">
                 <div class="flex items-end justify-between mb-4">
-                    <div class="text-[11px] font-bold uppercase tracking-widest text-slate-400">
+                    <div class="text-[11px] font-bold uppercase tracking-widest text-slate-500">
                         Total Tagihan
                     </div>
                     <div class="text-3xl font-black text-white font-mono tracking-tighter">
@@ -885,7 +885,7 @@
                 </div>
 
                 <!-- Total Tagihan -->
-                <h2 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                <h2 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">
                     Total Tagihan Tunai
                 </h2>
                 <div class="text-4xl font-black text-[#1e293b] mb-8 tracking-tight font-mono">
@@ -953,7 +953,7 @@
                     <QrCode class="w-8 h-8" />
                 </div>
 
-                <h2 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                <h2 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">
                     Scan QRIS Sesuai Tagihan
                 </h2>
                 <div class="text-4xl font-black text-[#1e293b] mb-6 font-mono tracking-tight">
@@ -1006,7 +1006,7 @@
                     <CreditCard class="w-8 h-8" />
                 </div>
 
-                <h2 class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">
+                <h2 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">
                     Total Transfer
                 </h2>
                 <div class="text-4xl font-black text-[#1e293b] mb-8 tracking-tight font-mono">
@@ -1018,7 +1018,7 @@
                     class="bg-[#f8fafc] p-6 rounded-2xl border border-slate-200 flex flex-col items-center justify-center mb-8"
                 >
                     <div
-                        class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2"
+                        class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2"
                     >
                         BCA Official
                     </div>

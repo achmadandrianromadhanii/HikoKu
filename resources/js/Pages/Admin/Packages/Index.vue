@@ -103,7 +103,7 @@
             </div>
 
             <div class="flex items-center gap-3">
-                <Link
+                <Link prefetch
                     :href="route('admin.packages.create')"
                     class="inline-flex h-9 items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-cyan-600 to-blue-600 px-4 text-[12px] font-bold text-white shadow-md shadow-cyan-500/20 transition-all hover:scale-[1.02] hover:shadow-cyan-500/30"
                 >
@@ -120,13 +120,13 @@
             <!-- Search Input Mungil -->
             <div class="relative w-full max-w-xs">
                 <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                    <Search class="h-4 w-4 text-slate-400" />
+                    <Search class="h-4 w-4 text-slate-500" />
                 </div>
                 <input
                     v-model="search"
                     type="text"
                     placeholder="Ketik 1 huruf..."
-                    class="h-9 w-full rounded-lg border-transparent bg-slate-50 pl-9 pr-3 text-[12px] outline-none transition-all placeholder:text-slate-400 focus:border-cyan-500 focus:bg-white focus:ring-2 focus:ring-cyan-500/20"
+                    class="h-9 w-full rounded-lg border-transparent bg-slate-50 pl-9 pr-3 text-[12px] outline-none transition-all placeholder:text-slate-500 focus:border-cyan-500 focus:bg-white focus:ring-2 focus:ring-cyan-500/20"
                 />
             </div>
 
@@ -134,7 +134,7 @@
             <label class="group flex cursor-pointer items-center gap-2">
                 <div
                     class="relative inline-flex h-5 w-9 items-center rounded-full transition-colors"
-                    :class="activeOnly ? 'bg-cyan-500' : 'bg-slate-200'"
+                    :class="activeOnly ? 'bg-cyan-700' : 'bg-slate-200'"
                 >
                     <input type="checkbox" v-model="activeOnly" class="sr-only" />
                     <span
@@ -156,7 +156,7 @@
             <div class="flex-1 min-h-0 overflow-auto custom-scrollbar relative z-10">
                 <table class="w-full text-left text-[12px] text-slate-600 whitespace-nowrap">
                     <thead
-                        class="sticky top-0 z-20 border-b border-slate-100 bg-slate-50 text-[10px] font-bold uppercase tracking-widest text-slate-400 shadow-[0_1px_2px_rgba(0,0,0,0.05)] after:absolute after:inset-x-0 after:bottom-0 after:border-b after:border-slate-100/60"
+                        class="sticky top-0 z-20 border-b border-slate-100 bg-slate-50 text-[10px] font-bold uppercase tracking-widest text-slate-500 shadow-[0_1px_2px_rgba(0,0,0,0.05)] after:absolute after:inset-x-0 after:bottom-0 after:border-b after:border-slate-100/60"
                     >
                         <tr>
                             <th class="px-4 py-3 font-semibold">Paket Bundling</th>
@@ -198,7 +198,7 @@
                                     <div>
                                         <div class="flex items-center gap-2">
                                             <span
-                                                class="font-bold text-slate-900 transition-colors group-hover:text-cyan-600"
+                                                class="font-bold text-slate-900 transition-colors group-hover:text-cyan-700"
                                                 >{{ row.name }}</span
                                             >
                                             <Star
@@ -206,7 +206,7 @@
                                                 class="h-3 w-3 fill-amber-400 text-amber-400"
                                             />
                                         </div>
-                                        <span class="mt-0.5 block text-[10px] text-slate-400">{{
+                                        <span class="mt-0.5 block text-[10px] text-slate-500">{{
                                             row.slug
                                         }}</span>
                                     </div>
@@ -221,7 +221,7 @@
                                         class="inline-flex items-center gap-1 rounded-md bg-slate-100 px-2 py-0.5 text-[10px] font-medium text-slate-600"
                                     >
                                         {{ item.product?.name }}
-                                        <span class="font-bold text-slate-400"
+                                        <span class="font-bold text-slate-500"
                                             >x{{ item.quantity }}</span
                                         >
                                     </span>
@@ -229,7 +229,7 @@
                             </td>
 
                             <td class="px-4 py-3 text-right">
-                                <span class="block font-bold text-cyan-600">{{
+                                <span class="block font-bold text-cyan-700">{{
                                     row.price_label
                                 }}</span>
                             </td>
@@ -251,16 +251,16 @@
                                 <div
                                     class="flex items-center justify-end gap-1 opacity-0 transition-opacity group-hover:opacity-100"
                                 >
-                                    <Link
+                                    <Link prefetch
                                         :href="route('admin.packages.edit', row.id)"
-                                        class="flex h-7 w-7 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-blue-50 hover:text-blue-600"
+                                        class="flex h-7 w-7 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-blue-50 hover:text-blue-600"
                                     >
                                         <Pencil class="h-3.5 w-3.5" />
                                     </Link>
                                     <button
                                         type="button"
                                         @click="openDelete(row)"
-                                        class="flex h-7 w-7 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-rose-50 hover:text-rose-600"
+                                        class="flex h-7 w-7 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-rose-50 hover:text-rose-600"
                                     >
                                         <Trash2 class="h-3.5 w-3.5" />
                                     </button>

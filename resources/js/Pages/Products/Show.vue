@@ -218,14 +218,14 @@
             <!-- [UPDATE]: Container Utama diperkecil lagi ukurannya (max-w-5xl) agar konten tidak membesar. -->
             <section class="mx-auto max-w-5xl px-4 py-6 sm:px-6 lg:px-8">
                 <!-- Breadcrumb minimalis dengan transisi yang lebih lembut -->
-                <div class="mb-5 text-[13px] font-medium text-surface-500">
-                    <Link
+                <div class="mb-5 text-[13px] font-medium text-surface-600">
+                    <Link prefetch
                         :href="route('home')"
                         class="transition-colors duration-300 hover:text-cyan-500"
                         >Beranda</Link
                     >
                     <span class="mx-2 text-surface-300">/</span>
-                    <Link
+                    <Link prefetch
                         :href="route('catalog.index')"
                         class="transition-colors duration-300 hover:text-cyan-500"
                         >Katalog</Link
@@ -259,7 +259,7 @@
 
                                 <div
                                     v-else
-                                    class="flex aspect-[4/3] w-full items-center justify-center bg-surface-50 text-[13px] font-bold text-surface-400"
+                                    class="flex aspect-[4/3] w-full items-center justify-center bg-surface-50 text-[13px] font-bold text-surface-600"
                                 >
                                     Gambar belum tersedia
                                 </div>
@@ -304,8 +304,8 @@
                                     class="relative pb-4 text-[14px] font-extrabold uppercase tracking-wide transition-colors duration-300 whitespace-nowrap"
                                     :class="
                                         activeTab === 'description'
-                                            ? 'text-cyan-600'
-                                            : 'text-surface-400 hover:text-surface-700'
+                                            ? 'text-cyan-700'
+                                            : 'text-surface-600 hover:text-surface-700'
                                     "
                                     @click="activeTab = 'description'"
                                 >
@@ -325,8 +325,8 @@
                                     class="relative pb-4 text-[14px] font-extrabold uppercase tracking-wide transition-colors duration-300 whitespace-nowrap"
                                     :class="
                                         activeTab === 'specs'
-                                            ? 'text-cyan-600'
-                                            : 'text-surface-400 hover:text-surface-700'
+                                            ? 'text-cyan-700'
+                                            : 'text-surface-600 hover:text-surface-700'
                                     "
                                     @click="activeTab = 'specs'"
                                 >
@@ -342,8 +342,8 @@
                                     class="relative pb-4 text-[14px] font-extrabold uppercase tracking-wide transition-colors duration-300 whitespace-nowrap"
                                     :class="
                                         activeTab === 'reviews'
-                                            ? 'text-cyan-600'
-                                            : 'text-surface-400 hover:text-surface-700'
+                                            ? 'text-cyan-700'
+                                            : 'text-surface-600 hover:text-surface-700'
                                     "
                                     @click="activeTab = 'reviews'"
                                 >
@@ -453,10 +453,10 @@
                                         >
                                             <Star class="h-8 w-8 text-surface-300" />
                                         </div>
-                                        <p class="text-[14px] font-bold text-surface-500">
+                                        <p class="text-[14px] font-bold text-surface-600">
                                             Belum ada yang mengulas produk ini.
                                         </p>
-                                        <p class="mt-1 text-[13px] text-surface-400">
+                                        <p class="mt-1 text-[13px] text-surface-600">
                                             Jadilah penyewa pertama yang memberikan ulasan!
                                         </p>
                                     </div>
@@ -473,7 +473,7 @@
                         <div class="flex items-start justify-between gap-4">
                             <div class="min-w-0">
                                 <p
-                                    class="text-[11px] font-extrabold uppercase tracking-[0.2em] text-cyan-600 drop-shadow-sm"
+                                    class="text-[11px] font-extrabold uppercase tracking-[0.2em] text-cyan-700 drop-shadow-sm"
                                 >
                                     {{ product.category?.name || 'Katalog' }}
                                 </p>
@@ -548,7 +548,7 @@
                                 >
                                     {{ formatCurrency(product.price_per_day) }}
                                 </p>
-                                <p class="text-[13px] font-bold text-surface-500">/ hari</p>
+                                <p class="text-[13px] font-bold text-surface-600">/ hari</p>
                             </div>
                         </div>
 
@@ -634,7 +634,7 @@
 
                                 <div class="flex items-end justify-between">
                                     <p
-                                        class="text-[12px] font-extrabold text-surface-500 uppercase tracking-wide"
+                                        class="text-[12px] font-extrabold text-surface-600 uppercase tracking-wide"
                                     >
                                         Total Estimasi
                                     </p>
@@ -686,14 +686,14 @@
                             <button
                                 type="button"
                                 @click="scrollLeft"
-                                class="flex h-10 w-10 items-center justify-center rounded-full border border-surface-200 bg-white text-surface-600 transition-all hover:bg-surface-50 hover:text-cyan-600 shadow-sm hover:shadow-md"
+                                class="flex h-10 w-10 items-center justify-center rounded-full border border-surface-200 bg-white text-surface-600 transition-all hover:bg-surface-50 hover:text-cyan-700 shadow-sm hover:shadow-md"
                             >
                                 <ChevronLeft class="h-5 w-5" />
                             </button>
                             <button
                                 type="button"
                                 @click="scrollRight"
-                                class="flex h-10 w-10 items-center justify-center rounded-full border border-surface-200 bg-white text-surface-600 transition-all hover:bg-surface-50 hover:text-cyan-600 shadow-sm hover:shadow-md"
+                                class="flex h-10 w-10 items-center justify-center rounded-full border border-surface-200 bg-white text-surface-600 transition-all hover:bg-surface-50 hover:text-cyan-700 shadow-sm hover:shadow-md"
                             >
                                 <ChevronRight class="h-5 w-5" />
                             </button>

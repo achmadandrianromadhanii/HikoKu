@@ -87,7 +87,7 @@ const formatPrice = (price: number) => {
     <!-- Komentar: Lebar search container (w-full) akan dibatasi oleh elemen induk (Navbar) -->
     <div class="relative w-full" ref="wrapperRef">
         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-            <Search v-if="!loading" class="w-4 h-4 text-slate-400" />
+            <Search v-if="!loading" class="w-4 h-4 text-slate-500" />
             <Loader2 v-else class="w-4 h-4 text-cyan-500 animate-spin" />
         </div>
         
@@ -130,7 +130,7 @@ const formatPrice = (price: number) => {
                             <div class="min-w-0 flex-1">
                                 <!-- v-html digunakan agar tag <mark> (stabilo) dari server dapat dirender dengan benar -->
                                 <p class="text-sm font-medium text-slate-700 truncate" v-html="product.highlighted_name || product.name"></p>
-                                <p class="text-[11px] text-cyan-600 font-semibold mt-0.5">
+                                <p class="text-[11px] text-cyan-700 font-semibold mt-0.5">
                                     {{ formatPrice(product.final_price || product.price) }}
                                 </p>
                             </div>
