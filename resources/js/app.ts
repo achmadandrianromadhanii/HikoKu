@@ -51,7 +51,7 @@ createInertiaApp({
             loader.style.visibility = 'hidden';
             setTimeout(() => {
                 loader.remove();
-            }, 500); // Hapus elemen dari DOM setelah animasi fade selesai
+            }, 150);
         }
     },
     // [OPTIMASI UX & PERFORMANCE: Top Loading Progress Bar]

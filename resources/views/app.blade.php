@@ -16,15 +16,15 @@
         <link rel="preconnect" href="https://images.unsplash.com" crossorigin>
         
         <!-- [OPTIMASI LIGHTHOUSE]: Preconnect ke server font untuk mempercepat FCP dan LCP -->
-        <link rel="preload" href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-        <noscript><link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" /></noscript>
+        <link rel="preload" href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" as="style" /><link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
         
-        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Pacifico&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-        <noscript><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Pacifico&display=swap" rel="stylesheet" /></noscript>
+        
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Pacifico&display=swap" as="style" /><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&family=Pacifico&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+        
 
         <!-- [OPTIMASI LIGHTHOUSE]: Preload gambar Hero (LCP) agar browser langsung mengunduhnya sebelum JavaScript (Vue) selesai dimuat -->
         <!-- URL harus SAMA PERSIS (sampai ke parameternya) dengan yang digunakan di Welcome/Index.vue agar tidak muncul peringatan "preloaded but not used" -->
-        <link rel="preload" as="image" href="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=50&w=800&fm=webp&auto=format&fit=crop" fetchpriority="high">
+        @if(request()->is('/'))<link rel="preload" as="image" href="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=50&w=800&fm=webp&auto=format&fit=crop" fetchpriority="high">@endif
 
         <!-- 
             [UPDATE FAVICON HD+]
@@ -39,7 +39,7 @@
 
         <!-- Scripts -->
         @routes
-        {{ Vite::usePreloadTagAttributes(false) }}
+        
         @vite(['resources/js/app.ts', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
         
@@ -61,7 +61,7 @@
                 background-color: #D4DCE4;
                 z-index: 99999;
                 justify-content: center;
-                transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+                transition: opacity 0.15s ease-out, visibility 0.15s ease-out;
             }
             .loader-logo {
                 width: 80px;
@@ -99,7 +99,7 @@
     <body class="font-sans antialiased">
         <!-- Elemen Initial Loader yang langsung dirender oleh browser dalam milidetik! -->
         <div id="initial-loader">
-            <img src="/images/logo.webp" alt="Loading" class="loader-logo" />
+            <img src="/images/logo.png" alt="Loading" class="loader-logo" />
             <div class="loader-bar-container">
                 <div class="loader-bar-progress"></div>
             </div>

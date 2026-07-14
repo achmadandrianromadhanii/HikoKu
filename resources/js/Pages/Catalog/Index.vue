@@ -53,46 +53,6 @@
 
     const productData = computed(() => props.products?.data || []);
 
-    // [FITUR PREMIUM]: Animasi Murni Native Intersection Observer
-    const gridRef = ref(null);
-
-    onMounted(() => {
-        const staggerObserver = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.remove('opacity-0', 'translate-y-12', 'scale-95');
-                        entry.target.classList.add('opacity-100', 'translate-y-0', 'scale-100');
-                        staggerObserver.unobserve(entry.target);
-                    }
-                });
-            },
-            { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-        );
-
-        watch(
-            productData,
-            async () => {
-                await nextTick();
-                if (gridRef.value) {
-                    Array.from(gridRef.value.children).forEach((child, index) => {
-                        child.classList.add(
-                            'opacity-0',
-                            'translate-y-12',
-                            'scale-95',
-                            'transition-all',
-                            'duration-700',
-                            'ease-out'
-                        );
-                        child.style.transitionDelay = `${(index % 12) * 100}ms`;
-                        staggerObserver.observe(child);
-                    });
-                }
-            },
-            { immediate: true }
-        );
-    });
-
     const showMobileFilter = ref(false);
 </script>
 
@@ -104,11 +64,11 @@
         <!-- [DESKTOP VIEW]: DASHBOARD STYLE (hidden lg:flex)          -->
         <!-- ========================================================= -->
         <div
-            class="hidden lg:flex h-[calc(100vh-84px)] mx-auto w-full max-w-[1400px] px-4 py-4 sm:px-6 lg:px-8 gap-6 items-start"
+            class="flex flex-col lg:flex-row h-[calc(100vh-84px)] mx-auto w-full max-w-[1400px] px-4 py-4 sm:px-6 lg:px-8 gap-6 items-start"
         >
             <!-- [FITUR PREMIUM]: FIXED SIDEBAR 
                  Sidebar dikunci tinggi penuh dan tidak memiliki scrollbar mandiri (diam) -->
-            <aside class="w-[280px] shrink-0 h-full">
+            <aside class="w-full lg:w-[280px] shrink-0 h-auto lg:h-full">
                 <div
                     class="user-panel h-full overflow-hidden p-5 shadow-[0_4px_24px_rgba(0,0,0,0.02)] border-surface-100/50 bg-white/80 backdrop-blur-md"
                 >
@@ -116,11 +76,13 @@
                         <!-- [UPDATE]: Fitur pencarian "Cari Produk" dipindah ke Navbar, jadi dihapus dari sidebar ini. -->
                         <div>
                             <label
+                                for="category_filter"
                                 class="mb-1.5 block text-[13px] font-extrabold text-surface-900 tracking-wide uppercase"
                             >
                                 Kategori
                             </label>
                             <select
+                                id="category_filter"
                                 v-model="form.category"
                                 class="w-full rounded-xl border-transparent bg-surface-50 px-4 py-3 text-[14px] text-surface-700 outline-none transition focus:border-cyan-300 focus:bg-white focus:ring-4 focus:ring-cyan-100"
                             >
@@ -139,11 +101,13 @@
                         <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
                             <div>
                                 <label
+                                    for="min_price_filter"
                                     class="mb-1.5 block text-[13px] font-extrabold text-surface-900 tracking-wide uppercase"
                                 >
                                     Harga Min
                                 </label>
                                 <input
+                                    id="min_price_filter"
                                     v-model="form.min_price"
                                     type="number"
                                     placeholder="Rp 0"
@@ -153,11 +117,13 @@
 
                             <div>
                                 <label
+                                    for="max_price_filter"
                                     class="mb-1.5 block text-[13px] font-extrabold text-surface-900 tracking-wide uppercase"
                                 >
                                     Harga Max
                                 </label>
                                 <input
+                                    id="max_price_filter"
                                     v-model="form.max_price"
                                     type="number"
                                     placeholder="Rp Max"
@@ -200,7 +166,7 @@
             </aside>
 
             <!-- KONTEN KANAN: Berisi Top Filter (Diam) dan Grid Produk (Scroll) -->
-            <div class="flex-1 flex flex-col h-full overflow-hidden">
+            <div class="flex-1 flex flex-col h-auto lg:h-full w-full overflow-visible lg:overflow-hidden">
                 <!-- TOP FILTER STATIS -->
                 <div
                     class="shrink-0 mb-6 user-panel flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:justify-between border-transparent shadow-sm bg-white/80 backdrop-blur-md"
@@ -220,9 +186,10 @@
                     </p>
 
                     <div class="flex items-center gap-2">
-                        <label class="text-[13px] font-extrabold text-surface-700">Urutkan</label>
+                        <label for="sort_filter" class="text-[13px] font-extrabold text-surface-700">Urutkan</label>
 
                         <select
+                            id="sort_filter"
                             v-model="form.sort"
                             class="h-10 cursor-pointer rounded-full border border-transparent bg-surface-50 px-4 text-[13px] font-medium text-surface-800 outline-none transition hover:bg-surface-100 focus:border-cyan-300 focus:bg-white focus:ring-4 focus:ring-cyan-100"
                             @change="submitFilter"
@@ -238,12 +205,7 @@
                 <!-- AREA SCROLLABLE KHUSUS PRODUK DAN FOOTER -->
                 <div class="flex-1 overflow-y-auto pr-2 pb-6 custom-scrollbar">
                     <div v-if="productData.length > 0">
-                        <!-- [FITUR PREMIUM]: ANIMASI SCROLL BAWAH STAGGERED MUNCUL PERLAHAN -->
-                        <!-- [UPDATE]: Mengecilkan kembali ukuran kotak produk menjadi 4 kolom, disamakan dengan homepage -->
-                        <div
-                            ref="gridRef"
-                            class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
-                        >
+                        <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                             <ProductCard
                                 v-for="product in productData"
                                 :key="product.id"
