@@ -50,7 +50,7 @@ createInertiaApp({
         // [KUNCI KECEPATAN UX]: Mengubah delay bawaan (250ms) menjadi 0. 
         // Dengan begini, loading bar (garis biru di atas) langsung muncul SEKETIKA 
         // saat link atau tombol diklik, menghilangkan sensasi "lag" atau lemot.
-        delay: 250,
+        delay: 0,
         // Warna cyan terang yang serasi dengan desain tema Hiko
         color: '#22d3ee',
         // Menggunakan CSS bawaan dari NProgress (ringan dan teruji)

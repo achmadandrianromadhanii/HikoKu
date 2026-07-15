@@ -249,7 +249,7 @@
 
                             <td class="px-4 py-3 text-right">
                                 <div
-                                    class="flex items-center justify-end gap-1 opacity-0 transition-opacity group-hover:opacity-100"
+                                    class="flex items-center justify-end gap-1"
                                 >
                                     <Link prefetch
                                         :href="route('admin.packages.edit', row.id)"

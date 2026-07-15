@@ -19,6 +19,7 @@ class ProductPackage extends Model
         'slug',
         'description',
         'price_per_day',
+
         'is_active',
         'is_featured',
         'image_path',

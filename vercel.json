@@ -19,10 +19,16 @@
     "routes": [
         {
             "src": "/build/(.*)",
+            "headers": {
+                "cache-control": "public, max-age=31536000, immutable"
+            },
             "dest": "/build/$1"
         },
         {
             "src": "/images/(.*)",
+            "headers": {
+                "cache-control": "public, max-age=86400"
+            },
             "dest": "/images/$1"
         },
         {

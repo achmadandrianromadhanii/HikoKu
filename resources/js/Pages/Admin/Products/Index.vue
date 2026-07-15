@@ -485,7 +485,7 @@
                             <!-- Col 6: Actions (Subtle hover) -->
                             <td class="px-6 py-3 text-right">
                                 <div
-                                    class="flex items-center justify-end gap-1 opacity-40 group-hover:opacity-100 transition-opacity"
+                                    class="flex items-center justify-end gap-1 "
                                 >
                                     <!-- Edit -->
                                     <Link prefetch

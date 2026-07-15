@@ -381,7 +381,7 @@
                             <!-- Col 5: Actions (Hide on hover) -->
                             <td class="px-6 py-3 text-right">
                                 <div
-                                    class="flex items-center justify-end gap-1 opacity-30 group-hover:opacity-100 transition-opacity"
+                                    class="flex items-center justify-end gap-1 "
                                 >
                                     <button
                                         @click="openEdit(row)"

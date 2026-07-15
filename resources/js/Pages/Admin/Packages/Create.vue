@@ -41,7 +41,8 @@
     const form = useForm({
         name: '',
         description: '',
-        price_per_day: '',
+        price_per_day: 0,
+
         image: null,
         is_active: true,
         is_featured: false,
@@ -411,7 +412,7 @@
                     </p>
                 </section>
 
-                <!-- Box: Tarif Sewa -->
+                                <!-- Box: Tarif Sewa -->
                 <section class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
                     <div>
                         <label
@@ -434,6 +435,8 @@
                             {{ form.errors.price_per_day }}
                         </p>
                     </div>
+
+
                 </section>
 
                 <!-- Box: Status & Simpan -->

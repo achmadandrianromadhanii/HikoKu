@@ -86,7 +86,6 @@ class PackageController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'price_per_day' => ['required', 'numeric', 'min:0'],
-            'deposit_total' => ['required', 'numeric', 'min:0'],
             'image' => ['nullable', 'image', 'max:4096'],
             'is_active' => ['nullable', 'boolean'],
             'is_featured' => ['nullable', 'boolean'],
@@ -108,7 +107,7 @@ class PackageController extends Controller
                 'slug' => $this->generateUniqueSlug($data['name']),
                 'description' => $data['description'] ?? null,
                 'price_per_day' => $data['price_per_day'],
-                'deposit_total' => $data['deposit_total'],
+
                 'image_path' => $imagePath,
                 'is_active' => (bool) ($data['is_active'] ?? true),
                 'is_featured' => (bool) ($data['is_featured'] ?? false),
@@ -154,7 +153,6 @@ class PackageController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'price_per_day' => ['required', 'numeric', 'min:0'],
-            'deposit_total' => ['required', 'numeric', 'min:0'],
             'image' => ['nullable', 'image', 'max:4096'],
             'is_active' => ['nullable', 'boolean'],
             'is_featured' => ['nullable', 'boolean'],
@@ -179,7 +177,7 @@ class PackageController extends Controller
                 'slug' => $package->slug ?: $this->generateUniqueSlug($data['name'], $package->id),
                 'description' => $data['description'] ?? null,
                 'price_per_day' => $data['price_per_day'],
-                'deposit_total' => $data['deposit_total'],
+
                 'image_path' => $imagePath,
                 'is_active' => (bool) ($data['is_active'] ?? false),
                 'is_featured' => (bool) ($data['is_featured'] ?? false),
@@ -235,7 +233,7 @@ class PackageController extends Controller
             'description' => $package->description,
             'primary_image_url' => $package->image_path ? asset('storage/' . ltrim($package->image_path, '/')) : null,
             'price_label' => 'Rp ' . number_format((float) $package->price_per_day, 0, ',', '.'),
-            'deposit_label' => 'Rp ' . number_format((float) $package->deposit_total, 0, ',', '.'),
+
             'is_active' => (bool) $package->is_active,
             'is_featured' => (bool) $package->is_featured,
             'items_preview' => $itemsPreview !== '' ? $itemsPreview : '-',

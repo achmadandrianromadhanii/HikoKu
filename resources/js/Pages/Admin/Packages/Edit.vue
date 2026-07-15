@@ -43,7 +43,8 @@
         _method: 'put',
         name: props.packageItem.name || '',
         description: props.packageItem.description || '',
-        price_per_day: props.packageItem.price_per_day || '',
+        price_per_day: props.packageItem.price_per_day ?? 0,
+
         image: null,
         is_active: !!props.packageItem.is_active,
         is_featured: !!props.packageItem.is_featured,
@@ -62,7 +63,7 @@
     });
 
     // Mengatur preview gambar, gunakan foto lama sebagai awalan jika ada
-    const imagePreview = ref(props.packageItem.primary_image_url || null);
+    const imagePreview = ref(props.packageItem.image_path ? '/storage/' + props.packageItem.image_path : null);
 
     // Update preview saat upload gambar baru
     const handleImageChange = (e) => {
@@ -417,7 +418,7 @@
                     </p>
                 </section>
 
-                <!-- Box: Tarif Sewa -->
+                                <!-- Box: Tarif Sewa -->
                 <section class="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
                     <div>
                         <label
@@ -440,6 +441,8 @@
                             {{ form.errors.price_per_day }}
                         </p>
                     </div>
+
+
                 </section>
 
                 <!-- Box: Status & Simpan -->
