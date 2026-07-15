@@ -35,6 +35,7 @@ const mapLink = computed(() => {
 })
 
 const mapContainer = ref(null)
+let map = null
 
 onMounted(() => {
     // [FITUR PREMIUM]: Intersection Observer untuk Animasi List Menu Muncul Satu-persatu
@@ -61,10 +62,56 @@ onMounted(() => {
     footerImageInterval = setInterval(() => {
         currentFooterImage.value = (currentFooterImage.value + 1) % footerImages.length
     }, 5000)
+
+    // Load Leaflet dynamically for Client-Side only (Desktop map)
+    if (window.innerWidth >= 768) {
+        import('leaflet').then(async (Leaflet) => {
+            const L = Leaflet.default;
+            await import('leaflet/dist/leaflet.css');
+            
+            // Fix marker icon issue for Vite
+            const icon = (await import('leaflet/dist/images/marker-icon.png')).default;
+            const iconShadow = (await import('leaflet/dist/images/marker-shadow.png')).default;
+            
+            let DefaultIcon = L.icon({
+                iconUrl: icon,
+                shadowUrl: iconShadow,
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+            });
+            L.Marker.prototype.options.icon = DefaultIcon;
+
+            if (mapContainer.value) {
+                const storeLat = -7.996933;
+                const storeLng = 112.745484;
+                
+                map = L.map(mapContainer.value, {
+                    zoomControl: true,
+                    scrollWheelZoom: true,
+                }).setView([storeLat, storeLng], 16);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; OpenStreetMap contributors'
+                }).addTo(map);
+
+                const marker = L.marker([storeLat, storeLng]).addTo(map);
+                const popupContent = `<b>${brandName.value}</b><br>${settings.value.store_address || 'Jl. Candi Mendut Selatan Dalam No. 1'}`;
+                marker.bindPopup(popupContent);
+                
+                // Invalidate size in case of layout shifts
+                setTimeout(() => {
+                    if (map) map.invalidateSize();
+                }, 500);
+            }
+        }).catch(e => console.error("Error loading Leaflet:", e));
+    }
 })
 
 onUnmounted(() => {
     if (footerImageInterval) clearInterval(footerImageInterval)
+    if (map) {
+        map.remove();
+    }
 })
 
 const socialLinks = computed(() => [
@@ -186,14 +233,20 @@ const socialLinks = computed(() => [
                 <!-- Kolom 4: Lokasi Toko (Leaflet.js) -->
                 <div>
                     <h3 class="text-[11px] font-bold uppercase tracking-widest text-cyan-400">Lokasi Toko</h3>
-                    <div class="footer-nav-item opacity-0 translate-y-4 mt-6 overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-2xl backdrop-blur-sm group relative">
-                        <!-- [OPTIMASI LIGHTHOUSE]: Menggunakan static placeholder alih-alih Leaflet JS yang berat -->
+                    
+                    <!-- [MOBILE ONLY]: Menggunakan static placeholder alih-alih Leaflet JS yang berat di mobile -->
+                    <div class="md:hidden footer-nav-item opacity-0 translate-y-4 mt-6 overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-2xl backdrop-blur-sm group relative">
                         <div class="h-40 w-full bg-gradient-to-br from-[#071f36] to-[#082949] flex flex-col items-center justify-center p-4 text-center">
                             <MapPin class="h-8 w-8 text-cyan-400 mb-2 opacity-80 group-hover:scale-110 group-hover:opacity-100 transition-all duration-300" />
                             <p class="text-white/70 text-xs font-medium">Klik untuk membuka Google Maps</p>
                         </div>
                         <!-- Overlay Link -->
                         <a :href="mapLink" target="_blank" rel="noopener noreferrer" aria-label="Buka Google Maps" class="absolute inset-0 z-10"></a>
+                    </div>
+
+                    <!-- [DESKTOP ONLY]: Real Leaflet Map -->
+                    <div class="hidden md:block footer-nav-item opacity-0 translate-y-4 mt-6 overflow-hidden rounded-[18px] border border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.15)] relative" style="height: 260px; width: 100%;">
+                        <div ref="mapContainer" class="absolute inset-0 z-0 h-full w-full"></div>
                     </div>
 
                     <a :href="mapLink" target="_blank" rel="noopener noreferrer"
